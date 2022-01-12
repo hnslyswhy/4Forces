@@ -20,7 +20,6 @@ const Header = () => {
           className="header__button"
           activeClassName="header__active"
         >
-          {" "}
           Resource
         </NavLink>
       </div>

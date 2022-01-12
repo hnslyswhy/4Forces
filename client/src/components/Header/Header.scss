@@ -36,8 +36,8 @@
     color: $primary-black;
     padding: 0.25 1rem;
     border-radius: 20px;
-    background-color: $secondary-white;
-    border: 1px solid $primary-blue;
+    /*     background-color: $secondary-white;
+    border: 1px solid $primary-blue; */
     @include mobil-body-medium;
 
     &:hover,
