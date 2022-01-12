@@ -13,14 +13,14 @@ const TestPrepPage = () => {
         </div>
       </Link>
 
-      <Link to={"/testprep/listening"}>
+      <Link to={"/testprep/listeningprep"}>
         <div className="prep-main__card">
           <img className="prep-main__img" src={studying} alt="listening" />
           <p className="prep-main__title"> Listening Prep</p>
         </div>
       </Link>
 
-      <Link to={"/testprep/speaking"}>
+      <Link to={"/testprep/speakingprep"}>
         <div className="prep-main__card">
           <img className="prep-main__img" src={studying} alt="speaking" />
           <p className="prep-main__title"> Speaking Prep</p>

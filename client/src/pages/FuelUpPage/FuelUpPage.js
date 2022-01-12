@@ -5,6 +5,7 @@ import Reference from "../../components/Reference/Reference";
 import Translation from "../../components/Translation/Translation";
 import SpeechToText from "../../components/SpeechToText/SpeechToText";
 import back from "../../assets/icons/back.svg";
+import PreBackButtons from "../../components/PreBackButtons/PreBackButtons";
 
 const FuelUpPage = () => {
   return (
@@ -25,10 +26,7 @@ const FuelUpPage = () => {
           <Reference />
           <Translation />
         </div>
-        <div className="fuel__buttons">
-          <button className="fuel__prev">Prev</button>
-          <button className="fuel__next">Next</button>
-        </div>
+        <PreBackButtons />
         <SpeechToText />
       </section>
     </main>

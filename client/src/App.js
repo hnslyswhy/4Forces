@@ -4,6 +4,8 @@ import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import FuelUpPage from "./pages/FuelUpPage/FuelUpPage";
 import HomePage from "./pages/HomePage/HomePage";
+import ListeningPrep from "./pages/ListeningPrep/ListeningPrep";
+import SpeakingPrepPage from "./pages/SpeakingPrepPage/SpeakingPrepPage";
 import TestPrepPage from "./pages/TestPrepPage/TestPrepPage";
 
 function App() {
@@ -12,6 +14,8 @@ function App() {
       <Header />
       <Switch>
         <Route path="/testprep/fuelup" component={FuelUpPage} />
+        <Route path="/testprep/listeningprep" component={ListeningPrep} />
+        <Route path="/testprep/speakingprep" component={SpeakingPrepPage} />
         <Route path="/testprep" exact component={TestPrepPage} />
         <Route path="/" exact component={HomePage} />
 
