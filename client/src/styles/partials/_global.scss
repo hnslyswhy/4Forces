@@ -1,5 +1,5 @@
 @use "./typography";
-@use "./mixins";
+@use "./mixins" as *;
 @use "variables" as *;
 
 * {
@@ -16,10 +16,12 @@ body {
 
 button {
   font-family: inherit;
+  @include mobil-labels;
+  color: $primary-black;
   height: 2.25rem;
   padding: 0 1rem;
   border-radius: 20px;
-  background-color: $secondary-blue;
+  background-color: $secondary-white;
   border: 1px solid $secondary-blue;
 
   &:hover,
@@ -27,10 +29,12 @@ button {
     cursor: pointer;
     color: $primary-white;
     background-color: $primary-blue;
+    box-shadow: 0 2px 8px rgba(253, 253, 253, 0.685);
   }
 
-  @include mixins.tablet {
+  @include tablet {
     height: 2.375rem;
+    @include labels;
   }
 }
 
@@ -58,11 +62,13 @@ textarea {
     border: 1px solid red;
   }
 
-  @include mixins.tablet {
+  @include tablet {
     height: 2.375rem;
   }
 }
 
 a {
   text-decoration: none;
+  color: $primary-black;
+  font-weight: 900;
 }
