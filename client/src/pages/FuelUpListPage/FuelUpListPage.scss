@@ -1,0 +1,22 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.fuelUpList {
+  &__item {
+    margin: 1rem;
+  }
+  &__toggle {
+    width: 100%;
+    @include flexbox(row, flex-start, center);
+    flex-wrap: wrap;
+  }
+
+  &__question {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: $primary-blue;
+    margin: 0.25rem;
+    padding: 0.25rem;
+  }
+}

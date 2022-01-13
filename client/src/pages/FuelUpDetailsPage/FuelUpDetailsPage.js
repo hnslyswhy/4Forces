@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
 import SentenceBlock from "../../components/SentenceBlock/SentenceBlock";
 import Reference from "../../components/Reference/Reference";
@@ -7,7 +8,9 @@ import SpeechToText from "../../components/SpeechToText/SpeechToText";
 import back from "../../assets/icons/back.svg";
 import PreBackButtons from "../../components/PreBackButtons/PreBackButtons";
 
-const FuelUpPage = () => {
+const FuelUpDetailsPage = (props) => {
+  //console.log(useLocation().state);
+
   return (
     <main className="fuel-main">
       <div>
@@ -33,4 +36,4 @@ const FuelUpPage = () => {
   );
 };
 
-export default FuelUpPage;
+export default FuelUpDetailsPage;

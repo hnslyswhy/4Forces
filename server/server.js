@@ -7,6 +7,7 @@ const listeningQuestionRouter = require("./routes/listeningQuestionRoutes");
 const speakingQuestionRouter = require("./routes/speakingQuestionRoutes");
 
 // mongo
+//reference video: https://www.mongodb.com/blog/post/quick-start-nodejs-mongodb-how-to-get-connected-to-your-database
 const { MongoClient } = require("mongodb");
 
 async function main() {

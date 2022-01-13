@@ -6,8 +6,8 @@ const { MongoClient, ObjectId } = require("mongodb");
 const uri =
   "mongodb+srv://hnslyswhy:47r8FLXi7k47@cluster0.5mivt.mongodb.net/HappyAviator?retryWrites=true&w=majority";
 
- //get all 
-sentenceRouter.get("/", async (req, res) => {
+//get all
+/* sentenceRouter.get("/", async (req, res) => {
   const client = new MongoClient(uri);
   try {
     await client.connect();
@@ -26,9 +26,9 @@ sentenceRouter.get("/", async (req, res) => {
   } finally {
     await client.close();
   }
-});
+}); */
 
-  //get all intermediate level
+//get all intermediate level
 sentenceRouter.get("/advanced", async (req, res) => {
   const client = new MongoClient(uri);
   try {
@@ -36,10 +36,10 @@ sentenceRouter.get("/advanced", async (req, res) => {
     const results = await client
       .db("testprep")
       .collection("sentences")
-      .find({ "level": "advanced" })
+      .find({ level: "advanced" })
       .toArray();
 
-      console.log("##### advanced level sentence count : ", results.length)
+    console.log("##### advanced level sentence count : ", results.length);
 
     if (results.length !== 0) {
       res.status(200).json(results);
@@ -53,8 +53,7 @@ sentenceRouter.get("/advanced", async (req, res) => {
   }
 });
 
-
-  //get all intermediate level
+//get all intermediate level
 sentenceRouter.get("/intermediate", async (req, res) => {
   const client = new MongoClient(uri);
   try {
@@ -62,10 +61,10 @@ sentenceRouter.get("/intermediate", async (req, res) => {
     const results = await client
       .db("testprep")
       .collection("sentences")
-      .find({ "level": "intermediate" })
+      .find({ level: "intermediate" })
       .toArray();
 
-      console.log("##### intermediate level sentence count : ", results.length)
+    console.log("##### intermediate level sentence count : ", results.length);
 
     if (results.length !== 0) {
       res.status(200).json(results);
@@ -79,8 +78,7 @@ sentenceRouter.get("/intermediate", async (req, res) => {
   }
 });
 
-
-  //get all entry level
+//get all entry level
 sentenceRouter.get("/entry", async (req, res) => {
   const client = new MongoClient(uri);
   try {
@@ -88,10 +86,10 @@ sentenceRouter.get("/entry", async (req, res) => {
     const results = await client
       .db("testprep")
       .collection("sentences")
-      .find({ "level": "entry" })
+      .find({ level: "entry" })
       .toArray();
 
-      console.log("##### entrylevel sentence count : ", results.length)
+    console.log("##### entrylevel sentence count : ", results.length);
 
     if (results.length !== 0) {
       res.status(200).json(results);
@@ -127,8 +125,5 @@ sentenceRouter.get("/:id", async (req, res) => {
     await client.close();
   }
 });
-
-
-
 
 module.exports = sentenceRouter;
