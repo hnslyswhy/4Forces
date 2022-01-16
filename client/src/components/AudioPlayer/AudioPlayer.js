@@ -1,7 +1,9 @@
 import React from "react";
 
-const AudioPlayer = () => {
-  return <div>AudioPlayer</div>;
+const AudioPlayer = (props) => {
+  console.log(props.audioArray);
+
+  return <div></div>;
 };
 
 export default AudioPlayer;

@@ -1,0 +1,12 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.pre-back {
+  width: 100%;
+  @include flexbox(row, space-between, center);
+
+  &__button {
+    width: 30px;
+    height: 30px;
+  }
+}

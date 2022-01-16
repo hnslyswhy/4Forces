@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useHttp from "../../utilities/useHttp";
 import { getSentencesList } from "../../utilities/api";
@@ -15,16 +15,27 @@ const FuelUpListPage = () => {
   });
   const [showingQuestion, setShowingQuestion] = useState(false);
 
-  const handleGetEntryLevel = () => {
-    sendRequest("entry");
-    setCurrentLevel({
-      entry: true,
-      intermediate: false,
-      advanced: false,
-    });
-    setShowingQuestion(true);
-  };
+  /////to clean up avoiding memory leak  --- not really work well
+  let _isMounted = useRef(true);
+  useEffect(() => {
+    return () => {
+      _isMounted.current = false;
+    };
+  }, []);
 
+  const handleGetEntryLevel = () => {
+    if (_isMounted.current) {
+      sendRequest("entry");
+      setCurrentLevel({
+        entry: true,
+        intermediate: false,
+        advanced: false,
+      });
+      setShowingQuestion(true);
+      console.log(data);
+    }
+  };
+  ///////////////////////////////
   const handleGetIntermediateLevel = () => {
     sendRequest("intermediate");
     setCurrentLevel({
@@ -50,8 +61,6 @@ const FuelUpListPage = () => {
     setShowingQuestion(!showingQuestion);
   };
 
-  console.log(data);
-
   if (status === "pending") {
     return <LoadingSpinner />;
   }
@@ -61,7 +70,6 @@ const FuelUpListPage = () => {
     return <NotFound />;
   }
 
-  console.log(data);
   return (
     <main className="fuelUpList">
       <div className="fuelUpList__card">
@@ -74,13 +82,7 @@ const FuelUpListPage = () => {
             {currentLevel.entry &&
               showingQuestion &&
               data.map((sentence, index) => (
-                <Link
-                  key={sentence._id}
-                  to={{
-                    pathname: `/sentences/${sentence._id}`,
-                    sentenceData: sentence,
-                  }}
-                >
+                <Link key={sentence._id} to={`/testprep/fuelup/${sentence.id}`}>
                   <div className="fuelUpList__question">{index}</div>
                 </Link>
               ))}
