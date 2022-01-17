@@ -106,13 +106,14 @@ sentenceRouter.get("/entry", async (req, res) => {
 // get one by id
 // :id will take all the routes, thus need to stay in the end
 sentenceRouter.get("/:id", async (req, res) => {
+  console.log(req.params.id);
   const client = new MongoClient(uri);
   try {
     await client.connect();
     const result = await client
       .db("testprep")
       .collection("sentences")
-      .findOne({ _id: ObjectId.createFromHexString(req.params.id) });
+      .findOne({ id: req.params.id });
 
     if (result) {
       res.status(200).json(result);

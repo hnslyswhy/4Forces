@@ -48,7 +48,23 @@ const FuelUpDetailsPage = (props) => {
       </div>
       <section className="fuel">
         <div className="fuel__card">
-          <AudioPlayer audioArray={data.audio} />
+          {/*   <AudioPlayer audioArray={data.audio} /> */}
+          <AudioPlayer
+            audioArray={[
+              {
+                speaker: "controller",
+                en: "Delta 1234, Seattle Tower, cleared for takeoff, surface wind 220,16 m/s",
+              },
+              {
+                speaker: "pilot",
+                en: "Seattle Tower, request hold present position till wind dies down. Advise us when it drops to 13 m/s or less, Delat1234.",
+              },
+              {
+                speaker: "question",
+                en: "According to the dialogue, what did the pilot want to do?",
+              },
+            ]}
+          />
           <SentenceBlock blockString={data["zh-cn"]} />
           <Reference referenceArray={data.audio} />
           <Translation translationString={data["zh-cn"]} />
