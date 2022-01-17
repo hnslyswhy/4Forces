@@ -17,21 +17,16 @@ import React, { useState, useEffect } from "react";
 *    delay: is the time in seconds before reading each conversation object. ex. 1 (sec)
 *           the default is 0 (sec).
 */
-const useConversationSpeech = (conversation, rate = 1, delay = 0) => {
-  // Fetch and store a local set of voices supported by this browser. The speech API handles
-  // this in an asynchronous manner so we need to manage this request.
+const useConversationSpeech = (conversation, rate = 1) => {
+  // Fetch and store a local set of voices supported by this browser.
+  // The speech API handles this in an asynchronous manner .
   const [allVoices, setAllVoices] = useState(null);
-  // Set the current index of the conversation that is being spoken out loud.
-  const [audioArrayIndex, setAudioArrayIndex] = useState(0);
-  // Determine if speech has been started.
-  const [isSpeechStarted, setSpeechStarted] = useState(false);
 
-  // We cannot initiate the audio until the voices list is returned to support multiple
-  // speaker voices. If there is only one conversation object then we can ignore and
-  // default to just one default voice.
+  const [localRate, setLocalRate] = useState(rate);
+  // Cannot initiate the audio until the voices list is returned.
+  // If there is only one conversation object then we can ignore and default to just one default voice.
   useEffect(() => {
     if (allVoices && allVoices.length) {
-      setAudioArrayIndex(0);
     }
   }, [allVoices]);
 
@@ -63,10 +58,6 @@ const useConversationSpeech = (conversation, rate = 1, delay = 0) => {
     }
   };
 
-  // setup text/utter, can only be activated with user interaction or you will
-  // get an error "not-allowed".
-  const setupUtterance = () => {};
-
   const initConversation = () => {
     if (synth.speaking) {
       synth.cancel();
@@ -90,7 +81,7 @@ const useConversationSpeech = (conversation, rate = 1, delay = 0) => {
       switch (element.speaker) {
         case "controller":
           utter.voice = allVoices[40];
-          utter.pitch = 0.75;
+          //       utter.pitch = 0.75;
           break;
         case "pilot":
           utter.voice = allVoices[33];
@@ -98,7 +89,8 @@ const useConversationSpeech = (conversation, rate = 1, delay = 0) => {
         default:
           utter.voice = allVoices[0];
       }
-      //utter.lang = "en-US";
+      utter.lang = "en-US";
+      utter.rate = localRate;
       synth.speak(utter);
       synth.pause();
     });
@@ -106,7 +98,7 @@ const useConversationSpeech = (conversation, rate = 1, delay = 0) => {
   };
 
   const play = () => {
-    if (!synth.paused && !synth.speaking) {
+    if (!synth.paused || !synth.speaking) {
       initConversation();
     }
     synth.resume();
@@ -120,10 +112,27 @@ const useConversationSpeech = (conversation, rate = 1, delay = 0) => {
     synth.cancel();
   };
 
+  const setRate = (rate) => {
+    let r = rate;
+    if (rate > 10.0) {
+      rate = 10.0;
+    } else if (rate < 0.0) {
+      rate = 0.0;
+    }
+    setLocalRate(r);
+    reset();
+  };
+
+  /*   const checkPlaying = () => {
+    return synth.speaking;
+  }; */
+
   return {
     conversationPlay: play,
     conversationPause: pause,
     conversationReset: reset,
+    setRate: setRate,
+    /*     checkPlaying: checkPlaying, */
   };
 };
 

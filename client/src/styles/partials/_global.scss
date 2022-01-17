@@ -28,8 +28,8 @@ button {
   &:active {
     cursor: pointer;
     color: $primary-white;
-    background-color: $primary-blue;
-    box-shadow: 0 2px 8px rgba(253, 253, 253, 0.685);
+    background-color: $secondary-blue;
+    box-shadow: 0 2px 4px rgba(253, 253, 253, 0.685);
   }
 
   @include tablet {
@@ -44,7 +44,7 @@ textarea {
   height: 2.25rem;
   padding: 0 1rem;
   border-radius: 20px;
-  border: 1px solid $secondary-gray;
+  border: 1px solid $primary-gray;
 
   &::placeholder {
     font-family: inherit;

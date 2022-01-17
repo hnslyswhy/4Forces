@@ -9,18 +9,22 @@ const PreBackButtons = (props) => {
   return (
     <div className="pre-back">
       <Link
-        to={
-          props.previousId
+        to={{
+          pathname: props.previousId
             ? `/testprep/fuelup/${props.previousId}`
-            : "/testprep/fuelup"
-        }
+            : "/testprep/fuelup",
+          state: { sentenceData: props.sentenceData, level: props.level },
+        }}
       >
         <img className="pre-back__button" src={left} alt="previous" />
       </Link>
       <Link
-        to={
-          props.nextId ? `/testprep/fuelup/${props.nextId}` : "/testprep/fuelup"
-        }
+        to={{
+          pathname: props.nextId
+            ? `/testprep/fuelup/${props.nextId}`
+            : "/testprep/fuelup",
+          state: { sentenceData: props.sentenceData, level: props.level },
+        }}
       >
         <img className="pre-back__button" src={right} alt="next" />
       </Link>

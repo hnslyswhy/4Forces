@@ -35,7 +35,7 @@
 
   &__button {
     width: 50%;
-    color: $primary-black;
+    color: $primary-green;
     padding: 0.25 1rem;
     border-radius: 20px;
     /*     background-color: $secondary-white;
@@ -45,8 +45,8 @@
     &:hover,
     &:active {
       cursor: pointer;
-      color: $primary-white;
-      background-color: $primary-blue;
+      color: $primary-green;
+      background-color: $secondary-blue;
       box-shadow: 0 2px 8px rgba(253, 253, 253, 0.685);
     }
 
@@ -59,9 +59,9 @@
   &__active {
     height: fit-content;
     width: fit-content;
-    background-color: $dark-blue;
-    border-color: $dark-blue;
-    color: $primary-white;
+    background-color: $secondary-blue;
+    border-color: $secondary-blue;
+    color: $primary-green;
     border-radius: 20px;
   }
 }

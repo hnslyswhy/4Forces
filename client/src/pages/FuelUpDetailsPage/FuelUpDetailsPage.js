@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useHistory, useParams, useLocation } from "react-router-dom";
 import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
 import SentenceBlock from "../../components/SentenceBlock/SentenceBlock";
 import Reference from "../../components/Reference/Reference";
@@ -7,75 +7,92 @@ import Translation from "../../components/Translation/Translation";
 import SpeechToText from "../../components/SpeechToText/SpeechToText";
 import back from "../../assets/icons/back.svg";
 import PreBackButtons from "../../components/PreBackButtons/PreBackButtons";
-import { getASentence } from "../../utilities/api";
-import useHttp from "../../utilities/useHttp";
 import LoadingSpinner from "../../utilities/LoadingSpinner/LoadingSpinner";
-import NotFound from "../../utilities/NotFound/NotFound";
 
 const FuelUpDetailsPage = (props) => {
   const history = useHistory();
   const { id } = useParams();
-  const { data, status, sendRequest } = useHttp(getASentence, true);
+  const { state } = useLocation();
+  const [targetSentence, setTargetSentence] = useState(null);
+  const [navIds, setNavIds] = useState({});
 
-  let _isMounted = useRef(true);
+  console.log(state);
+
+  /*   if (state.level === "entry") {
+    localStorage.setItem("entrySentences", JSON.stringify(state.sentenceData));
+    console.log(localStorage.getItem("entrySentences"));
+  }
+
+  if (state.level === "intermediate") {
+    localStorage.setItem(
+      "intermediateSentences",
+      JSON.stringify(state.sentenceData)
+    );
+  }
+
+  if (state.level === "advanced") {
+    localStorage.setItem(
+      "advancedSentences",
+      JSON.stringify(state.sentenceData)
+    );
+  } */
+
   useEffect(() => {
-    sendRequest(id);
-    return () => {
-      _isMounted.current = false;
-    };
-  }, [id, sendRequest]);
+    let sentenceIndex = state.sentenceData.findIndex(
+      (sentence, index) => sentence.id === id
+    );
+    setTargetSentence(state.sentenceData[sentenceIndex]);
 
-  /*   useEffect(() => {
-    sendRequest(id);
-  }, [id, sendRequest]);
- */
+    let previousId;
+    let nextId;
+
+    // Get the correct previous index
+    if (sentenceIndex === 0) {
+      previousId = "";
+      nextId = state.sentenceData[sentenceIndex + 1].id;
+    } else if (sentenceIndex === state.sentenceData.length - 1) {
+      previousId = state.sentenceData[sentenceIndex - 1].id;
+      nextId = "";
+    } else {
+      previousId = state.sentenceData[sentenceIndex - 1].id;
+      nextId = state.sentenceData[sentenceIndex + 1].id;
+    }
+    setNavIds({
+      previousId: previousId,
+      nextId: nextId,
+    });
+  }, [id]);
+
   const handleGoBack = () => {
     history.push("/testprep/fuelup");
   };
 
-  if (status === "pending") {
-    return <LoadingSpinner />;
-  }
-
-  if (status === "error") {
-    return <NotFound />;
-  }
-
   return (
-    <main className="fuel-main">
-      <div>
-        <img src={back} alt="go-back" onClick={handleGoBack} />
-      </div>
-      <section className="fuel">
-        <div className="fuel__card">
-          {/*   <AudioPlayer audioArray={data.audio} /> */}
-          <AudioPlayer
-            audioArray={[
-              {
-                speaker: "controller",
-                en: "Delta 1234, Seattle Tower, cleared for takeoff, surface wind 220,16 m/s",
-              },
-              {
-                speaker: "pilot",
-                en: "Seattle Tower, request hold present position till wind dies down. Advise us when it drops to 13 m/s or less, Delat1234.",
-              },
-              {
-                speaker: "question",
-                en: "According to the dialogue, what did the pilot want to do?",
-              },
-            ]}
-          />
-          <SentenceBlock blockString={data["zh-cn"]} />
-          <Reference referenceArray={data.audio} />
-          <Translation translationString={data["zh-cn"]} />
-        </div>
-        <PreBackButtons
-          previousId={parseInt(id) === 1000 ? "" : parseInt(id) - 1}
-          nextId={parseInt(id) === 1899 ? "" : parseInt(id) + 1}
-        />
-        <SpeechToText />
-      </section>
-    </main>
+    <>
+      {/*     {!targetSentence && <LoadingSpinner />} */}
+      {targetSentence && (
+        <main className="fuel-main">
+          <div>
+            <img src={back} alt="go-back" onClick={handleGoBack} />
+          </div>
+          <section className="fuel">
+            <div className="fuel__card">
+              <AudioPlayer audioArray={targetSentence.audio} />
+              <SentenceBlock blockString={targetSentence.audio[0].en} />
+              <Reference referenceArray={targetSentence.audio} />
+              <Translation translationString={targetSentence["zh-cn"]} />
+            </div>
+            <PreBackButtons
+              previousId={navIds.previousId}
+              nextId={navIds.nextId}
+              sentenceData={state.sentenceData}
+              level={state.level}
+            />
+            <SpeechToText />
+          </section>
+        </main>
+      )}
+    </>
   );
 };
 

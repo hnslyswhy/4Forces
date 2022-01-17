@@ -1,6 +1,22 @@
 import axios from "axios";
 const baseUrl = process.env.REACT_APP_API_URL; // ?????
 
+/********* get all sentences ************/
+export async function getAllSentences() {
+  let response;
+  let data;
+  try {
+    //  response = await axios.get(`${baseUrl}/sentences`);
+    //  console.log(`http://localhost:8080/sentences/${endpoint}`);
+    response = await axios.get(`http://localhost:8080/sentences`);
+    data = response.data;
+  } catch (e) {
+    console.error(e.message);
+    throw new Error(e.message);
+  }
+  return data;
+}
+
 /********* get sentence list ************/
 export async function getSentencesList(endpoint) {
   let response;

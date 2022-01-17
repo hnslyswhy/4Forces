@@ -3,9 +3,6 @@ import eye from "../../assets/icons/eye.svg";
 import eyeSlash from "../../assets/icons/eyeSlash.svg";
 
 const Reference = (props) => {
-  console.log(props.referenceArray);
-  // how to unify the data all as arrays when coming here
-
   const [isShowingReference, setIsShowingReference] = useState(false);
   const handleToggleReference = () => {
     setIsShowingReference(!isShowingReference);
