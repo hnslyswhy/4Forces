@@ -7,7 +7,6 @@ import Translation from "../../components/Translation/Translation";
 import SpeechToText from "../../components/SpeechToText/SpeechToText";
 import back from "../../assets/icons/back.svg";
 import PreBackButtons from "../../components/PreBackButtons/PreBackButtons";
-import LoadingSpinner from "../../utilities/LoadingSpinner/LoadingSpinner";
 
 const FuelUpDetailsPage = (props) => {
   const history = useHistory();
@@ -16,30 +15,9 @@ const FuelUpDetailsPage = (props) => {
   const [targetSentence, setTargetSentence] = useState(null);
   const [navIds, setNavIds] = useState({});
 
-  console.log(state);
-
-  /*   if (state.level === "entry") {
-    localStorage.setItem("entrySentences", JSON.stringify(state.sentenceData));
-    console.log(localStorage.getItem("entrySentences"));
-  }
-
-  if (state.level === "intermediate") {
-    localStorage.setItem(
-      "intermediateSentences",
-      JSON.stringify(state.sentenceData)
-    );
-  }
-
-  if (state.level === "advanced") {
-    localStorage.setItem(
-      "advancedSentences",
-      JSON.stringify(state.sentenceData)
-    );
-  } */
-
   useEffect(() => {
     let sentenceIndex = state.sentenceData.findIndex(
-      (sentence, index) => sentence.id === id
+      (sentence) => sentence.id === id
     );
     setTargetSentence(state.sentenceData[sentenceIndex]);
 

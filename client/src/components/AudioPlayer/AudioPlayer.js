@@ -9,13 +9,18 @@ import "./AudioPlayer.scss";
 const AudioPlayer = (props) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isAdjustingSpeed, setIsAdjustingSpeed] = useState(false);
+
+  const onConversationEnd = () => {
+    setIsPlaying(false);
+  };
+
   const {
     conversationPlay,
     conversationPause,
     conversationReset,
     setRate,
-    checkPlaying,
-  } = useConversationSpeech(props.audioArray);
+    isSpeaking,
+  } = useConversationSpeech(props.audioArray, 1, onConversationEnd);
 
   // play/pause the audio
   const handlePlayAudio = () => {

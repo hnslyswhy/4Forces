@@ -1,49 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import LoadingSpinner from "../../utilities/LoadingSpinner/LoadingSpinner";
 import NotFound from "../../utilities/NotFound/NotFound";
 import arrowDown from "../../assets/icons/arrowDown.svg";
+import { getSentencesList } from "../../utilities/api";
 import "./FuelUpListPage.scss";
 
 const FuelUpListPage = () => {
-  const baseUrl = process.env.REACT_APP_API_URL; // ?????
   const [isLoading, setIsLoading] = useState(true);
   const [sentences, setSentences] = useState({});
-
   const [showingEntrySentence, setShowingEntrySentence] = useState(false);
   const [showingIntermediateSentence, setShowingIntermediateSentence] =
     useState(false);
   const [showingAdvancedSentence, setShowingAdvancedSentence] = useState(false);
-  let entrySentencesList = [];
-  let intermediateSentencesList = [];
-  let advancedSentencesList = [];
-  let data;
 
   // get all sentences
   useEffect(() => {
-    axios
-      .get(`http://localhost:8080/sentences`)
-      .then((res) => {
-        data = res.data;
-        data.forEach((sentence) => {
-          if (sentence.level === "entry") {
-            entrySentencesList.push(sentence);
-          }
-          if (sentence.level === "intermediate") {
-            intermediateSentencesList.push(sentence);
-          }
-          if (sentence.level === "advanced") {
-            advancedSentencesList.push(sentence);
-          }
-        });
-        /*   console.log(entrySentencesList);
-        console.log(intermediateSentencesList);
-        console.log(advancedSentencesList); */
+    Promise.all([
+      getSentencesList("entry"),
+      getSentencesList("intermediate"),
+      getSentencesList("advanced"),
+    ])
+      .then((values) => {
         setSentences({
-          entrySentences: entrySentencesList,
-          intermediateSentences: intermediateSentencesList,
-          advancedSentences: advancedSentencesList,
+          entrySentences: values[0],
+          intermediateSentences: values[1],
+          advancedSentences: values[2],
         });
         setIsLoading(false);
       })
@@ -53,7 +35,7 @@ const FuelUpListPage = () => {
       });
   }, []);
 
-  ///////////////////////////////
+  //handle display
   const handleToggleEntrySentence = (e) => {
     setShowingEntrySentence(!showingEntrySentence);
   };
