@@ -70,14 +70,17 @@ const useConversationSpeech = (conversation, rate = 1, onConversationEnd) => {
       if (allVoices.length) {
         switch (element.speaker) {
           case "controller":
-            utter.voice = allVoices[40];
+            utter.voice = allVoices[33];
             //   utter.pitch = 0.75;
             break;
           case "pilot":
-            utter.voice = allVoices[33];
+            utter.voice = allVoices[3];
+            break;
+          case "question":
+            utter.voice = allVoices[0];
             break;
           default:
-            utter.voice = allVoices[0];
+            utter.voice = allVoices[11];
         }
       }
       //set audio language

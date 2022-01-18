@@ -21,11 +21,11 @@ const FuelUpListPage = () => {
       getSentencesList("intermediate"),
       getSentencesList("advanced"),
     ])
-      .then((values) => {
+      .then((results) => {
         setSentences({
-          entrySentences: values[0],
-          intermediateSentences: values[1],
-          advancedSentences: values[2],
+          entrySentences: results[0],
+          intermediateSentences: results[1],
+          advancedSentences: results[2],
         });
         setIsLoading(false);
       })
@@ -69,8 +69,8 @@ const FuelUpListPage = () => {
                       to={{
                         pathname: `/testprep/fuelup/${sentence.id}`,
                         state: {
-                          sentenceData: sentences.entrySentences,
-                          level: "entry",
+                          data: sentences.entrySentences,
+                          property: "entry",
                         },
                       }}
                     >
@@ -97,8 +97,8 @@ const FuelUpListPage = () => {
                       to={{
                         pathname: `/testprep/fuelup/${sentence.id}`,
                         state: {
-                          sentenceData: sentences.intermediateSentences,
-                          level: "intermediate",
+                          data: sentences.intermediateSentences,
+                          property: "intermediate",
                         },
                       }}
                     >
@@ -125,8 +125,8 @@ const FuelUpListPage = () => {
                       to={{
                         pathname: `/testprep/fuelup/${sentence.id}`,
                         state: {
-                          sentenceData: sentences.advancedSentences,
-                          level: "advanced",
+                          data: sentences.advancedSentences,
+                          property: "advanced",
                         },
                       }}
                     >

@@ -16,24 +16,20 @@ const FuelUpDetailsPage = (props) => {
   const [navIds, setNavIds] = useState({});
 
   useEffect(() => {
-    let sentenceIndex = state.sentenceData.findIndex(
-      (sentence) => sentence.id === id
-    );
-    setTargetSentence(state.sentenceData[sentenceIndex]);
+    let sentenceIndex = state.data.findIndex((sentence) => sentence.id === id);
+    setTargetSentence(state.data[sentenceIndex]);
 
     let previousId;
     let nextId;
-
-    // Get the correct previous index
     if (sentenceIndex === 0) {
       previousId = "";
-      nextId = state.sentenceData[sentenceIndex + 1].id;
-    } else if (sentenceIndex === state.sentenceData.length - 1) {
-      previousId = state.sentenceData[sentenceIndex - 1].id;
+      nextId = state.data[sentenceIndex + 1].id;
+    } else if (sentenceIndex === state.data.length - 1) {
+      previousId = state.data[sentenceIndex - 1].id;
       nextId = "";
     } else {
-      previousId = state.sentenceData[sentenceIndex - 1].id;
-      nextId = state.sentenceData[sentenceIndex + 1].id;
+      previousId = state.data[sentenceIndex - 1].id;
+      nextId = state.data[sentenceIndex + 1].id;
     }
     setNavIds({
       previousId: previousId,
@@ -63,8 +59,9 @@ const FuelUpDetailsPage = (props) => {
             <PreBackButtons
               previousId={navIds.previousId}
               nextId={navIds.nextId}
-              sentenceData={state.sentenceData}
-              level={state.level}
+              data={state.data}
+              property={state.property}
+              cat="sentences"
             />
             <SpeechToText />
           </section>

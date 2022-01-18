@@ -85,7 +85,7 @@ sentenceRouter.get("/entry", async (req, res) => {
   }
 });
 
-// get one by id
+/* // get one by id
 // :id will take all the routes, thus need to stay in the end
 sentenceRouter.get("/:id", async (req, res) => {
   try {
@@ -103,6 +103,6 @@ sentenceRouter.get("/:id", async (req, res) => {
     console.error(e);
   } finally {
   }
-});
+}); */
 
 module.exports = sentenceRouter;

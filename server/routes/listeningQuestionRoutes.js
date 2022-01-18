@@ -5,16 +5,13 @@ const { MongoClient, ObjectId } = require("mongodb");
 const uri =
   "mongodb+srv://hnslyswhy:47r8FLXi7k47@cluster0.5mivt.mongodb.net/HappyAviator?retryWrites=true&w=majority";
 
-
-//get all 
+/* //get all
 listeningQuestionRouter.get("/", async (req, res) => {
-  const client = new MongoClient(uri);
   try {
-    await client.connect();
-    const results = await client
+    const results = await req.dbClient
       .db("testprep")
       .collection("listeningquestions")
-      .find({ })
+      .find({})
       .toArray();
     if (results.length !== 0) {
       res.status(200).json(results);
@@ -24,21 +21,19 @@ listeningQuestionRouter.get("/", async (req, res) => {
   } catch (e) {
     console.error(e);
   } finally {
-    await client.close();
   }
-});
+}); */
 
 //get all act questions
 listeningQuestionRouter.get("/radiocommunication", async (req, res) => {
-  const client = new MongoClient(uri);
   try {
-    await client.connect();
-    const results = await client
+    const results = await req.dbClient
       .db("testprep")
       .collection("listeningquestions")
-      .find({ "type" :"radio_communication" })
+      .find({ type: "radio_communication" })
       .toArray();
     if (results.length !== 0) {
+      console.log(results);
       res.status(200).json(results);
     } else {
       res.status(404).json({ message: "Not Found" });
@@ -46,22 +41,19 @@ listeningQuestionRouter.get("/radiocommunication", async (req, res) => {
   } catch (e) {
     console.error(e);
   } finally {
-    await client.close();
   }
 });
-
 
 //get all atc questions
 listeningQuestionRouter.get("/aviationscenario", async (req, res) => {
-  const client = new MongoClient(uri);
   try {
-    await client.connect();
-    const results = await client
+    const results = await req.dbClient
       .db("testprep")
       .collection("listeningquestions")
-      .find({ "type" :"aviation_scenario" })
+      .find({ type: "aviation_scenario" })
       .toArray();
     if (results.length !== 0) {
+      console.log(results);
       res.status(200).json(results);
     } else {
       res.status(404).json({ message: "Not Found" });
@@ -69,19 +61,16 @@ listeningQuestionRouter.get("/aviationscenario", async (req, res) => {
   } catch (e) {
     console.error(e);
   } finally {
-    await client.close();
   }
 });
 
-// get one by id
+/* // get one by id
 listeningQuestionRouter.get("/:id", async (req, res) => {
-  const client = new MongoClient(uri);
   try {
-    await client.connect();
-    const result = await client
+    const results = await req.dbClient
       .db("testprep")
       .collection("listeningquestions")
-      .findOne({ _id: ObjectId.createFromHexString(req.params.id) });
+      .findOne({ id: req.params.id });
 
     if (result) {
       res.status(200).json(result);
@@ -91,11 +80,7 @@ listeningQuestionRouter.get("/:id", async (req, res) => {
   } catch (e) {
     console.error(e);
   } finally {
-    await client.close();
   }
-});
-
-
-
+}); */
 
 module.exports = listeningQuestionRouter;
