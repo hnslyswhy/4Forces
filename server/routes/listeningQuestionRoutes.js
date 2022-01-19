@@ -20,6 +20,7 @@ listeningQuestionRouter.get("/", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
+        throw new Error(e);
   } finally {
   }
 }); */
@@ -40,6 +41,7 @@ listeningQuestionRouter.get("/radiocommunication", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
+    throw new Error(e);
   } finally {
   }
 });
@@ -60,6 +62,7 @@ listeningQuestionRouter.get("/aviationscenario", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
+    throw new Error(e);
   } finally {
   }
 });
@@ -81,10 +84,7 @@ listeningQuestionRouter.get("/:id", async (req, res) => {
     let targetIndex = typeData.findIndex(
       (question) => question.id === req.params.id
     );
-    console.log(typeof req.params.id);
-    console.log(req.params.id);
-    console.log(targetIndex);
-    console.log(typeData);
+
     let previousId;
     let nextId;
     if (targetIndex === 0) {
@@ -108,6 +108,7 @@ listeningQuestionRouter.get("/:id", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
+    throw new Error(e);
   } finally {
   }
 });

@@ -5,26 +5,38 @@ import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
 import eye from "../../assets/icons/eye.svg";
 import Reference from "../../components/Reference/Reference";
 import PreBackButtons from "../../components/PreBackButtons/PreBackButtons";
+import LoadingSpinner from "../../utilities/LoadingSpinner/LoadingSpinner";
+import NotFound from "../../utilities/NotFound/NotFound";
 
 const ListeningDetailsPage = (props) => {
   const { id } = useParams();
   const history = useHistory();
-
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
   const [question, setQuestion] = useState(null);
   const [navIds, setNavIds] = useState({});
 
   useEffect(async () => {
-    let res = await getAQuestion(id);
-    setQuestion(res);
-    setNavIds({
-      previousId: res.previousId,
-      nextId: res.nextId,
-    });
+    try {
+      let res = await getAQuestion(id);
+      setQuestion(res);
+      setNavIds({
+        previousId: res.previousId,
+        nextId: res.nextId,
+      });
+      setIsLoading(false);
+    } catch (e) {
+      console.error(e);
+      setHasError(true);
+      setIsLoading(false);
+    }
   }, [id]);
 
   return (
     <>
-      {question && (
+      {isLoading && <LoadingSpinner />}
+      {hasError && !isLoading && <NotFound />}
+      {!isLoading && !hasError && question && (
         <main className="listening-main">
           <section className="listening">
             <h1 className="listening__title">

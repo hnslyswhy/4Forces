@@ -8,6 +8,7 @@ import "./FuelUpListPage.scss";
 
 const FuelUpListPage = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
   const [sentences, setSentences] = useState({});
   const [showingEntrySentence, setShowingEntrySentence] = useState(false);
   const [showingIntermediateSentence, setShowingIntermediateSentence] =
@@ -30,8 +31,9 @@ const FuelUpListPage = () => {
         setIsLoading(false);
       })
       .catch((e) => {
-        console.log(e);
-        return <NotFound />;
+        console.error(e);
+        setHasError(true);
+        setIsLoading(false);
       });
   }, []);
 
@@ -49,7 +51,8 @@ const FuelUpListPage = () => {
   return (
     <>
       {isLoading && <LoadingSpinner />}
-      {!isLoading && (
+      {hasError && !isLoading && <NotFound />}
+      {!isLoading && !hasError && (
         <main className="fuelUpList">
           <div className="fuelUpList__card">
             <div className="fuelUpList__item">

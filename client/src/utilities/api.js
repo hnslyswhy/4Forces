@@ -11,7 +11,6 @@ export async function getSentencesList(endpoint) {
     data = response.data;
   } catch (e) {
     console.error(e.message);
-    throw new Error(e.message);
   }
   return data;
 }
@@ -27,7 +26,6 @@ export async function getASentence(id) {
     data = response.data;
   } catch (e) {
     console.error(e.message);
-    throw new Error(e.message);
   }
   return data;
 }
@@ -37,14 +35,13 @@ export async function getQuestionsList(endpoint) {
   let response;
   let data;
   try {
-    //  response = await axios.get(`${baseUrl}/listeningquestions`);
+    //  response = await axios.get(`${baseUrl}/listeningquestions/${endpoint}`);
     response = await axios.get(
       `http://localhost:8080/listeningquestions/${endpoint}`
     );
     data = response.data;
   } catch (e) {
     console.error(e.message);
-    throw new Error(e.message);
   }
   return data;
 }
@@ -54,8 +51,8 @@ export async function getAQuestion(id) {
   let response;
   let data;
   try {
-    //  response = await axios.get(`${baseUrl}/sentences`);
-    //  console.log(`http://localhost:8080/sentences/${endpoint}`);
+    //  response = await axios.get(`${baseUrl}/listeningquestions/${endpoint}`);
+    //  console.log(`http://localhost:8080/listeningquestions/${endpoint}`);
     response = await axios.get(
       `http://localhost:8080/listeningquestions/${id}`
     );
@@ -63,7 +60,35 @@ export async function getAQuestion(id) {
     console.log(data);
   } catch (e) {
     console.error(e.message);
-    throw new Error(e.message);
+  }
+  return data;
+}
+
+/********* get a speaking question by id ************/
+export async function getASpeakingQuestion(id) {
+  let response;
+  let data;
+  try {
+    //  response = await axios.get(`${baseUrl}/speakingquestions/${id}`);
+    //  console.log(`http://localhost:8080/speakingquestions/${id}`);
+    response = await axios.get(`http://localhost:8080/speakingquestions/${id}`);
+    data = response.data;
+  } catch (e) {
+    console.error(e.message);
+  }
+  return data;
+}
+
+/********* get speaking questions list ************/
+export async function getSpeakingQuestionsList() {
+  let response;
+  let data;
+  try {
+    //  response = await axios.get(`${baseUrl}/speakingquestions`);
+    response = await axios.get("http://localhost:8080/speakingquestions");
+    data = response.data;
+  } catch (e) {
+    console.error(e.message);
   }
   return data;
 }
@@ -79,7 +104,6 @@ export async function getAQuestion(id) {
     data = response.data;
   } catch (e) {
     console.error(e.message);
-    throw new Error(e.message);
   }
   return data;
 }

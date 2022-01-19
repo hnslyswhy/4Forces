@@ -7,6 +7,7 @@ import { getQuestionsList } from "../../utilities/api";
 
 const ListeningListPage = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
   const [questions, setQuestions] = useState({});
   const [showingRadioQuestions, setShowingRadioQuestions] = useState(false);
   const [showingScenarioQuestions, setShowingScenarioQuestions] =
@@ -27,7 +28,8 @@ const ListeningListPage = () => {
       })
       .catch((e) => {
         console.error(e);
-        return <NotFound />;
+        setHasError(true);
+        setIsLoading(false);
       });
   }, []);
 
@@ -42,7 +44,9 @@ const ListeningListPage = () => {
   return (
     <>
       {isLoading && <LoadingSpinner />}
+      {hasError && !isLoading && <NotFound />}
       {!isLoading &&
+        !hasError &&
         questions.radioQuestions.length &&
         questions.scenarioQuestions.length && (
           <main className="listening">

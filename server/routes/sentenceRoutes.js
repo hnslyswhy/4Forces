@@ -20,8 +20,9 @@ sentenceRouter.get("/", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
+        throw new Error(e);
     // } finally {
-    //    await client.close();
+    //   
     //  }
   }
 }); */
@@ -41,6 +42,7 @@ sentenceRouter.get("/advanced", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
+    throw new Error(e);
   } finally {
   }
 });
@@ -61,6 +63,7 @@ sentenceRouter.get("/intermediate", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
+    throw new Error(e);
   } finally {
   }
 });
@@ -81,6 +84,7 @@ sentenceRouter.get("/entry", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
+    throw new Error(e);
   } finally {
   }
 });
@@ -126,6 +130,7 @@ sentenceRouter.get("/:id", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
+    throw new Error(e);
   } finally {
   }
 });

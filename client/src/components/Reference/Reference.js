@@ -8,17 +8,17 @@ const Reference = (props) => {
     setIsShowingReference(!isShowingReference);
   };
   return (
-    <div className="translation" onClick={handleToggleReference}>
+    <div className="reference" onClick={handleToggleReference}>
       <img
-        className="translation__icon"
+        className="reference__icon"
         src={isShowingReference ? eye : eyeSlash}
-        alt="translate"
+        alt="reference"
       />
       {isShowingReference && (
         <>
           {props.referenceArray.map((referenceObj) => {
             return (
-              <p key={referenceObj.en} className="translation_text">
+              <p key={referenceObj.en} className="reference_text">
                 {referenceObj.en}
               </p>
             );

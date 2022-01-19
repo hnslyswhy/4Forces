@@ -9,21 +9,30 @@ import Translation from "../../components/Translation/Translation";
 import SpeechToText from "../../components/SpeechToText/SpeechToText";
 import back from "../../assets/icons/back.svg";
 import PreBackButtons from "../../components/PreBackButtons/PreBackButtons";
+import NotFound from "../../utilities/NotFound/NotFound";
 
 const FuelUpDetailsPage = (props) => {
   const history = useHistory();
   const { id } = useParams();
   const [sentence, setSentence] = useState(null);
   const [navIds, setNavIds] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
 
   useEffect(async () => {
-    let res = await getASentence(id);
-    setSentence(res);
-
-    setNavIds({
-      previousId: res.previousId,
-      nextId: res.nextId,
-    });
+    try {
+      let res = await getASentence(id);
+      setSentence(res);
+      setNavIds({
+        previousId: res.previousId,
+        nextId: res.nextId,
+      });
+      setIsLoading(false);
+    } catch (e) {
+      console.error(e);
+      setHasError(true);
+      setIsLoading(false);
+    }
   }, [id]);
 
   const handleGoBack = () => {
@@ -32,8 +41,9 @@ const FuelUpDetailsPage = (props) => {
 
   return (
     <>
-      {!sentence && <LoadingSpinner />}
-      {sentence && (
+      {isLoading && <LoadingSpinner />}
+      {hasError && !isLoading && <NotFound />}
+      {!isLoading && !hasError && sentence && (
         <main className="fuel-main">
           <div>
             <img src={back} alt="go-back" onClick={handleGoBack} />
