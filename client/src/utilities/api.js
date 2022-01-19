@@ -57,7 +57,6 @@ export async function getAQuestion(id) {
       `http://localhost:8080/listeningquestions/${id}`
     );
     data = response.data;
-    console.log(data);
   } catch (e) {
     console.error(e.message);
   }

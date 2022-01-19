@@ -13,7 +13,6 @@ const SpeakingListPage = () => {
   useEffect(async () => {
     let res = await getSpeakingQuestionsList();
     setQuestions(res);
-    console.log(questions);
     setIsLoading(false);
   }, []);
 

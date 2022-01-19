@@ -19,7 +19,6 @@ const ListeningListPage = () => {
       getQuestionsList("aviationscenario"),
     ])
       .then((results) => {
-        console.log(results);
         setQuestions({
           radioQuestions: results[0],
           scenarioQuestions: results[1],

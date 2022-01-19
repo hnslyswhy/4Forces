@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 const sentenceRouter = require("./routes/sentenceRoutes");
 const listeningQuestionRouter = require("./routes/listeningQuestionRoutes");
 const speakingQuestionRouter = require("./routes/speakingQuestionRoutes");
+const resourceRouter = require("./routes/resourceRoutes");
 
 // mongo
 //reference video: https://www.mongodb.com/blog/post/quick-start-nodejs-mongodb-how-to-get-connected-to-your-database
@@ -42,6 +43,7 @@ app.use((req, res, next) => {
 app.use("/sentences", sentenceRouter);
 app.use("/listeningquestions", listeningQuestionRouter);
 app.use("/speakingquestions", speakingQuestionRouter);
+app.use("resource", resourceRouter);
 
 //port
 app.listen(process.env.PORT || 5050, () => {
