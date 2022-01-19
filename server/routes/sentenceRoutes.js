@@ -85,7 +85,7 @@ sentenceRouter.get("/entry", async (req, res) => {
   }
 });
 
-/* // get one by id
+// get one by id
 // :id will take all the routes, thus need to stay in the end
 sentenceRouter.get("/:id", async (req, res) => {
   try {
@@ -94,6 +94,31 @@ sentenceRouter.get("/:id", async (req, res) => {
       .collection("sentences")
       .findOne({ id: req.params.id });
 
+    const levelData = await req.dbClient
+      .db("testprep")
+      .collection("sentences")
+      .find({ level: result.level })
+      .toArray();
+
+    let targetIndex = levelData.findIndex(
+      (sentence) => sentence.id === req.params.id
+    );
+
+    let previousId;
+    let nextId;
+    if (targetIndex === 0) {
+      previousId = "";
+      nextId = levelData[targetIndex + 1].id;
+    } else if (targetIndex === levelData.length - 1) {
+      previousId = levelData[targetIndex - 1].id;
+      nextId = "";
+    } else {
+      previousId = levelData[targetIndex - 1].id;
+      nextId = levelData[targetIndex + 1].id;
+    }
+
+    result["previousId"] = previousId;
+    result["nextId"] = nextId;
     if (result) {
       res.status(200).json(result);
     } else {
@@ -103,6 +128,6 @@ sentenceRouter.get("/:id", async (req, res) => {
     console.error(e);
   } finally {
   }
-}); */
+});
 
 module.exports = sentenceRouter;

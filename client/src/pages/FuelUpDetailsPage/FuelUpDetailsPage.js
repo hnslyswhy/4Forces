@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams, useLocation } from "react-router-dom";
+import { getASentence } from "../../utilities/api";
+import LoadingSpinner from "../../utilities/LoadingSpinner/LoadingSpinner";
 import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
 import SentenceBlock from "../../components/SentenceBlock/SentenceBlock";
 import Reference from "../../components/Reference/Reference";
@@ -11,29 +13,16 @@ import PreBackButtons from "../../components/PreBackButtons/PreBackButtons";
 const FuelUpDetailsPage = (props) => {
   const history = useHistory();
   const { id } = useParams();
-  const { state } = useLocation();
-  const [targetSentence, setTargetSentence] = useState(null);
+  const [sentence, setSentence] = useState(null);
   const [navIds, setNavIds] = useState({});
 
-  useEffect(() => {
-    let sentenceIndex = state.data.findIndex((sentence) => sentence.id === id);
-    setTargetSentence(state.data[sentenceIndex]);
+  useEffect(async () => {
+    let res = await getASentence(id);
+    setSentence(res);
 
-    let previousId;
-    let nextId;
-    if (sentenceIndex === 0) {
-      previousId = "";
-      nextId = state.data[sentenceIndex + 1].id;
-    } else if (sentenceIndex === state.data.length - 1) {
-      previousId = state.data[sentenceIndex - 1].id;
-      nextId = "";
-    } else {
-      previousId = state.data[sentenceIndex - 1].id;
-      nextId = state.data[sentenceIndex + 1].id;
-    }
     setNavIds({
-      previousId: previousId,
-      nextId: nextId,
+      previousId: res.previousId,
+      nextId: res.nextId,
     });
   }, [id]);
 
@@ -43,24 +32,22 @@ const FuelUpDetailsPage = (props) => {
 
   return (
     <>
-      {/*     {!targetSentence && <LoadingSpinner />} */}
-      {targetSentence && (
+      {!sentence && <LoadingSpinner />}
+      {sentence && (
         <main className="fuel-main">
           <div>
             <img src={back} alt="go-back" onClick={handleGoBack} />
           </div>
           <section className="fuel">
             <div className="fuel__card">
-              <AudioPlayer audioArray={targetSentence.audio} />
-              <SentenceBlock blockString={targetSentence.audio[0].en} />
-              <Reference referenceArray={targetSentence.audio} />
-              <Translation translationString={targetSentence["zh-cn"]} />
+              <AudioPlayer audioArray={sentence.audio} />
+              <SentenceBlock blockString={sentence.audio[0].en} />
+              <Reference referenceArray={sentence.audio} />
+              <Translation translationString={sentence["zh-cn"]} />
             </div>
             <PreBackButtons
               previousId={navIds.previousId}
               nextId={navIds.nextId}
-              data={state.data}
-              property={state.property}
               cat="sentences"
             />
             <SpeechToText />

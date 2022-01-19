@@ -65,14 +65,8 @@ const FuelUpListPage = () => {
                   sentences.entrySentences.length &&
                   sentences.entrySentences.map((sentence, index) => (
                     <Link
+                      to={`/testprep/fuelup/${sentence.id}`}
                       key={sentence._id}
-                      to={{
-                        pathname: `/testprep/fuelup/${sentence.id}`,
-                        state: {
-                          data: sentences.entrySentences,
-                          property: "entry",
-                        },
-                      }}
                     >
                       <div className="fuelUpList__question">{index + 1}</div>
                     </Link>
@@ -93,14 +87,8 @@ const FuelUpListPage = () => {
                   sentences.intermediateSentences.length &&
                   sentences.intermediateSentences.map((sentence, index) => (
                     <Link
+                      to={`/testprep/fuelup/${sentence.id}`}
                       key={sentence._id}
-                      to={{
-                        pathname: `/testprep/fuelup/${sentence.id}`,
-                        state: {
-                          data: sentences.intermediateSentences,
-                          property: "intermediate",
-                        },
-                      }}
                     >
                       <div className="fuelUpList__question">{index + 1}</div>
                     </Link>
@@ -121,14 +109,8 @@ const FuelUpListPage = () => {
                   sentences.advancedSentences.length &&
                   sentences.advancedSentences.map((sentence, index) => (
                     <Link
+                      to={`/testprep/fuelup/${sentence.id}`}
                       key={sentence._id}
-                      to={{
-                        pathname: `/testprep/fuelup/${sentence.id}`,
-                        state: {
-                          data: sentences.advancedSentences,
-                          property: "advanced",
-                        },
-                      }}
                     >
                       <div className="fuelUpList__question">{index + 1}</div>
                     </Link>

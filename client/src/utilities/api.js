@@ -16,7 +16,23 @@ export async function getSentencesList(endpoint) {
   return data;
 }
 
-/********* get questions list ************/
+/********* get a sentence by id ************/
+export async function getASentence(id) {
+  let response;
+  let data;
+  try {
+    //  response = await axios.get(`${baseUrl}/sentences`);
+    //  console.log(`http://localhost:8080/sentences/${endpoint}`);
+    response = await axios.get(`http://localhost:8080/sentences/${id}`);
+    data = response.data;
+  } catch (e) {
+    console.error(e.message);
+    throw new Error(e.message);
+  }
+  return data;
+}
+
+/********* get listening questions list ************/
 export async function getQuestionsList(endpoint) {
   let response;
   let data;
@@ -26,6 +42,25 @@ export async function getQuestionsList(endpoint) {
       `http://localhost:8080/listeningquestions/${endpoint}`
     );
     data = response.data;
+  } catch (e) {
+    console.error(e.message);
+    throw new Error(e.message);
+  }
+  return data;
+}
+
+/********* get a listening question by id ************/
+export async function getAQuestion(id) {
+  let response;
+  let data;
+  try {
+    //  response = await axios.get(`${baseUrl}/sentences`);
+    //  console.log(`http://localhost:8080/sentences/${endpoint}`);
+    response = await axios.get(
+      `http://localhost:8080/listeningquestions/${id}`
+    );
+    data = response.data;
+    console.log(data);
   } catch (e) {
     console.error(e.message);
     throw new Error(e.message);
@@ -49,22 +84,5 @@ export async function getQuestionsList(endpoint) {
   return data;
 }
  */
-
-/********* get a sentence by id ************/
-/* export async function getASentence(id) {
-  let response;
-  let data;
-  try {
-    //  response = await axios.get(`${baseUrl}/sentences`);
-    //  console.log(`http://localhost:8080/sentences/${endpoint}`);
-    response = await axios.get(`http://localhost:8080/sentences/${id}`);
-    data = response.data;
-    console.log(data);
-  } catch (e) {
-    console.error(e.message);
-    throw new Error(e.message);
-  }
-  return data;
-} */
 
 //

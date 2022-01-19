@@ -60,14 +60,8 @@ const ListeningListPage = () => {
                     questions.radioQuestions.length &&
                     questions.radioQuestions.map((question, index) => (
                       <Link
+                        to={`/testprep/listeningprep/${question.id}`}
                         key={question._id}
-                        to={{
-                          pathname: `/testprep/listeningprep/${question.id}`,
-                          state: {
-                            data: questions.radioQuestions,
-                            property: "radio_communication",
-                          },
-                        }}
                       >
                         <div className="listening__question">{index + 1}</div>
                       </Link>
@@ -88,14 +82,8 @@ const ListeningListPage = () => {
                     questions.scenarioQuestions.length &&
                     questions.scenarioQuestions.map((question, index) => (
                       <Link
+                        to={`/testprep/listeningprep/${question.id}`}
                         key={question._id}
-                        to={{
-                          pathname: `/testprep/listeningprep/${question.id}`,
-                          state: {
-                            data: questions.scenarioQuestions,
-                            property: "aviation_scenario",
-                          },
-                        }}
                       >
                         <div className="listening__question">{index + 1}</div>
                       </Link>

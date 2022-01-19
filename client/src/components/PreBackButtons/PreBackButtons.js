@@ -6,7 +6,6 @@ import "./PreBackButtons.scss";
 
 const PreBackButtons = (props) => {
   const [baseRoute, setBaseRoute] = useState(null);
-  console.log(props.cat);
 
   useEffect(() => {
     if (props.cat === "listeningquestions") {
@@ -21,21 +20,11 @@ const PreBackButtons = (props) => {
   return (
     <div className="pre-back">
       <Link
-        to={{
-          pathname: props.previousId
-            ? `${baseRoute}/${props.previousId}`
-            : baseRoute,
-          state: { data: props.data, property: props.property },
-        }}
+        to={props.previousId ? `${baseRoute}/${props.previousId}` : baseRoute}
       >
         <img className="pre-back__button" src={left} alt="previous" />
       </Link>
-      <Link
-        to={{
-          pathname: props.nextId ? `${baseRoute}/${props.nextId}` : baseRoute,
-          state: { data: props.data, property: props.property },
-        }}
-      >
+      <Link to={props.nextId ? `${baseRoute}/${props.nextId}` : baseRoute}>
         <img className="pre-back__button" src={right} alt="next" />
       </Link>
     </div>

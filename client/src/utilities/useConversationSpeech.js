@@ -74,7 +74,7 @@ const useConversationSpeech = (conversation, rate = 1, onConversationEnd) => {
             //   utter.pitch = 0.75;
             break;
           case "pilot":
-            utter.voice = allVoices[3];
+            utter.voice = allVoices[17];
             break;
           case "question":
             utter.voice = allVoices[0];
