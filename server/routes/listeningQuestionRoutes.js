@@ -1,10 +1,6 @@
 const express = require("express");
 const listeningQuestionRouter = express.Router();
 
-const { MongoClient, ObjectId } = require("mongodb");
-const uri =
-  "mongodb+srv://hnslyswhy:47r8FLXi7k47@cluster0.5mivt.mongodb.net/HappyAviator?retryWrites=true&w=majority";
-
 /* //get all
 listeningQuestionRouter.get("/", async (req, res) => {
   try {

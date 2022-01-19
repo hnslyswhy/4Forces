@@ -1,12 +1,11 @@
 const express = require("express");
 const resourceRouter = express.Router();
 
-const { MongoClient, ObjectId } = require("mongodb");
-const uri =
-  "mongodb+srv://hnslyswhy:47r8FLXi7k47@cluster0.5mivt.mongodb.net/HappyAviator?retryWrites=true&w=majority";
+const { ObjectId } = require("mongodb");
 
 //get all video resource
-resourceRouter.get("/", async (req, res) => {
+resourceRouter.get("/video", async (req, res) => {
+  console.log("hi");
   try {
     const results = await req.dbClient
       .db("resource")
@@ -27,7 +26,7 @@ resourceRouter.get("/", async (req, res) => {
 });
 
 //get all document resource
-resourceRouter.get("/", async (req, res) => {
+resourceRouter.get("/doc", async (req, res) => {
   try {
     const results = await req.dbClient
       .db("resource")

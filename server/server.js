@@ -43,7 +43,7 @@ app.use((req, res, next) => {
 app.use("/sentences", sentenceRouter);
 app.use("/listeningquestions", listeningQuestionRouter);
 app.use("/speakingquestions", speakingQuestionRouter);
-app.use("resource", resourceRouter);
+app.use("/resource", resourceRouter);
 
 //port
 app.listen(process.env.PORT || 5050, () => {

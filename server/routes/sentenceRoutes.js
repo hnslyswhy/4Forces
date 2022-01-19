@@ -2,10 +2,6 @@ const { cloneNode } = require("domhandler");
 const express = require("express");
 const sentenceRouter = express.Router();
 
-const { MongoClient, ObjectId } = require("mongodb");
-const uri =
-  "mongodb+srv://hnslyswhy:47r8FLXi7k47@cluster0.5mivt.mongodb.net/HappyAviator?retryWrites=true&w=majority";
-
 /* //get all
 sentenceRouter.get("/", async (req, res) => {
   // const client = new MongoClient(uri);

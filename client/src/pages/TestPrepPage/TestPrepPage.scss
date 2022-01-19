@@ -1,4 +1,18 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
 .prep-main {
+  width: 85%;
+  margin: auto;
+  margin-top: -6rem;
+  background-color: $primary-white;
+  height: 70vh;
+  min-height: 25rem;
+  border-top-left-radius: 7rem;
+  box-shadow: 0 2px 4px rgba(140, 139, 139, 0.685);
+  position: relative;
+  @include flexbox(column, flex-start, center);
+
   &__img {
     width: 150px;
     height: auto;

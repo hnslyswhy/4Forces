@@ -5,19 +5,21 @@ import "./Header.scss";
 const Header = () => {
   return (
     <header className="header">
-      <Link to={"/"}>Happy Aviator</Link>
+      <Link to={"/"}>
+        <p className="header__brand">4Force</p>
+      </Link>
 
-      <div className="header__buttons">
+      <div className="header__nav">
         <NavLink
           to={"/testprep"}
-          className="header__button"
+          className="header__link"
           activeClassName="header__active"
         >
           Test Prep
         </NavLink>
         <NavLink
           to={"/resource"}
-          className="header__button"
+          className="header__link"
           activeClassName="header__active"
         >
           Resource
