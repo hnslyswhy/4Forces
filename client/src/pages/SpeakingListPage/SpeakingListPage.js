@@ -4,6 +4,7 @@ import LoadingSpinner from "../../utilities/LoadingSpinner/LoadingSpinner";
 import NotFound from "../../utilities/NotFound/NotFound";
 import arrowDown from "../../assets/icons/arrowDown.svg";
 import { getSpeakingQuestionsList } from "../../utilities/api";
+import "./SpeakingListPage.scss";
 
 const SpeakingListPage = () => {
   const [showingQuestions, setShowingQuestion] = useState(false);
@@ -25,14 +26,12 @@ const SpeakingListPage = () => {
       {isLoading && <LoadingSpinner />}
       {!isLoading && questions.length && (
         <main className="speaking">
-          <div className="speaking__card">
+          <div className="speaking__item" onClick={handleToggleQuestion}>
             <p className="speaking__title">Short Answer Questions</p>
-            <p className="speaking__info">1 question</p>
-            <img
-              src={arrowDown}
-              alt="view-sentences"
-              onClick={handleToggleQuestion}
-            />
+            <div className="speaking__questions">
+              <p className="speaking__info">1 question</p>
+              <img src={arrowDown} alt="view-sentences" />
+            </div>
             {showingQuestions && (
               <div className="speaking__toggle">
                 {questions.map((question, index) => (

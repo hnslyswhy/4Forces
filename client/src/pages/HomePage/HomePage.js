@@ -14,7 +14,7 @@ const HomePage = () => {
       <section className="home__text">
         <p>
           Chasing Your Flying Dreams With{" "}
-          <span className="home__strong">4Force</span>
+          <span className="home__strong">4Forces</span>
         </p>
       </section>
     </main>

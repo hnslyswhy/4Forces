@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { getAQuestion } from "../../utilities/api";
 import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
-import eye from "../../assets/icons/eye.svg";
 import Reference from "../../components/Reference/Reference";
 import PreBackButtons from "../../components/PreBackButtons/PreBackButtons";
 import LoadingSpinner from "../../utilities/LoadingSpinner/LoadingSpinner";
 import NotFound from "../../utilities/NotFound/NotFound";
+import "./ListeningDetailsPage.scss";
 
 const ListeningDetailsPage = (props) => {
   const { id } = useParams();
