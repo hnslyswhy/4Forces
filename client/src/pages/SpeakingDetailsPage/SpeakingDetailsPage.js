@@ -9,6 +9,7 @@ import eye from "../../assets/icons/eye.svg";
 import eyeSlash from "../../assets/icons/eyeSlash.svg";
 import back from "../../assets/icons/back.svg";
 import NotFound from "../../utilities/NotFound/NotFound";
+import { v4 as uuidv4 } from "uuid";
 import "./SpeakingDetailsPage.scss";
 
 const SpeakingDetailsPage = () => {
@@ -75,7 +76,7 @@ const SpeakingDetailsPage = () => {
                   <p className="speaking-question__instruction">
                     Ex2: Record Your Answer
                   </p>
-                  <SpeechToText />
+                  <SpeechToText id={uuidv4()} />
                   <p className="speaking-question__instruction">Ex Tips</p>
                   <div
                     className="speaking-question__reference"

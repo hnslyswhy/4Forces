@@ -119,6 +119,35 @@ export async function getAResource(id) {
   }
   return data;
 }
+
+/********* update resource like count by id ************/
+export async function patchResourceLike(id) {
+  let response;
+  let data;
+  try {
+    //  response = await axios.get(`${baseUrl}/resource/${id}`);
+    response = await axios.patch(`http://localhost:8080/resource/${id}`);
+    data = response.data;
+  } catch (e) {
+    console.error(e.message);
+  }
+  return data;
+}
+
+/********* delete a resource comment by id ************/
+export async function deleteComment(id) {
+  let response;
+  let data;
+  try {
+    //  response = await axios.get(`${baseUrl}/resource/${id}`);
+    response = await axios.delete(`http://localhost:8080/resource/${id}`);
+    data = response.data;
+  } catch (e) {
+    console.error(e.message);
+  }
+  return data;
+}
+
 /********* get all sentences ************/
 /* export async function getAllSentences() {
   let response;

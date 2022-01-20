@@ -1,0 +1,29 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.resource {
+  &__videos,
+  &__docs {
+    padding-top: 2rem;
+    width: 90%;
+    margin: auto;
+  }
+
+  &__title {
+    @include mobil-subheader;
+    color: $primary-blue;
+    text-align: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $primary-gray;
+  }
+
+  &__video-card,
+  &__doc-card {
+    margin-top: 1rem;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $secondary-white;
+    }
+  }
+}

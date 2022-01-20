@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
@@ -14,9 +14,31 @@ const SpeechToText = (props) => {
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
 
+  const recordRef = useRef(null);
+  /* const [curTranscript, setCurTranscript] = useState(null);
+
+  useEffect(() => {
+    console.log([props.id]);
+    console.log(recordRef.current);
+
+    if (recordRef.current === props.id) {
+      console.log(transcript);
+      setCurTranscript(transcript);
+    }
+  }, [transcript]);
+   */
+
   if (!browserSupportsSpeechRecognition) {
     return <NotFound />;
   }
+
+  const handleStartRecording = (id) => {
+    console.log(id);
+    if (id === props.id) {
+      recordRef.current = id;
+      SpeechRecognition.startListening();
+    }
+  };
 
   return (
     <div className="speech">
@@ -28,7 +50,7 @@ const SpeechToText = (props) => {
           className="speech__record"
           src={speaking}
           alt="start recording"
-          onClick={SpeechRecognition.startListening}
+          onClick={() => handleStartRecording(props.id)}
         />
         <span
           className="speech__stop"
@@ -38,10 +60,12 @@ const SpeechToText = (props) => {
         </span>
       </div>
       <p className="speech__notice">
-        Microphone:{" "}
+        Microphone:
         <span className="speech__strong">{listening ? "on" : "off"}</span>
       </p>
-      <p className="speech__text">{transcript}</p>
+      {recordRef.current === props.id && (
+        <p className="speech__text">{transcript}</p>
+      )}
     </div>
   );
 };
