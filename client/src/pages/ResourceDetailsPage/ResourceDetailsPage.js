@@ -6,6 +6,7 @@ import NotFound from "../../utilities/NotFound/NotFound";
 import ResourceDescription from "../../components/ResourceDescription/ResourceDescription";
 import ResourceList from "../../components/ResourceList/ResourceList";
 import ResourceComments from "../../components/ResourceComments/ResourceComments";
+import "./ResourceDetailsPage.scss";
 
 const ResourceDetailsPage = () => {
   const [resource, setResource] = useState(null);
@@ -31,15 +32,15 @@ const ResourceDetailsPage = () => {
       {isLoading && <LoadingSpinner />}
       {hasError && !isLoading && <NotFound />}
       {!isLoading && !hasError && resource && (
-        <main>
+        <main className="resource-details-main">
           <section className="main-resource">
             <div className="main-resource__video-container">
               <video
                 className="main-resource__video-player"
+                type="video/mp4"
                 src={resource.video}
                 poster={resource.image}
-                type="video/mp4"
-                preload="metadata"
+                controls
               />
             </div>
             <ResourceDescription
