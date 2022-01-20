@@ -1,0 +1,73 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.listen-question {
+  width: 85%;
+  margin: auto;
+  margin-top: -6rem;
+  padding-top: 2rem;
+  background-color: $primary-white;
+  height: fit-content;
+  min-height: 25rem;
+  border-top-left-radius: 7rem;
+  box-shadow: 0 2px 4px #8c8b8baf;
+  position: relative;
+  @include flexbox(column, flex-start, center);
+
+  &__back {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+
+  &__top {
+    width: 80%;
+    margin: auto;
+  }
+
+  &__title {
+    @include mobil-subheader;
+    text-align: center;
+  }
+
+  &__audio {
+    width: 80%;
+    margin: auto;
+  }
+
+  &__form {
+    width: 80%;
+    margin: auto;
+  }
+
+  &__entries {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: $secondary-blue;
+    }
+  }
+
+  &__input {
+    display: none;
+  }
+
+  &__label {
+    @include mobil-body-medium;
+  }
+
+  &__reference {
+    width: 80%;
+    margin: auto;
+    margin-top: 1rem;
+    @include flexbox(column, flex-start, flex-start);
+  }
+
+  &__preBack {
+    width: 80%;
+    margin: auto;
+  }
+}

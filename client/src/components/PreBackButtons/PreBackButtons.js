@@ -18,14 +18,14 @@ const PreBackButtons = (props) => {
   }, [props]);
 
   return (
-    <div className="pre-back">
+    <div className={`pre-back ${props.className}`}>
       <Link
         to={props.previousId ? `${baseRoute}/${props.previousId}` : baseRoute}
       >
-        <img className="pre-back__button" src={left} alt="previous" />
+        <img className="pre-back__icon" src={left} alt="previous" />
       </Link>
       <Link to={props.nextId ? `${baseRoute}/${props.nextId}` : baseRoute}>
-        <img className="pre-back__button" src={right} alt="next" />
+        <img className="pre-back__icon" src={right} alt="next" />
       </Link>
     </div>
   );

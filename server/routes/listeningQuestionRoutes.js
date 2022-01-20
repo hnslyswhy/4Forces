@@ -1,10 +1,6 @@
 const express = require("express");
 const listeningQuestionRouter = express.Router();
 
-const { MongoClient, ObjectId } = require("mongodb");
-const uri =
-  "mongodb+srv://hnslyswhy:47r8FLXi7k47@cluster0.5mivt.mongodb.net/HappyAviator?retryWrites=true&w=majority";
-
 /* //get all
 listeningQuestionRouter.get("/", async (req, res) => {
   try {
@@ -20,7 +16,8 @@ listeningQuestionRouter.get("/", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
-        throw new Error(e);
+  //      throw new Error(e);
+      res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
 }); */
@@ -41,7 +38,8 @@ listeningQuestionRouter.get("/radiocommunication", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
-    throw new Error(e);
+    //  throw new Error(e);
+    res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
 });
@@ -62,7 +60,8 @@ listeningQuestionRouter.get("/aviationscenario", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
-    throw new Error(e);
+    //  throw new Error(e);
+    res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
 });
@@ -108,7 +107,8 @@ listeningQuestionRouter.get("/:id", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
-    throw new Error(e);
+    //   throw new Error(e);
+    res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
 });

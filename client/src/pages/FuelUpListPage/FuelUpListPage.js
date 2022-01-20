@@ -54,71 +54,69 @@ const FuelUpListPage = () => {
       {hasError && !isLoading && <NotFound />}
       {!isLoading && !hasError && (
         <main className="fuelUpList">
-          <div className="fuelUpList__card">
-            <div className="fuelUpList__item">
-              <p className="fuelUpList__title">Entry Level</p>
+          <div className="fuelUpList__item" onClick={handleToggleEntrySentence}>
+            <p className="fuelUpList__title">Entry Level</p>
+            <div className="fuelUpList__sentences">
               <p className="fuelUpList__info">490 sentences</p>
-              <img
-                src={arrowDown}
-                alt="view-sentences"
-                onClick={handleToggleEntrySentence}
-              />
-              <div className="fuelUpList__toggle">
-                {showingEntrySentence &&
-                  sentences.entrySentences.length &&
-                  sentences.entrySentences.map((sentence, index) => (
-                    <Link
-                      to={`/testprep/fuelup/${sentence.id}`}
-                      key={sentence._id}
-                    >
-                      <div className="fuelUpList__question">{index + 1}</div>
-                    </Link>
-                  ))}
-              </div>
+              <img src={arrowDown} alt="view-sentences" />
             </div>
+            <div className="fuelUpList__toggle">
+              {showingEntrySentence &&
+                sentences.entrySentences.length &&
+                sentences.entrySentences.map((sentence, index) => (
+                  <Link
+                    to={`/testprep/fuelup/${sentence.id}`}
+                    key={sentence._id}
+                  >
+                    <div className="fuelUpList__question">{index + 1}</div>
+                  </Link>
+                ))}
+            </div>
+          </div>
 
-            <div className="fuelUpList__item">
-              <p className="fuelUpList__title">intermediate Level</p>
+          <div
+            className="fuelUpList__item"
+            onClick={handleToggleIntermediateSentence}
+          >
+            <p className="fuelUpList__title">intermediate Level</p>
+            <div className="fuelUpList__sentences">
               <p className="fuelUpList__info">307 sentences</p>
-              <img
-                src={arrowDown}
-                alt="view-sentences"
-                onClick={handleToggleIntermediateSentence}
-              />
-              <div className="fuelUpList__toggle">
-                {showingIntermediateSentence &&
-                  sentences.intermediateSentences.length &&
-                  sentences.intermediateSentences.map((sentence, index) => (
-                    <Link
-                      to={`/testprep/fuelup/${sentence.id}`}
-                      key={sentence._id}
-                    >
-                      <div className="fuelUpList__question">{index + 1}</div>
-                    </Link>
-                  ))}
-              </div>
+              <img src={arrowDown} alt="view-sentences" />
             </div>
+            <div className="fuelUpList__toggle">
+              {showingIntermediateSentence &&
+                sentences.intermediateSentences.length &&
+                sentences.intermediateSentences.map((sentence, index) => (
+                  <Link
+                    to={`/testprep/fuelup/${sentence.id}`}
+                    key={sentence._id}
+                  >
+                    <div className="fuelUpList__question">{index + 1}</div>
+                  </Link>
+                ))}
+            </div>
+          </div>
 
-            <div className="fuelUpList__item">
-              <p className="fuelUpList__title">Advanced Level</p>
+          <div
+            className="fuelUpList__item"
+            onClick={handleToggleAdvancedSentence}
+          >
+            <p className="fuelUpList__title">Advanced Level</p>
+            <div className="fuelUpList__sentences">
               <p className="fuelUpList__info">103 sentences</p>
-              <img
-                src={arrowDown}
-                alt="view-sentences"
-                onClick={handleToggleAdvancedSentence}
-              />
-              <div className="fuelUpList__toggle">
-                {showingAdvancedSentence &&
-                  sentences.advancedSentences.length &&
-                  sentences.advancedSentences.map((sentence, index) => (
-                    <Link
-                      to={`/testprep/fuelup/${sentence.id}`}
-                      key={sentence._id}
-                    >
-                      <div className="fuelUpList__question">{index + 1}</div>
-                    </Link>
-                  ))}
-              </div>
+              <img src={arrowDown} alt="view-sentences" />
+            </div>
+            <div className="fuelUpList__toggle">
+              {showingAdvancedSentence &&
+                sentences.advancedSentences.length &&
+                sentences.advancedSentences.map((sentence, index) => (
+                  <Link
+                    to={`/testprep/fuelup/${sentence.id}`}
+                    key={sentence._id}
+                  >
+                    <div className="fuelUpList__question">{index + 1}</div>
+                  </Link>
+                ))}
             </div>
           </div>
         </main>

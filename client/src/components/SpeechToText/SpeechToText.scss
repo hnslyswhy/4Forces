@@ -1,0 +1,65 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.speech {
+  width: 100%;
+  border-bottom: 1px solid $primary-gray;
+  @include flexbox(column, flex-start, center);
+
+  &__controls {
+    width: 100%;
+    padding: 1rem;
+    @include flexbox(row, space-around, center);
+  }
+
+  &__record {
+    padding: 1.5rem;
+    border-radius: 50%;
+    border: 2px solid $primary-blue;
+    box-shadow: 0 2px 2px #b8e4f9fe;
+    // margin-top: -4rem;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $primary-blue;
+    }
+  }
+
+  &__reset,
+  &__stop {
+    @include mobil-body-medium;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid $primary-gray;
+    box-shadow: 0 1px 1px #b8e4f9fe;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $primary-blue;
+      color: $primary-white;
+    }
+  }
+
+  &__reset {
+    border-top-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+  }
+
+  &__stop {
+    border-top-right-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+  }
+
+  &__notice {
+    @include mobil-body-small;
+  }
+
+  &__strong {
+    @include mobil-labels;
+    color: $primary-blue;
+  }
+
+  &__text {
+    @include mobil-body-medium;
+    margin: 1rem 0;
+  }
+}

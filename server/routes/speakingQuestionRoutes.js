@@ -1,10 +1,6 @@
 const express = require("express");
 const speakingQuestionRouter = express.Router();
 
-const { MongoClient, ObjectId } = require("mongodb");
-const uri =
-  "mongodb+srv://hnslyswhy:47r8FLXi7k47@cluster0.5mivt.mongodb.net/HappyAviator?retryWrites=true&w=majority";
-
 //get all
 speakingQuestionRouter.get("/", async (req, res) => {
   try {
@@ -20,7 +16,8 @@ speakingQuestionRouter.get("/", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
-    throw new Error(e);
+    //   throw new Error(e);
+    res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
 });
@@ -62,7 +59,8 @@ speakingQuestionRouter.get("/:id", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
-    throw new Error(e);
+    //  throw new Error(e);
+    res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
 });

@@ -2,9 +2,44 @@
 @use "../../styles/partials/variables" as *;
 
 .fuelUpList {
+  width: 85%;
+  margin: auto;
+  margin-top: -6rem;
+  padding-top: 4rem;
+  background-color: $primary-white;
+  height: 70vh;
+  min-height: 25rem;
+  border-top-left-radius: 7rem;
+  box-shadow: 0 2px 4px #8c8b8baf;
+  position: relative;
+  @include flexbox(column, flex-start, center);
+
   &__item {
-    margin: 1rem;
+    width: 80%;
+    height: fit-content;
+    padding: 1rem 0.5rem;
+    margin: 1rem 0;
+    border-radius: 4px;
+    border: 1px solid $primary-gray;
+    //box-shadow: 0 1px 4px rgb(205, 206, 207);
+    overflow-y: scroll;
+    &:hover {
+      cursor: pointer;
+    }
   }
+
+  &__title {
+    @include mobil-subheader;
+  }
+
+  &__sentences {
+    @include flexbox(row, space-between, center);
+  }
+
+  &__info {
+    @include mobil-body-large;
+  }
+
   &__toggle {
     width: 100%;
     @include flexbox(row, flex-start, center);
@@ -12,8 +47,11 @@
   }
 
   &__question {
-    width: 2rem;
-    height: 2rem;
+    text-align: center;
+    color: $primary-gray;
+    @include mobil-body-small;
+    width: 1.6rem;
+    height: 1.6rem;
     border-radius: 50%;
     background-color: $primary-blue;
     margin: 0.25rem;

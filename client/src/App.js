@@ -7,6 +7,8 @@ import FuelUpListPage from "./pages/FuelUpListPage/FuelUpListPage";
 import HomePage from "./pages/HomePage/HomePage";
 import ListeningDetailsPage from "./pages/ListeningDetailsPage/ListeningDetailsPage";
 import ListeningListPage from "./pages/ListeningListPage/ListeningListPage";
+import ResourceDetailsPage from "./pages/ResourceDetailsPage/ResourceDetailsPage";
+import ResourceListPage from "./pages/ResourceListPage/ResourceListPage";
 import SpeakingDetailsPage from "./pages/SpeakingDetailsPage/SpeakingDetailsPage";
 import SpeakingListPage from "./pages/SpeakingListPage/SpeakingListPage";
 import TestPrepPage from "./pages/TestPrepPage/TestPrepPage";
@@ -29,6 +31,8 @@ function App() {
         />
         <Route path="/testprep/speakingprep" component={SpeakingListPage} />
         <Route path="/testprep" exact component={TestPrepPage} />
+        <Route path="/resource/:id" component={ResourceDetailsPage} />
+        <Route path="/resource" exact component={ResourceListPage} />
         <Route path="/" exact component={HomePage} />
 
         {/*     <Route path="*">

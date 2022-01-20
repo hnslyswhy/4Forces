@@ -10,6 +10,7 @@ import SpeechToText from "../../components/SpeechToText/SpeechToText";
 import back from "../../assets/icons/back.svg";
 import PreBackButtons from "../../components/PreBackButtons/PreBackButtons";
 import NotFound from "../../utilities/NotFound/NotFound";
+import "./FuelUpDetailsPage.scss";
 
 const FuelUpDetailsPage = (props) => {
   const history = useHistory();
@@ -45,22 +46,27 @@ const FuelUpDetailsPage = (props) => {
       {hasError && !isLoading && <NotFound />}
       {!isLoading && !hasError && sentence && (
         <main className="fuel-main">
-          <div>
-            <img src={back} alt="go-back" onClick={handleGoBack} />
-          </div>
+          <img
+            className="fuel-main__back"
+            src={back}
+            alt="go-back"
+            onClick={handleGoBack}
+          />
           <section className="fuel">
-            <div className="fuel__card">
-              <AudioPlayer audioArray={sentence.audio} />
-              <SentenceBlock blockString={sentence.audio[0].en} />
-              <Reference referenceArray={sentence.audio} />
-              <Translation translationString={sentence["zh-cn"]} />
-            </div>
+            <p className="fuel__instruction">Ex1: Listen to The Sentence</p>
+            <AudioPlayer audioArray={sentence.audio} />
+            <p className="fuel__instruction">Ex2: Build The Sentence</p>
+            <SentenceBlock blockString={sentence.audio[0].en} />
+            <p className="fuel__instruction">Ex Tips</p>
+            <Reference referenceArray={sentence.audio} />
+            <Translation translationString={sentence["zh-cn"]} />
+            <p className="fuel__instruction">Ex3: Repeat The Sentence</p>
+            <SpeechToText />
             <PreBackButtons
               previousId={navIds.previousId}
               nextId={navIds.nextId}
               cat="sentences"
             />
-            <SpeechToText />
           </section>
         </main>
       )}

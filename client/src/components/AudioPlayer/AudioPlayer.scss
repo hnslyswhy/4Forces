@@ -1,6 +1,25 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
 .audio {
+  padding: 1rem;
+  @include flexbox(row, space-around, center);
+  border-bottom: 1px solid $primary-gray;
+
   &__icon {
-    width: 30px;
-    height: 30px;
+    width: 1.875rem;
+    height: 1.875rem;
+    margin: 0 0.5rem;
+    opacity: 0.7;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+      transform: scale(1.2);
+    }
+  }
+
+  &__speed {
+    @include mobil-body-medium;
   }
 }

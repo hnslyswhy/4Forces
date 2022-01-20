@@ -1,9 +1,26 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
 .footer {
-  &__link {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 1rem;
+  @include flexbox(column, flex-start, center);
+
+  &__copyright {
+    @include mobil-body-small;
+    color: $secondary-black;
+    margin-bottom: 0.5rem;
   }
 
   &__icon {
-    width: 30px;
-    height: 30px;
+    width: 1.875rem;
+    height: 1.875rem;
+    opacity: 0.6;
+    margin: 0.25rem 0.5rem;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 }

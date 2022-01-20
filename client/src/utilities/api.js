@@ -57,7 +57,6 @@ export async function getAQuestion(id) {
       `http://localhost:8080/listeningquestions/${id}`
     );
     data = response.data;
-    console.log(data);
   } catch (e) {
     console.error(e.message);
   }
@@ -86,6 +85,62 @@ export async function getSpeakingQuestionsList() {
   try {
     //  response = await axios.get(`${baseUrl}/speakingquestions`);
     response = await axios.get("http://localhost:8080/speakingquestions");
+    data = response.data;
+  } catch (e) {
+    console.error(e.message);
+  }
+  return data;
+}
+
+/********* get resource list ************/
+export async function getResourceList(endpoint) {
+  let response;
+  let data;
+  try {
+    //  response = await axios.get(`${baseUrl}/resource/${endpoint}`);
+    response = await axios.get(`http://localhost:8080/resource/${endpoint}`);
+    data = response.data;
+  } catch (e) {
+    console.error(e.message);
+  }
+  return data;
+}
+
+/********* get a resource  by id ************/
+export async function getAResource(id) {
+  let response;
+  let data;
+  try {
+    //  response = await axios.get(`${baseUrl}/resource/${id}`);
+    response = await axios.get(`http://localhost:8080/resource/${id}`);
+    data = response.data;
+  } catch (e) {
+    console.error(e.message);
+  }
+  return data;
+}
+
+/********* update resource like count by id ************/
+export async function patchResourceLike(id) {
+  let response;
+  let data;
+  try {
+    //  response = await axios.get(`${baseUrl}/resource/${id}`);
+    response = await axios.patch(`http://localhost:8080/resource/${id}`);
+    data = response.data;
+  } catch (e) {
+    console.error(e.message);
+  }
+  return data;
+}
+
+/********* delete a resource comment by id ************/
+export async function deleteComment(id) {
+  let response;
+  let data;
+  try {
+    //  response = await axios.get(`${baseUrl}/resource/${id}`);
+    response = await axios.delete(`http://localhost:8080/resource/${id}`);
     data = response.data;
   } catch (e) {
     console.error(e.message);

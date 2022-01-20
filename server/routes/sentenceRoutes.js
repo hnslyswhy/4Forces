@@ -2,10 +2,6 @@ const { cloneNode } = require("domhandler");
 const express = require("express");
 const sentenceRouter = express.Router();
 
-const { MongoClient, ObjectId } = require("mongodb");
-const uri =
-  "mongodb+srv://hnslyswhy:47r8FLXi7k47@cluster0.5mivt.mongodb.net/HappyAviator?retryWrites=true&w=majority";
-
 /* //get all
 sentenceRouter.get("/", async (req, res) => {
   // const client = new MongoClient(uri);
@@ -42,7 +38,8 @@ sentenceRouter.get("/advanced", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
-    throw new Error(e);
+    //   throw new Error(e);
+    res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
 });
@@ -63,7 +60,8 @@ sentenceRouter.get("/intermediate", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
-    throw new Error(e);
+    //  throw new Error(e);
+    res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
 });
@@ -84,7 +82,8 @@ sentenceRouter.get("/entry", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
-    throw new Error(e);
+    // throw new Error(e);
+    res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
 });
@@ -130,7 +129,8 @@ sentenceRouter.get("/:id", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
-    throw new Error(e);
+    //  throw new Error(e);
+    res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
 });

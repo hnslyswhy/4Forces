@@ -19,6 +19,7 @@ const SentenceBlock = (props) => {
     ];
   }
   setWordsChoices(randomOrder); */
+
   // get random order
   useEffect(() => {
     let randomOrder = [...rightOrder];
@@ -88,7 +89,7 @@ const SentenceBlock = (props) => {
         {userChoices.map((word, index) => (
           <span
             key={word + String(index)}
-            className="block__word"
+            className="block__user-word"
             onClick={() => handleClickUserChoice(index)}
           >
             {word}
@@ -106,7 +107,7 @@ const SentenceBlock = (props) => {
           </span>
         ))}
       </div>
-      <p>{message}</p>
+      {wordsChoices.length === 0 && <p className="block__message">{message}</p>}
     </div>
   );
 };

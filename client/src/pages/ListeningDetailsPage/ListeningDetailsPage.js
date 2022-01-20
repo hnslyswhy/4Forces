@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { getAQuestion } from "../../utilities/api";
+import back from "../../assets/icons/back.svg";
 import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
-import eye from "../../assets/icons/eye.svg";
 import Reference from "../../components/Reference/Reference";
 import PreBackButtons from "../../components/PreBackButtons/PreBackButtons";
 import LoadingSpinner from "../../utilities/LoadingSpinner/LoadingSpinner";
 import NotFound from "../../utilities/NotFound/NotFound";
+import "./ListeningDetailsPage.scss";
 
 const ListeningDetailsPage = (props) => {
   const { id } = useParams();
@@ -32,54 +33,69 @@ const ListeningDetailsPage = (props) => {
     }
   }, [id]);
 
+  const handleGoBack = () => {
+    history.push("/testprep/listeningprep");
+  };
+
   return (
     <>
       {isLoading && <LoadingSpinner />}
       {hasError && !isLoading && <NotFound />}
       {!isLoading && !hasError && question && (
-        <main className="listening-main">
-          <section className="listening">
-            <h1 className="listening__title">
+        <main className="listen-question">
+          <div className="listen-question__top">
+            <img
+              className="listen-question__back"
+              src={back}
+              alt="go-back"
+              onClick={handleGoBack}
+            />
+            <h1 className="listen-question__title">
               {question.type === "radio_communication"
                 ? "Radio Communication"
                 : "Aviation Scenario"}
             </h1>
+          </div>
 
-            <div className="listening__card">
-              <AudioPlayer audioArray={question.audio} />
-              <form className="listening__form">
-                {question.choices.map((choice, index) => {
-                  return (
-                    <div
-                      key={String(index) + "option"}
-                      className="listening__entries"
-                    >
-                      <input
-                        className="listening__input"
-                        type="radio"
-                        id={Object.keys(choice)[0]}
-                        value="a"
-                        name="answer"
-                      />
-                      <label
-                        className="listening__label"
-                        htmlFor={Object.keys(choice)[0]}
-                      >
-                        {Object.values(choice)[0]}
-                      </label>
-                    </div>
-                  );
-                })}
-              </form>
+          <AudioPlayer
+            className="listen-question__audio"
+            audioArray={question.audio}
+          />
+          <form className="listen-question__form">
+            {question.choices.map((choice, index) => {
+              return (
+                <div
+                  key={String(index) + "option"}
+                  className="listen-question__entries"
+                >
+                  <input
+                    className="listen-question__input"
+                    type="radio"
+                    id={Object.keys(choice)[0]}
+                    value="a"
+                    name="answer"
+                  />
+                  <label
+                    className="listen-question__label"
+                    htmlFor={Object.keys(choice)[0]}
+                  >
+                    {Object.values(choice)[0]}
+                  </label>
+                </div>
+              );
+            })}
+          </form>
 
-              <Reference referenceArray={question.audio} />
-              <PreBackButtons
-                previousId={navIds.previousId}
-                nextId={navIds.nextId}
-                cat="listeningquestions"
-              />
-            </div>
-          </section>
+          <Reference
+            referenceArray={question.audio}
+            className="listen-question__reference"
+          />
+          <PreBackButtons
+            className="listen-question__preBack"
+            previousId={navIds.previousId}
+            nextId={navIds.nextId}
+            cat="listeningquestions"
+          />
         </main>
       )}
     </>
