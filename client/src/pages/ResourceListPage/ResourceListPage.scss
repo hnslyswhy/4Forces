@@ -1,0 +1,41 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.resource {
+  width: 85%;
+  margin: auto;
+  margin-top: -6rem;
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+  background-color: $primary-white;
+  height: fit-content;
+  min-height: 25rem;
+  border-top-left-radius: 7rem;
+  box-shadow: 0 2px 4px #8c8b8baf;
+  position: relative;
+  @include flexbox(column, flex-start, center);
+
+  &__videos,
+  &__docs {
+    padding-top: 2rem;
+    width: 90%;
+  }
+
+  &__title {
+    @include mobil-subheader;
+    color: $primary-blue;
+    text-align: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $primary-gray;
+  }
+
+  &__video-card,
+  &__doc-card {
+    margin-top: 1rem;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $secondary-white;
+    }
+  }
+}

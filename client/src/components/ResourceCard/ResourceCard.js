@@ -1,15 +1,28 @@
 import React from "react";
+import "./ResourceCard.scss";
 
 const ResourceCard = (props) => {
-  //  const { image, title, channel } = props.video;
+  const { image, title, channel, avatar } = props.data;
   return (
-    <article className="video-list">
-      <div className="video-list__image-container">
-        <img className="video-list__image" src="" alt="" />
+    <article className={`resource-card ${props.className}`}>
+      <div className="resource-card__image-container">
+        <img
+          className="resource-card__image"
+          src={image}
+          alt="resource image"
+        />
       </div>
-      <div className="video-list__info">
-        <p className="video-list__title">title</p>
-        <p className="video-list__channel">channel</p>
+      <div className="resource-card__info">
+        <div className="resource-card__avatar-container">
+          <img src={avatar} alt="avatar" className="resource-card__avatar" />
+        </div>
+        <div className="resource-card__intro">
+          <p className="resource-card__title">{title}</p>
+          <p className="resource-card__channel">
+            {" "}
+            by <span className="resource-card__strong">{channel}</span>
+          </p>
+        </div>
       </div>
     </article>
   );
