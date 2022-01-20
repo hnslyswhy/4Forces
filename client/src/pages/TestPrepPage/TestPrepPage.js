@@ -9,7 +9,7 @@ const TestPrepPage = () => {
       <div className="prep-main__options">
         <Link to={"/testprep/fuelup"} className="prep-main__item">
           <div className="prep-main__card prep-main__card--sentence">
-            <p className="prep-main__title"> Fuel Up</p>
+            <p className="prep-main__title"> Foundation</p>
           </div>
         </Link>
 

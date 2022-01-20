@@ -18,4 +18,8 @@
       transform: scale(1.2);
     }
   }
+
+  &__speed {
+    @include mobil-body-medium;
+  }
 }

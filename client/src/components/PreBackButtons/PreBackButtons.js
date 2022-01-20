@@ -18,7 +18,7 @@ const PreBackButtons = (props) => {
   }, [props]);
 
   return (
-    <div className="pre-back">
+    <div className={`pre-back ${props.className}`}>
       <Link
         to={props.previousId ? `${baseRoute}/${props.previousId}` : baseRoute}
       >

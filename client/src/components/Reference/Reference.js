@@ -9,7 +9,10 @@ const Reference = (props) => {
     setIsShowingReference(!isShowingReference);
   };
   return (
-    <div className="reference" onClick={handleToggleReference}>
+    <div
+      className={`reference ${props.className}`}
+      onClick={handleToggleReference}
+    >
       <img
         className="reference__icon"
         src={isShowingReference ? eye : eyeSlash}

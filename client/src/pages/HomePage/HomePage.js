@@ -9,7 +9,7 @@ const HomePage = () => {
         <h1 className="home__title">
           Once You Have Tasted The Taste Of Sky, You Will Forever Look Up!
         </h1>
-        <p className="home__quote"> ~ Leonardo DaVinci</p>
+        {/*  <p className="home__quote"> ~ Leonardo DaVinci</p> */}
       </section>
       <section className="home__text">
         <p>

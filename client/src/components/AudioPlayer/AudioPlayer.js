@@ -57,7 +57,7 @@ const AudioPlayer = (props) => {
   };
 
   return (
-    <div className="audio">
+    <div className={`audio ${props.className}`}>
       {!isPlaying && (
         <img
           className="audio__icon"
@@ -89,8 +89,12 @@ const AudioPlayer = (props) => {
       />
       {isAdjustingSpeed && (
         <p>
-          <span onClick={handleSlowSpeed}>0.75X</span>
-          <span onClick={handleFastSpeed}>1.25X</span>
+          <span className="audio__speed" onClick={handleSlowSpeed}>
+            0.75X
+          </span>
+          <span className="audio__speed" onClick={handleFastSpeed}>
+            1.25X
+          </span>
         </p>
       )}
     </div>

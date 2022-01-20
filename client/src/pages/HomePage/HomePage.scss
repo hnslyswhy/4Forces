@@ -28,7 +28,7 @@
   &__headline {
     width: 90%;
     margin: auto;
-    margin-top: 3rem;
+    margin-top: 2rem;
     @include flexbox(column, flex-start, flex-start);
   }
 
