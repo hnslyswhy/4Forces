@@ -19,6 +19,7 @@ const SentenceBlock = (props) => {
     ];
   }
   setWordsChoices(randomOrder); */
+
   // get random order
   useEffect(() => {
     let randomOrder = [...rightOrder];

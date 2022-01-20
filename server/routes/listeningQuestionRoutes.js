@@ -16,7 +16,8 @@ listeningQuestionRouter.get("/", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
-        throw new Error(e);
+  //      throw new Error(e);
+      res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
 }); */
@@ -37,7 +38,8 @@ listeningQuestionRouter.get("/radiocommunication", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
-    throw new Error(e);
+    //  throw new Error(e);
+    res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
 });
@@ -58,7 +60,8 @@ listeningQuestionRouter.get("/aviationscenario", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
-    throw new Error(e);
+    //  throw new Error(e);
+    res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
 });
@@ -104,7 +107,8 @@ listeningQuestionRouter.get("/:id", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
-    throw new Error(e);
+    //   throw new Error(e);
+    res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
 });

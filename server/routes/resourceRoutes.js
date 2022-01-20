@@ -20,7 +20,8 @@ resourceRouter.get("/video", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
-    throw new Error(e);
+    // throw new Error(e);
+    res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
 });
@@ -41,7 +42,8 @@ resourceRouter.get("/doc", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
-    throw new Error(e);
+    //  throw new Error(e);
+    res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
 });
@@ -61,7 +63,8 @@ resourceRouter.get("/:id", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
-    throw new Error(e);
+    //  throw new Error(e);
+    res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
 });
