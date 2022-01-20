@@ -1,13 +1,49 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
 .block {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid $primary-gray;
+
   &__user {
+    width: 100%;
+    padding: 1rem 0;
+    // border-bottom: 1px dotted $primary-gray;
+    background-color: $secondary-blue;
+    border-radius: 4px;
+    @include flexbox(row, flex-start, center);
+    flex-wrap: wrap;
   }
 
   &__choices {
+    margin-top: 1.5rem;
+    @include flexbox(row, flex-start, center);
+    flex-wrap: wrap;
   }
 
+  &__user-word,
   &__word {
     padding: 0.3rem 0.5rem;
     margin: 0.25rem;
-    border: 1px solid black;
+    border: 1px solid $primary-gray;
+    border-radius: 4px;
+    @include mobil-body-medium;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $secondary-white;
+    }
+  }
+
+  &__user-word {
+    background-color: $primary-white;
+  }
+
+  &__message {
+    margin-top: 1rem;
+    @include mobil-labels;
+    color: $primary-blue;
   }
 }

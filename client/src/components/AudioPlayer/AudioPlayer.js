@@ -41,7 +41,7 @@ const AudioPlayer = (props) => {
 
   //adjust audio speed
   const handleAdjustSpeed = () => {
-    setIsAdjustingSpeed(true);
+    setIsAdjustingSpeed(!isAdjustingSpeed);
   };
 
   const handleSlowSpeed = () => {
@@ -58,46 +58,41 @@ const AudioPlayer = (props) => {
 
   return (
     <div className="audio">
-      <div>
-        {/*  <img className="audio__icon" src={isPlaying ? pause : play} alt="play" /> */}
-        {!isPlaying && (
-          <img
-            className="audio__icon"
-            onClick={handlePlayAudio}
-            src={play}
-            alt="play"
-          />
-        )}
-        {isPlaying && (
-          <img
-            className="audio__icon"
-            onClick={handlePauseAudio}
-            src={pause}
-            alt="pause"
-          />
-        )}
+      {!isPlaying && (
         <img
           className="audio__icon"
-          onClick={handleStopAudio}
-          src={stop}
-          alt="stop"
-        />
-      </div>
-
-      <div>
-        <img
-          className="audio__icon"
-          src={speed}
+          onClick={handlePlayAudio}
+          src={play}
           alt="play"
-          onClick={handleAdjustSpeed}
         />
-        {isAdjustingSpeed && (
-          <>
-            <span onClick={handleSlowSpeed}>0.75X</span>
-            <span onClick={handleFastSpeed}>1.25X</span>
-          </>
-        )}
-      </div>
+      )}
+      {isPlaying && (
+        <img
+          className="audio__icon"
+          onClick={handlePauseAudio}
+          src={pause}
+          alt="pause"
+        />
+      )}
+      <img
+        className="audio__icon"
+        onClick={handleStopAudio}
+        src={stop}
+        alt="stop"
+      />
+
+      <img
+        className="audio__icon"
+        src={speed}
+        alt="play"
+        onClick={handleAdjustSpeed}
+      />
+      {isAdjustingSpeed && (
+        <p>
+          <span onClick={handleSlowSpeed}>0.75X</span>
+          <span onClick={handleFastSpeed}>1.25X</span>
+        </p>
+      )}
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import eye from "../../assets/icons/eye.svg";
 import eyeSlash from "../../assets/icons/eyeSlash.svg";
+import "./Reference.scss";
 
 const Reference = (props) => {
   const [isShowingReference, setIsShowingReference] = useState(false);
@@ -14,16 +15,18 @@ const Reference = (props) => {
         src={isShowingReference ? eye : eyeSlash}
         alt="reference"
       />
-      {isShowingReference && (
+      {isShowingReference ? (
         <>
           {props.referenceArray.map((referenceObj) => {
             return (
-              <p key={referenceObj.en} className="reference_text">
+              <p key={referenceObj.en} className="reference__text">
                 {referenceObj.en}
               </p>
             );
           })}
         </>
+      ) : (
+        <p className="reference__text">Show Reference</p>
       )}
     </div>
   );

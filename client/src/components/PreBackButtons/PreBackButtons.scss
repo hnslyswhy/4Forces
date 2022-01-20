@@ -3,10 +3,18 @@
 
 .pre-back {
   width: 100%;
+  padding: 2rem 0;
   @include flexbox(row, space-between, center);
 
-  &__button {
-    width: 30px;
-    height: 30px;
+  &__icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    opacity: 0.6;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+      transform: scale(1.2);
+    }
   }
 }

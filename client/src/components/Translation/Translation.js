@@ -10,8 +10,10 @@ const Translation = (props) => {
   return (
     <div className="translation" onClick={handleToggleTranslation}>
       <img className="translation__icon" src={translation} alt="translate" />
-      {isShowingTranslation && (
-        <p className="translation_text">{props.translationString}</p>
+      {isShowingTranslation ? (
+        <p className="translation__text">{props.translationString}</p>
+      ) : (
+        <p className="translation__text">Show Translation</p>
       )}
     </div>
   );

@@ -1,10 +1,8 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 
-.translation {
+.reference {
   margin-top: 1rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid $primary-gray;
   @include flexbox(row, flex-start, center);
 
   &__icon {
