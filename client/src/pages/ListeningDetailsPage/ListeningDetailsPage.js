@@ -7,6 +7,7 @@ import Reference from "../../components/Reference/Reference";
 import PreBackButtons from "../../components/PreBackButtons/PreBackButtons";
 import LoadingSpinner from "../../utilities/LoadingSpinner/LoadingSpinner";
 import NotFound from "../../utilities/NotFound/NotFound";
+import { v4 as uuidv4 } from "uuid";
 import "./ListeningDetailsPage.scss";
 
 const ListeningDetailsPage = (props) => {
@@ -16,6 +17,8 @@ const ListeningDetailsPage = (props) => {
   const [hasError, setHasError] = useState(false);
   const [question, setQuestion] = useState(null);
   const [navIds, setNavIds] = useState({});
+  const [isRightAnswer, setIsRightAnswer] = useState({});
+  const [isClicked, setIsClicked] = useState(false);
 
   useEffect(async () => {
     try {
@@ -32,6 +35,16 @@ const ListeningDetailsPage = (props) => {
       setIsLoading(false);
     }
   }, [id]);
+
+  const handleChooseAnswer = (e) => {
+    e.preventDefault();
+    console.log(e.target.value);
+    if (e.target.value.toLowerCase() === question.answer) {
+      setIsRightAnswer({ isClicked: true, message: "Well Done!" });
+    } else {
+      setIsRightAnswer({ isClicked: true, message: "Try Again!" });
+    }
+  };
 
   const handleGoBack = () => {
     history.push("/testprep/listeningprep");
@@ -61,29 +74,37 @@ const ListeningDetailsPage = (props) => {
             className="listen-question__audio"
             audioArray={question.audio}
           />
-          <form className="listen-question__form">
+          <form className="listen-question__form" onChange={handleChooseAnswer}>
             {question.choices.map((choice, index) => {
               return (
-                <div
-                  key={String(index) + "option"}
-                  className="listen-question__entries"
+                /*  <div
+                  key={uuidv4()}
+                  className="listen-question__entries "
+                 id={uuidv4()}
+                  className={`listen-question__entries ${
+                    isClicked ? "listen-question__clicked" : ""
+                  } `}
+                  onClick={() => handleClick(id)}
+                > */
+                <label
+                  key={uuidv4()}
+                  id={uuidv4()}
+                  className="listen-question__label"
+                  htmlFor={Object.keys(choice)[0]}
                 >
+                  {Object.values(choice)[0]}{" "}
                   <input
                     className="listen-question__input"
                     type="radio"
                     id={Object.keys(choice)[0]}
-                    value="a"
-                    name="answer"
+                    value={Object.keys(choice)[0]}
                   />
-                  <label
-                    className="listen-question__label"
-                    htmlFor={Object.keys(choice)[0]}
-                  >
-                    {Object.values(choice)[0]}
-                  </label>
-                </div>
+                </label>
               );
             })}
+            {isRightAnswer.isClicked && (
+              <p className="listen-question__check">{isRightAnswer.message}</p>
+            )}
           </form>
 
           <Reference

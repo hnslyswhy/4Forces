@@ -38,9 +38,16 @@
   &__form {
     width: 80%;
     margin: auto;
+    @include flexbox(column, flex-start, center);
+
+    &--right {
+      border: 1px solid $primary-blue;
+      border-top-left-radius: 4rem;
+      box-shadow: 0 1px 3px #242424fe;
+    }
   }
 
-  &__entries {
+  /*   &__entries {
     width: 100%;
     padding: 0.5rem 1rem;
     margin: 0.5rem 0;
@@ -49,14 +56,32 @@
     &:hover {
       background-color: $secondary-blue;
     }
-  }
+  } */
 
   &__input {
     display: none;
   }
 
   &__label {
+    width: 100%;
     @include mobil-body-medium;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: $secondary-blue;
+    }
+
+    &--clicked {
+      background-color: $secondary-white;
+    }
+  }
+
+  &__check {
+    @include mobil-labels;
+    color: $primary-blue;
+    text-align: center;
   }
 
   &__reference {
