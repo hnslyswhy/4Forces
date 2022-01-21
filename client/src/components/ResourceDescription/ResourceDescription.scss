@@ -1,0 +1,46 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.main-description {
+  padding: 1rem;
+
+  &__title {
+    @include mobil-subheader;
+    text-align: center;
+  }
+
+  &__content {
+    @include flexbox(row, space-between, space-between);
+  }
+
+  &__info-container {
+    @include tablet {
+      @include flexbox(row, space-between, center);
+    }
+  }
+
+  &__channel {
+    @include mobil-labels;
+  }
+
+  &__strong {
+    color: $primary-blue;
+  }
+
+  &__social-container {
+    @include tablet {
+      @include flexbox(row, space-between, center);
+    }
+  }
+
+  &__like {
+    color: $primary-blue;
+    width: 1rem;
+    height: 1rem;
+  }
+
+  &__time,
+  &__like-count {
+    @include mobil-body-medium;
+  }
+}
