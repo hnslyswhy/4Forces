@@ -1,14 +1,17 @@
 import { getTimeDifference } from "../../utilities/timeConverter";
 import { deleteComment } from "../../utilities/api";
 import deleteIcon from "../../assets/icons/deleteIcon.svg";
+import { useParams } from "react-router-dom";
 import "./ResourceComments.scss";
 
 function ResourceComments({ data }) {
-  /*   const handleDelete = (videoId, commentId) => {
-    deleteComment(videoId, commentId)
-      .then(() => setVideos())
-      .catch((e) => console.log(e.message));
-  }; */
+  const { id } = useParams();
+
+  const handleDelete = (id, commentId) => {
+    console.log(id, commentId);
+    deleteComment(id, commentId);
+    window.location.reload(true); // how to update properly
+  };
   return (
     <div className="comments">
       {data.comments.map((item) => {
@@ -33,7 +36,7 @@ function ResourceComments({ data }) {
                 </p>
                 <img
                   className="comments__delete"
-                  /*    onClick={() => handleDelete(video._id, item.id)} */
+                  onClick={() => handleDelete(id, item.id)}
                   src={deleteIcon}
                   alt="delete"
                 />

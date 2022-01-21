@@ -1,0 +1,21 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.comment-form {
+  padding: 1rem;
+  @include flexbox(column, flex-start, center);
+
+  &__username,
+  &__content {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  &__content {
+    height: 110px;
+  }
+
+  &__add {
+    margin-left: auto;
+  }
+}

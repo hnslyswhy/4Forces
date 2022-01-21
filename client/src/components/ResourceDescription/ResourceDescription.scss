@@ -28,19 +28,34 @@
   }
 
   &__social-container {
-    @include tablet {
-      @include flexbox(row, space-between, center);
-    }
+    @include flexbox(column, center, center);
+  }
+
+  &__social {
+    @include flexbox(row, space-between, center);
+  }
+
+  &__view {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+    opacity: 0.7;
   }
 
   &__like {
     color: $primary-blue;
     width: 1rem;
     height: 1rem;
+    margin-right: 0.5rem;
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+    }
   }
 
   &__time,
-  &__like-count {
+  &__like-count,
+  &__view-count {
     @include mobil-body-medium;
   }
 }

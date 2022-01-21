@@ -6,6 +6,7 @@ import NotFound from "../../utilities/NotFound/NotFound";
 import ResourceDescription from "../../components/ResourceDescription/ResourceDescription";
 import ResourceList from "../../components/ResourceList/ResourceList";
 import ResourceComments from "../../components/ResourceComments/ResourceComments";
+import ResourceAddComment from "../../components/ResourceAddComment/ResourceAddComment";
 import "./ResourceDetailsPage.scss";
 
 const ResourceDetailsPage = () => {
@@ -48,6 +49,7 @@ const ResourceDetailsPage = () => {
               className="main-resource__description"
             />
             <ResourceComments data={resource} />
+            <ResourceAddComment />
           </section>
 
           <ResourceList className="main-resource__aside" />

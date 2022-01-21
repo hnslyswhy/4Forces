@@ -1,4 +1,6 @@
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
+
 const baseUrl = process.env.REACT_APP_API_URL; // ?????
 
 /********* get sentence list ************/
@@ -121,12 +123,24 @@ export async function getAResource(id) {
 }
 
 /********* update resource like count by id ************/
-export async function patchResourceLike(id) {
+export async function patchResourceLike(id, likes) {
   let response;
   let data;
+
+  console.log(id, likes);
   try {
     //  response = await axios.get(`${baseUrl}/resource/${id}`);
-    response = await axios.patch(`http://localhost:8080/resource/${id}`);
+    response = await axios.patch(
+      `http://localhost:8080/resource/${id}/likes`,
+      {
+        increment: likes,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     data = response.data;
   } catch (e) {
     console.error(e.message);
@@ -134,14 +148,39 @@ export async function patchResourceLike(id) {
   return data;
 }
 
-/********* delete a resource comment by id ************/
-export async function deleteComment(id) {
+/********* add a comment ************/
+export async function addAComment(resourceId, username, content) {
   let response;
   let data;
   try {
     //  response = await axios.get(`${baseUrl}/resource/${id}`);
-    response = await axios.delete(`http://localhost:8080/resource/${id}`);
+    response = await axios.post(
+      `http://localhost:8080/resource/${resourceId}/comments`,
+      {
+        username: username,
+        content: content,
+        id: uuidv4(),
+      }
+    );
     data = response.data;
+    console.log(data);
+  } catch (e) {
+    console.error(e.message);
+  }
+  return data;
+}
+
+/********* delete a resource comment by id ************/
+export async function deleteComment(resourceId, commentId) {
+  let response;
+  let data;
+  try {
+    //  response = await axios.get(`${baseUrl}/resource/${id}`);
+    response = await axios.delete(
+      `http://localhost:8080/resource/${resourceId}/comments/${commentId}`
+    );
+    data = response.data;
+    console.log(data);
   } catch (e) {
     console.error(e.message);
   }
