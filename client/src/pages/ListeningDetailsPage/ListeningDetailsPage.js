@@ -20,8 +20,17 @@ const ListeningDetailsPage = (props) => {
   const [isRightAnswer, setIsRightAnswer] = useState({});
   const [isClicked, setIsClicked] = useState(false);
 
+  const resetState = () => {
+    setHasError(false);
+    setIsRightAnswer(false);
+    setIsLoading(true);
+    setQuestion({});
+    setNavIds({ previousId: "", nextId: "" });
+  };
+
   useEffect(async () => {
     try {
+      resetState();
       let res = await getAQuestion(id);
       setQuestion(res);
       setNavIds({

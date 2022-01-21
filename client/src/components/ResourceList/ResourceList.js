@@ -1,6 +1,5 @@
-import { findAll } from "domutils";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getResourceList } from "../../utilities/api";
 import ResourceCard from "../../components/ResourceCard/ResourceCard";
 import LoadingSpinner from "../../utilities/LoadingSpinner/LoadingSpinner";
@@ -10,14 +9,20 @@ import "./ResourceList.scss";
 const ResourceList = (props) => {
   const [videos, setVideos] = useState(null);
   const [docs, setDocs] = useState(null);
+  const { id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     Promise.all([getResourceList("video"), getResourceList("doc")])
       .then((results) => {
-        setVideos(results[0]);
-        setDocs(results[1]);
+        if (id) {
+          setVideos(results[0].filter((resource) => resource._id !== id));
+          setDocs(results[1].filter((resource) => resource._id !== id));
+        } else {
+          setVideos(results[0]);
+          setDocs(results[1]);
+        }
         setIsLoading(false);
       })
       .catch((e) => {

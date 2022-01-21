@@ -32,7 +32,7 @@ function ResourceComments({ data }) {
               <p className="comments__author">{item.username}</p>
               <div className="comments__tools">
                 <p className="comments__date">
-                  {getTimeDifference(item.timestamp)}
+                  {getTimeDifference(item.timeStamp)}
                 </p>
                 <img
                   className="comments__delete"

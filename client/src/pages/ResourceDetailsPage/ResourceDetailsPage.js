@@ -8,6 +8,7 @@ import ResourceList from "../../components/ResourceList/ResourceList";
 import ResourceComments from "../../components/ResourceComments/ResourceComments";
 import ResourceAddComment from "../../components/ResourceAddComment/ResourceAddComment";
 import "./ResourceDetailsPage.scss";
+import Climb from "../../components/Cliemb/Climb";
 
 const ResourceDetailsPage = () => {
   const [resource, setResource] = useState(null);
@@ -16,11 +17,11 @@ const ResourceDetailsPage = () => {
   const { id } = useParams();
 
   useEffect(async () => {
+    window.scrollTo(0, 0);
     try {
       let result = await getAResource(id);
       setResource(result);
       setIsLoading(false);
-      console.log(resource);
     } catch (e) {
       console.error(e);
       setHasError(true);
@@ -35,15 +36,18 @@ const ResourceDetailsPage = () => {
       {!isLoading && !hasError && resource && (
         <main className="resource-details-main">
           <section className="main-resource">
-            <div className="main-resource__video-container">
-              <video
-                className="main-resource__video-player"
-                type="video/mp4"
-                src={resource.video}
-                poster={resource.image}
-                controls
-              />
-            </div>
+            {resource.type === "video" && (
+              <div className="main-resource__video-container">
+                <video
+                  className="main-resource__video-player"
+                  type="video/mp4"
+                  src={resource.video}
+                  poster={resource.image}
+                  controls
+                />
+              </div>
+            )}
+            {resource.type === "doc" && <Climb />}
             <ResourceDescription
               data={resource}
               className="main-resource__description"

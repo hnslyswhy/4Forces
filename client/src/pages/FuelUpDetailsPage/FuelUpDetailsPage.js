@@ -20,7 +20,16 @@ const FuelUpDetailsPage = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
+  // to ensure all the state will be reset
+  const resetState = () => {
+    setHasError(false);
+    setSentence(null);
+    setIsLoading(true);
+    setNavIds({ previousId: "", nextId: "" });
+  };
+
   useEffect(async () => {
+    resetState();
     try {
       let res = await getASentence(id);
       setSentence(res);

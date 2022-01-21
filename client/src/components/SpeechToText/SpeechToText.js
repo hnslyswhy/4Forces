@@ -14,31 +14,9 @@ const SpeechToText = (props) => {
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
 
-  const recordRef = useRef(null);
-  /* const [curTranscript, setCurTranscript] = useState(null);
-
-  useEffect(() => {
-    console.log([props.id]);
-    console.log(recordRef.current);
-
-    if (recordRef.current === props.id) {
-      console.log(transcript);
-      setCurTranscript(transcript);
-    }
-  }, [transcript]);
-   */
-
   if (!browserSupportsSpeechRecognition) {
     return <NotFound />;
   }
-
-  const handleStartRecording = (id) => {
-    console.log(id);
-    if (id === props.id) {
-      recordRef.current = id;
-      SpeechRecognition.startListening();
-    }
-  };
 
   return (
     <div className="speech">
@@ -50,7 +28,7 @@ const SpeechToText = (props) => {
           className="speech__record"
           src={speaking}
           alt="start recording"
-          onClick={() => handleStartRecording(props.id)}
+          onClick={SpeechRecognition.startListening}
         />
         <span
           className="speech__stop"
@@ -63,9 +41,7 @@ const SpeechToText = (props) => {
         Microphone:
         <span className="speech__strong">{listening ? "on" : "off"}</span>
       </p>
-      {recordRef.current === props.id && (
-        <p className="speech__text">{transcript}</p>
-      )}
+      <p className="speech__text">{transcript}</p>
     </div>
   );
 };

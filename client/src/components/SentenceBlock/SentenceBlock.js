@@ -10,16 +10,6 @@ const SentenceBlock = (props) => {
   const [message, setMessage] = useState(null);
   const rightOrder = props.blockString.split(" ");
 
-  /*   let randomOrder = [...rightOrder];
-  for (let i = rightOrder.length - 1; i >= 0; i--) {
-    let randomNum = Math.floor(Math.random() * (i + 1));
-    [randomOrder[randomNum], randomOrder[i]] = [
-      randomOrder[i],
-      randomOrder[randomNum],
-    ];
-  }
-  setWordsChoices(randomOrder); */
-
   // get random order
   useEffect(() => {
     let randomOrder = [...rightOrder];
