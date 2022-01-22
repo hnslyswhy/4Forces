@@ -3,6 +3,7 @@
 
 .fuel-main {
   width: 85%;
+  max-width: 60rem;
   margin: auto;
   margin-top: -6rem;
   padding-top: 1rem;
@@ -14,6 +15,11 @@
   position: relative;
   @include flexbox(column, flex-start, center);
 
+  @include desktop {
+    margin-top: -9rem;
+    border-top-left-radius: 10rem;
+  }
+
   &__back {
     position: absolute;
     top: 0.5rem;
@@ -24,13 +30,21 @@
       right: 1rem;
       transform: scale(1.2);
     }
+
+    @include desktop {
+      top: 2rem;
+      right: 2rem;
+    }
   }
 }
 
 .fuel {
   width: 80%;
   margin: auto;
-  margin-top: 1rem;
+  margin-top: 3.5rem;
+  @include desktop {
+    margin-top: 6rem;
+  }
 
   &__instruction {
     @include mobil-labels;
@@ -38,6 +52,7 @@
 
     @include tablet {
       @include labels;
+      margin-top: 2rem;
     }
   }
 }

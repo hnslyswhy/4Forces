@@ -3,6 +3,7 @@
 
 .listen-question {
   width: 85%;
+  max-width: 60rem;
   margin: auto;
   margin-top: -6rem;
   padding-top: 2rem;
@@ -14,6 +15,11 @@
   position: relative;
   @include flexbox(column, flex-start, center);
 
+  @include desktop {
+    margin-top: -9rem;
+    border-top-left-radius: 10rem;
+  }
+
   &__back {
     position: absolute;
     top: 0.5rem;
@@ -23,6 +29,10 @@
       top: 1rem;
       right: 1rem;
       transform: scale(1.2);
+    }
+    @include desktop {
+      top: 2rem;
+      right: 2rem;
     }
   }
 

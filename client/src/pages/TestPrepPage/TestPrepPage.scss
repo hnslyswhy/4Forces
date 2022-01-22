@@ -4,6 +4,7 @@
 .prep-main {
   width: 85%;
   margin: auto;
+  max-width: 60rem;
   margin-top: -6rem;
   padding-top: 2rem;
   background-color: $primary-white;
@@ -13,6 +14,12 @@
   box-shadow: 0 2px 4px rgba(140, 139, 139, 0.685);
   position: relative;
   @include flexbox(column, flex-start, center);
+
+  @include desktop {
+    margin-top: -9rem;
+    border-top-left-radius: 10rem;
+    padding-top: 5rem;
+  }
 
   &__headline {
     width: 80%;
@@ -32,11 +39,19 @@
     width: 100%;
     @include flexbox(row, space-around, center);
     flex-wrap: wrap;
+
+    @include desktop {
+      margin-top: 4rem;
+    }
   }
 
   &__item {
     width: 40%;
     margin: 1rem 0;
+
+    @include desktop {
+      width: 30%;
+    }
   }
 
   &__card {
@@ -67,6 +82,10 @@
     @include tablet {
       min-height: 11rem;
     }
+
+    @include desktop {
+      min-height: 12rem;
+    }
   }
 
   &__title {
@@ -75,7 +94,7 @@
     font-weight: 600;
     color: $primary-black;
     position: absolute;
-    bottom: 0;
+    bottom: -0.2rem;
     text-align: center;
 
     @include tablet {

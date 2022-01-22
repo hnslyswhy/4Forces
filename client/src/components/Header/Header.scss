@@ -17,7 +17,10 @@
   }
 
   @include desktop {
-    padding: 2rem 7rem;
+    padding: 4rem 10rem;
+    height: 18rem;
+    border-bottom-left-radius: 10rem;
+    border-bottom-right-radius: 10rem;
     @include flexbox(row, space-between, flex-start);
   }
 

@@ -3,6 +3,7 @@
 
 .speaking-question {
   width: 85%;
+  max-width: 60rem;
   margin: auto;
   margin-top: -6rem;
   padding-top: 4rem;
@@ -11,6 +12,11 @@
   box-shadow: 0 2px 4px #8c8b8baf;
   position: relative;
   @include flexbox(column, flex-start, center);
+
+  @include desktop {
+    margin-top: -9rem;
+    border-top-left-radius: 10rem;
+  }
 
   &__back {
     position: absolute;
@@ -22,6 +28,10 @@
       right: 1rem;
       transform: scale(1.2);
     }
+    @include desktop {
+      top: 2rem;
+      right: 2rem;
+    }
   }
 
   &__img {
@@ -30,6 +40,9 @@
 
     @include tablet {
       margin-top: 2rem;
+    }
+    @include desktop {
+      margin-top: 5rem;
     }
   }
 
