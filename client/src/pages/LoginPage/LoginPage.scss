@@ -1,0 +1,97 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.login {
+  @include main-container;
+
+  &__title {
+    @include mobil-page-header;
+
+    @include tablet {
+      @include page-header;
+    }
+  }
+
+  &__container {
+    width: 100%;
+    padding: 0 2rem;
+    @include flexbox(column, center, center);
+
+    @include desktop {
+      @include flexbox(row, center, center);
+    }
+  }
+
+  &__left {
+    width: 100%;
+    padding: 1rem;
+    padding-bottom: 2rem;
+    @include flexbox(column, center, center);
+  }
+
+  &__google,
+  &__github {
+    @include flexbox(row, center, center);
+    padding: 0.5rem 2rem;
+    width: 70%;
+    border-radius: 4px;
+    color: $secondary-black;
+    font-weight: 600;
+  }
+
+  &__google {
+    background-color: rgb(247, 96, 62);
+    &:hover {
+      cursor: pointer;
+      background-color: darken(rgb(247, 96, 62), 5);
+    }
+  }
+
+  &__github {
+    background-color: rgb(127, 229, 255);
+    margin-top: 1rem;
+    &:hover {
+      cursor: pointer;
+      background-color: darken(rgb(127, 229, 255), 5);
+    }
+  }
+
+  &__icon {
+    opacity: 0.7;
+  }
+
+  &__center {
+    width: 100%;
+    @include flexbox(column, center, center);
+  }
+
+  &__line {
+    width: 100%;
+    border: 1px solid $primary-gray;
+  }
+
+  &__or {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid $primary-gray;
+    background-color: $primary-gray;
+    border-radius: 50%;
+    text-align: center;
+    margin-top: -1.3rem;
+    color: $primary-white;
+    @include mobil-body-large;
+    font-weight: 600;
+  }
+
+  &__right {
+    width: 100%;
+    padding: 1rem;
+    @include flexbox(column, center, center);
+  }
+
+  &__icon {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 1rem;
+  }
+}

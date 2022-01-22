@@ -74,4 +74,15 @@
     background-color: $secondary-white;
     border-radius: 1.25rem;
   }
+
+  &__message {
+    text-align: center;
+    margin-top: 0.5rem;
+    color: $primary-white;
+    @include mobil-body-large;
+
+    @include tablet {
+      @include body-large;
+    }
+  }
 }

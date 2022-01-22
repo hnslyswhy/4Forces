@@ -3,6 +3,21 @@ import { v4 as uuidv4 } from "uuid";
 
 const baseUrl = process.env.REACT_APP_API_URL; // ?????
 
+/********* auth ************/
+export async function auth() {
+  let response;
+  let data;
+  try {
+    response = await axios.get(`http://localhost:8080/auth/login/success`, {
+      withCredentials: true,
+    });
+    data = response.data;
+  } catch (e) {
+    console.error(e.message);
+  }
+  return data;
+}
+
 /********* get sentence list ************/
 export async function getSentencesList(endpoint) {
   let response;
