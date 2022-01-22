@@ -36,7 +36,7 @@ const SpeakingListPage = () => {
               <div className="speaking__toggle">
                 {questions.map((question, index) => (
                   <Link
-                    to={`/testprep/speakingprep/${question.id}`}
+                    to={`/testprep/speakingprep/${question.id}/0`}
                     key={question._id}
                   >
                     <div className="speaking__question">{index + 1}</div>

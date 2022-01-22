@@ -1,0 +1,41 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.speaking-card {
+  width: 100%;
+  margin: 1rem 0;
+
+  &__card {
+    width: 80%;
+    margin: auto;
+  }
+
+  &__headline {
+    text-align: center;
+    @include mobil-body-large;
+    font-weight: 600;
+    color: $primary-blue;
+  }
+
+  &__instruction {
+    margin-top: 1rem;
+    @include mobil-labels;
+  }
+
+  &__icon {
+    margin-top: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    opacity: 0.6;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+      transform: scale(1.2);
+    }
+  }
+
+  &__text {
+    @include mobil-body-medium;
+  }
+}

@@ -25,17 +25,12 @@ const SentenceBlock = (props) => {
 
   useEffect(() => {
     checkAnswer();
-    //  console.log(isRightAnswer);
   }, [userChoices]);
 
   const checkAnswer = () => {
-    console.log("rightOder: ", rightOrder);
-    console.log("userChoice: ", userChoices);
     if (userChoices.length !== rightOrder.length) {
-      console.log("length check");
       return;
     } else {
-      console.log("every word check");
       for (let i = 0; i < rightOrder.length; i++) {
         if (rightOrder[i] !== userChoices[i]) {
           setMessage(["Try Again!"]);
@@ -60,7 +55,6 @@ const SentenceBlock = (props) => {
   };
 
   const handleClickWordChoice = (index) => {
-    console.log(index);
     // add to user choice end
     let clickedWord = wordsChoices[index];
     let copyUserArray = [...userChoices];

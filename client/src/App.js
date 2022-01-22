@@ -26,7 +26,7 @@ function App() {
         />
         <Route path="/testprep/listeningprep" component={ListeningListPage} />
         <Route
-          path="/testprep/speakingprep/:id"
+          path="/testprep/speakingprep/:id/:questionId"
           component={SpeakingDetailsPage}
         />
         <Route path="/testprep/speakingprep" component={SpeakingListPage} />
