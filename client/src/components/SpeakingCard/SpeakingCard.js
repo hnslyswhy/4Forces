@@ -6,15 +6,6 @@ import eyeSlash from "../../assets/icons/eyeSlash.svg";
 import "./SpeakingCard.scss";
 
 const SpeakingCard = (props) => {
-  console.log(props.data[props.questionIndex]);
-  /*   const [curQuestion, setCurQuestion] = useState(null);
-
-  useEffect(() => {
-    setCurQuestion(props.data[props.questionId]);
-  }, [props.questionId]);
-
-  console.log(curQuestion); */
-
   const [isShowingReference, setIsShowingReference] = useState(false);
 
   const handleToggleReference = () => {

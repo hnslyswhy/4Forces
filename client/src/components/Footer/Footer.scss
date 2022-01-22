@@ -11,6 +11,10 @@
     @include mobil-body-small;
     color: $secondary-black;
     margin-bottom: 0.5rem;
+
+    @include tablet {
+      @include body-small;
+    }
   }
 
   &__icon {

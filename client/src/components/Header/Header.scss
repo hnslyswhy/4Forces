@@ -24,6 +24,10 @@
   &__brand {
     @include mobil-page-header;
     color: $primary-white;
+
+    @include tablet {
+      @include page-header;
+    }
   }
 
   &__nav {
@@ -31,6 +35,7 @@
     margin-top: 1rem;
     @include flexbox(row, space-between, center);
     @include tablet {
+      margin-top: 0;
       width: 40%;
     }
     @include desktop {
@@ -43,7 +48,8 @@
     padding: 0.25rem 0;
     text-align: center;
     color: $primary-white;
-    @include mobil-labels;
+    @include mobil-body-large;
+    font-weight: 600;
 
     &:hover,
     &:active {
@@ -55,7 +61,8 @@
 
     @include tablet {
       padding: 0.5rem 1rem;
-      @include labels;
+      @include body-large;
+      font-weight: 600;
     }
   }
 

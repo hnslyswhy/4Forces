@@ -30,19 +30,19 @@
     margin: auto;
     margin-top: 2rem;
     @include flexbox(column, flex-start, flex-start);
+    @include tablet {
+      margin-top: 4rem;
+    }
   }
 
   &__title {
     @include mobil-subheader;
     color: $secondary-black;
     text-transform: uppercase;
-  }
 
-  &__quote {
-    align-self: end;
-    margin-top: 1rem;
-    @include mobil-body-medium;
-    color: $secondary-black;
+    @include tablet {
+      @include subheader;
+    }
   }
 
   &__text {
@@ -51,6 +51,10 @@
     text-align: center;
     @include mobil-body-large;
     color: $secondary-black;
+
+    @include tablet {
+      @include body-large;
+    }
   }
 
   &__strong {
