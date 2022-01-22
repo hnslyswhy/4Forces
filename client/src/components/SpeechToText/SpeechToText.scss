@@ -51,15 +51,27 @@
 
   &__notice {
     @include mobil-body-small;
+
+    @include tablet {
+      @include body-small;
+    }
   }
 
   &__strong {
     @include mobil-labels;
     color: $primary-blue;
+
+    @include tablet {
+      @include labels;
+    }
   }
 
   &__text {
     @include mobil-body-medium;
     margin: 1rem 0;
+
+    @include tablet {
+      @include body-medium;
+    }
   }
 }

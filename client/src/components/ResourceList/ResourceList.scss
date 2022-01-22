@@ -4,17 +4,36 @@
 .resource {
   &__videos,
   &__docs {
-    padding-top: 2rem;
-    width: 90%;
-    margin: auto;
+    padding: 1rem;
+    @include tablet {
+      @include flexbox(row, space-between, center);
+      padding: 2rem;
+      flex-wrap: wrap;
+    }
   }
 
-  &__title {
+  &__link {
+    width: 46%;
+  }
+
+  &__title,
+  &__doc-title {
     @include mobil-subheader;
     color: $primary-blue;
     text-align: center;
-    padding-bottom: 1rem;
+    padding: 1.5rem 0;
+    width: 80%;
+    margin: auto;
     border-bottom: 1px solid $primary-gray;
+
+    @include tablet {
+      @include subheader;
+      padding: 1.5rem 0;
+    }
+  }
+
+  &__doc-title {
+    margin-top: 2rem;
   }
 
   &__video-card,
@@ -24,6 +43,10 @@
     &:hover {
       cursor: pointer;
       background-color: $secondary-white;
+    }
+
+    @include tablet {
+      margin-top: 2rem;
     }
   }
 }

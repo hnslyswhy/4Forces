@@ -16,17 +16,32 @@
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
+
+    @include tablet {
+      top: 1rem;
+      right: 1rem;
+      transform: scale(1.2);
+    }
   }
 
   &__img {
     width: 80%;
     border-radius: 4px;
+
+    @include tablet {
+      margin-top: 2rem;
+    }
   }
 
   &__buttons {
     width: 80%;
     @include flexbox(row, space-between, center);
     padding: 2rem 0;
+    border-top: 1px solid $primary-gray;
+
+    @include tablet {
+      padding: 4rem 0;
+    }
   }
 
   &__icon {
@@ -37,6 +52,11 @@
     &:hover {
       cursor: pointer;
       opacity: 1;
+    }
+
+    @include tablet {
+      width: 2rem;
+      height: 2rem;
     }
   }
 }

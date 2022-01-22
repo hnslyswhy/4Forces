@@ -13,7 +13,7 @@ const HomePage = () => {
       </section>
       <section className="home__text">
         <p>
-          Chasing Your Flying Dreams With{" "}
+          Chasing Your Aviation Dreams With{" "}
           <span className="home__strong">4Forces</span>
         </p>
       </section>

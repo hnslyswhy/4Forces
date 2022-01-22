@@ -113,10 +113,18 @@ const Climb = () => {
                             >
                               <tbody>
                                 <tr>
-                                  <td style={{ width: "100%" }}>
-                                    <img
+                                  <td
+                                    style={{
+                                      width: "100%",
+                                      height: "300px",
+                                      backgroundImage:
+                                        "url(" +
+                                        "../../assets/images/headerPic.jpg" +
+                                        ")",
+                                    }}
+                                  >
+                                    {/*  <img
                                       alt=""
-                                      height="auto"
                                       src={headerPic}
                                       style={{
                                         border: "none",
@@ -124,13 +132,11 @@ const Climb = () => {
                                         display: "block",
                                         outline: "none",
                                         textDecoration: "none",
-                                        height: "200px",
+                                        height: "300px",
                                         width: "100%",
                                         fontSize: "13px",
-                                        objectFit: "cover",
                                       }}
-                                      width={600}
-                                    />
+                                    /> */}
                                   </td>
                                 </tr>
                               </tbody>
@@ -1142,7 +1148,7 @@ const Climb = () => {
                         <tr>
                           <td
                             style={{
-                              background: "#e4f9f9",
+                              background: "#4696f7",
                               fontSize: "0px",
                               padding: "10px 25px 10px 25px",
                               paddingRight: "25px",
@@ -1152,7 +1158,6 @@ const Climb = () => {
                           >
                             <p
                               style={{
-                                borderTop: "solid 2px #E6E6E6",
                                 fontSize: 1,
                                 margin: "0px auto",
                                 width: "100%",
@@ -1423,7 +1428,7 @@ const Climb = () => {
                         <tr>
                           <td
                             style={{
-                              background: "#e4f9f9",
+                              background: "#4696f7",
                               fontSize: "0px",
                               padding: "10px 25px 10px 25px",
                               paddingRight: "25px",
@@ -1433,7 +1438,6 @@ const Climb = () => {
                           >
                             <p
                               style={{
-                                borderTop: "solid 2px #E6E6E6",
                                 fontSize: 1,
                                 margin: "0px auto",
                                 width: "100%",
@@ -1538,7 +1542,7 @@ const Climb = () => {
                         <tr>
                           <td
                             style={{
-                              background: "#e4f9f9",
+                              background: "#4696f7",
                               fontSize: "0px",
                               padding: "10px 25px 10px 25px",
                               paddingRight: "25px",
@@ -1548,7 +1552,6 @@ const Climb = () => {
                           >
                             <p
                               style={{
-                                borderTop: "solid 2px #E6E6E6",
                                 fontSize: 1,
                                 margin: "0px auto",
                                 width: "100%",

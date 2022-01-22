@@ -7,6 +7,13 @@
   margin-top: 1rem;
   @include flexbox(column, flex-start, center);
 
+  @include tablet {
+    padding: 2rem 0;
+    width: 80%;
+    margin: auto;
+    @include flexbox(row, space-between, center);
+  }
+
   &__copyright {
     @include mobil-body-small;
     color: $secondary-black;

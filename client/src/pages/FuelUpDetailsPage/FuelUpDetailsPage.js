@@ -66,7 +66,7 @@ const FuelUpDetailsPage = (props) => {
             <AudioPlayer audioArray={sentence.audio} />
             <p className="fuel__instruction">Ex2: Build The Sentence</p>
             <SentenceBlock blockString={sentence.audio[0].en} />
-            <p className="fuel__instruction">Ex Tips</p>
+            <p className="fuel__instruction">Ex Tips:</p>
             <Reference referenceArray={sentence.audio} />
             <Translation translationString={sentence["zh-cn"]} />
             <p className="fuel__instruction">Ex3: Repeat The Sentence</p>

@@ -7,6 +7,11 @@
   padding-bottom: 1rem;
   border-bottom: 1px solid $primary-gray;
 
+  @include tablet {
+    margin-top: 1.5rem;
+    padding-bottom: 2rem;
+  }
+
   &__user {
     width: 100%;
     padding: 1rem 0;
@@ -15,6 +20,10 @@
     border-radius: 4px;
     @include flexbox(row, flex-start, center);
     flex-wrap: wrap;
+
+    @include tablet {
+      padding: 2rem 0;
+    }
   }
 
   &__choices {
@@ -35,6 +44,10 @@
       cursor: pointer;
       background-color: $secondary-white;
     }
+
+    @include tablet {
+      @include body-medium;
+    }
   }
 
   &__user-word {
@@ -45,5 +58,9 @@
     margin-top: 1rem;
     @include mobil-labels;
     color: $primary-blue;
+
+    @include tablet {
+      @include labels;
+    }
   }
 }

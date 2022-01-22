@@ -5,7 +5,7 @@
   width: 85%;
   margin: auto;
   margin-top: -6rem;
-  padding-top: 4rem;
+  padding-top: 5rem;
   background-color: $primary-white;
   height: 70vh;
   min-height: 25rem;
@@ -26,10 +26,18 @@
     &:hover {
       cursor: pointer;
     }
+
+    @include tablet {
+      padding: 2rem 1rem;
+    }
   }
 
   &__title {
     @include mobil-subheader;
+
+    @include tablet {
+      @include subheader;
+    }
   }
 
   &__sentences {
@@ -56,5 +64,11 @@
     background-color: $primary-blue;
     margin: 0.25rem;
     padding: 0.25rem;
+
+    @include tablet {
+      width: 2rem;
+      height: 2rem;
+      @include body-small;
+    }
   }
 }

@@ -152,7 +152,7 @@ resourceRouter.post("/:resourceId/comments", async (req, res) => {
               content: req.body.content,
               timeStamp: Date.now(),
               avatar:
-                "https://happyaviationenglish.sfo3.digitaloceanspaces.com/images/background.jpg",
+                "https://happyaviationenglish.sfo3.digitaloceanspaces.com/images/history-in-hd-KbsvM7Bzhsg-unsplash.jpg",
               username: req.body.username,
             },
           },

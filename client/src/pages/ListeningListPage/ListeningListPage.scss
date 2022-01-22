@@ -26,10 +26,18 @@
     &:hover {
       cursor: pointer;
     }
+
+    @include tablet {
+      padding: 2rem 1rem;
+    }
   }
 
   &__title {
     @include mobil-subheader;
+
+    @include tablet {
+      @include subheader;
+    }
   }
 
   &__questions {
@@ -38,6 +46,9 @@
 
   &__info {
     @include mobil-body-large;
+    @include tablet {
+      @include body-large;
+    }
   }
 
   &__toggle {
@@ -56,5 +67,11 @@
     background-color: $primary-blue;
     margin: 0.25rem;
     padding: 0.25rem;
+
+    @include tablet {
+      width: 2rem;
+      height: 2rem;
+      @include body-small;
+    }
   }
 }

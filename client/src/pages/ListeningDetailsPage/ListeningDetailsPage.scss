@@ -18,6 +18,12 @@
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
+
+    @include tablet {
+      top: 1rem;
+      right: 1rem;
+      transform: scale(1.2);
+    }
   }
 
   &__top {
@@ -28,6 +34,10 @@
   &__title {
     @include mobil-subheader;
     text-align: center;
+
+    @include tablet {
+      @include subheader;
+    }
   }
 
   &__audio {
@@ -39,6 +49,10 @@
     width: 80%;
     margin: auto;
     @include flexbox(column, flex-start, center);
+
+    @include tablet {
+      margin-top: 2rem;
+    }
 
     &--right {
       border: 1px solid $primary-blue;
@@ -69,6 +83,10 @@
     margin: 0.5rem 0;
     border-radius: 4px;
 
+    @include tablet {
+      @include body-medium;
+    }
+
     &:hover {
       background-color: $secondary-blue;
     }
@@ -82,6 +100,10 @@
     @include mobil-labels;
     color: $primary-blue;
     text-align: center;
+
+    @include tablet {
+      @include labels;
+    }
   }
 
   &__reference {

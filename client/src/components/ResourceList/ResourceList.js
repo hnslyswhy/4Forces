@@ -38,19 +38,27 @@ const ResourceList = (props) => {
       {hasError && !isLoading && <NotFound />}
       {!isLoading && !hasError && (
         <aside className={`resource ${props.className}`}>
+          <p className="resource__title">VIDEOS</p>
           <section className="resource__videos">
-            <p className="resource__title">VIDEOS</p>
             {videos.map((item) => (
-              <Link to={`/resource/${item._id}`} key={item._id}>
+              <Link
+                to={`/resource/${item._id}`}
+                key={item._id}
+                className="resource__link"
+              >
                 <ResourceCard data={item} className="resource__video-card" />
               </Link>
             ))}
           </section>
 
+          <p className="resource__doc-title">Documents</p>
           <section className="resource__docs">
-            <p className="resource__title">Documents</p>
             {docs.map((item) => (
-              <Link to={`/resource/${item._id}`} key={item._id}>
+              <Link
+                to={`/resource/${item._id}`}
+                key={item._id}
+                className="resource__link"
+              >
                 <ResourceCard data={item} className="resource__doc-card" />
               </Link>
             ))}

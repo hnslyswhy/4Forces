@@ -20,6 +20,11 @@
     @include mobil-page-header;
     padding-bottom: 1rem;
     border-bottom: 1px solid $primary-gray;
+
+    @include tablet {
+      @include page-header;
+      padding-bottom: 1.5rem;
+    }
   }
 
   &__options {
@@ -58,14 +63,24 @@
       border-radius: 4px;
       box-shadow: 0 2px 4px rgba(140, 139, 139, 0.685);
     }
+
+    @include tablet {
+      min-height: 11rem;
+    }
   }
 
   &__title {
     width: 100%;
     @include mobil-body-large;
+    font-weight: 600;
     color: $primary-black;
     position: absolute;
     bottom: 0;
     text-align: center;
+
+    @include tablet {
+      @include body-large;
+      font-weight: 600;
+    }
   }
 }

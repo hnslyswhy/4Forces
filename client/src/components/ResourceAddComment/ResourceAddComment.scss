@@ -4,6 +4,9 @@
 .comment-form {
   padding: 1rem;
   @include flexbox(column, flex-start, center);
+  @include tablet {
+    padding: 2rem;
+  }
 
   &__username,
   &__content {

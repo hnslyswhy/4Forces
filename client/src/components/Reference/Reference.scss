@@ -15,10 +15,19 @@
       opacity: 1;
       transform: scale(1.2);
     }
+
+    @include tablet {
+      width: 2rem;
+      height: 2rem;
+    }
   }
 
   &__text {
     @include mobil-body-medium;
     margin-left: 1rem;
+
+    @include tablet {
+      @include body-medium;
+    }
   }
 }

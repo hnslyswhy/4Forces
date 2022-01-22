@@ -5,6 +5,10 @@
   width: 100%;
   margin: 1rem 0;
 
+  @include tablet {
+    margin: 2rem 0;
+  }
+
   &__card {
     width: 80%;
     margin: auto;
@@ -15,11 +19,21 @@
     @include mobil-body-large;
     font-weight: 600;
     color: $primary-blue;
+
+    @include tablet {
+      @include body-large;
+      font-weight: 600;
+    }
   }
 
   &__instruction {
     margin-top: 1rem;
     @include mobil-labels;
+
+    @include tablet {
+      margin-top: 2rem;
+      @include labels;
+    }
   }
 
   &__icon {
@@ -33,9 +47,19 @@
       opacity: 1;
       transform: scale(1.2);
     }
+
+    @include tablet {
+      margin-top: 2rem;
+      width: 2rem;
+      height: 2rem;
+    }
   }
 
   &__text {
     @include mobil-body-medium;
+
+    @include tablet {
+      @include body-medium;
+    }
   }
 }

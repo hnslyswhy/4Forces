@@ -18,6 +18,12 @@
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
+
+    @include tablet {
+      top: 1rem;
+      right: 1rem;
+      transform: scale(1.2);
+    }
   }
 }
 
@@ -29,5 +35,9 @@
   &__instruction {
     @include mobil-labels;
     margin-top: 1.5rem;
+
+    @include tablet {
+      @include labels;
+    }
   }
 }

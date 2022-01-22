@@ -8,7 +8,7 @@ import ResourceList from "../../components/ResourceList/ResourceList";
 import ResourceComments from "../../components/ResourceComments/ResourceComments";
 import ResourceAddComment from "../../components/ResourceAddComment/ResourceAddComment";
 import "./ResourceDetailsPage.scss";
-import Climb from "../../components/Cliemb/Climb";
+import Climb from "../../components/Climb/Climb";
 
 const ResourceDetailsPage = () => {
   const [resource, setResource] = useState(null);
