@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
+import AuthContext from "../../utilities/AuthContext";
 import "./Header.scss";
 
-const Header = (props) => {
-  // console.log(props.user);
+const Header = () => {
+  const authCtx = useContext(AuthContext);
 
   return (
     <header className="header">
@@ -11,9 +12,9 @@ const Header = (props) => {
         <p className="header__brand">4Forces</p>
       </Link>
 
-      {!props.user && <p className="header__message">Login</p>}
+      {!authCtx.user && <p className="header__message">Login</p>}
 
-      {props.user && (
+      {authCtx.user && (
         <div className="header__nav">
           <NavLink
             to={"/testprep"}
@@ -32,7 +33,7 @@ const Header = (props) => {
           <Link to={"/profile"}>
             <div className="header__float">
               <img
-                src={props.user.photos[0].value}
+                src={authCtx.user.photos[0].value}
                 alt="profile pic"
                 className="header__avatar"
               />

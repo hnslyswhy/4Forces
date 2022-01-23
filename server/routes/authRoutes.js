@@ -6,8 +6,9 @@ const { ObjectId } = require("mongodb");
 dotenv.config();
 
 authRouter.get("/login/success", (req, res) => {
-  if (!req.user) {
-    res.status(404);
+  if (!req.isAuthenticated()) {
+    res.status(401);
+    res.json("Not authenticated");
   } else {
     req.user.then((userData) => {
       if (userData) {
@@ -45,7 +46,7 @@ authRouter.get(
     failureMessage: true,
   }),
   function (req, res) {
-    res.redirect(`${process.env.CLIENT_URL}/#success`);
+    res.redirect(`${process.env.CLIENT_URL}/home`);
   }
 );
 

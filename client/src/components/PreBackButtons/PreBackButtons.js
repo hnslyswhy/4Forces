@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { updateProgress } from "../../utilities/api";
+import AuthContext from "../../utilities/AuthContext";
 import left from "../../assets/icons/prev.svg";
 import right from "../../assets/icons/next.svg";
 import "./PreBackButtons.scss";
 
 const PreBackButtons = (props) => {
   const [baseRoute, setBaseRoute] = useState(null);
+  const authCtx = useContext(AuthContext);
   const { pathname } = useLocation();
 
   const handleUpdateProgress = () => {
-    updateProgress(props.currentId, "61ec896563e88078b4afebb6", pathname);
+    updateProgress(props.currentId, authCtx.user._id, pathname);
   };
 
   useEffect(() => {

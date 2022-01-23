@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
+import AuthContext from "./utilities/AuthContext";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
@@ -14,32 +15,16 @@ import SpeakingDetailsPage from "./pages/SpeakingDetailsPage/SpeakingDetailsPage
 import SpeakingListPage from "./pages/SpeakingListPage/SpeakingListPage";
 import TestPrepPage from "./pages/TestPrepPage/TestPrepPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
-import { auth } from "../src/utilities/api";
 
 function App() {
-  const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [hasError, setHasError] = useState(false);
-
-  useEffect(async () => {
-    try {
-      let res = await auth();
-      //console.log(res);
-      setUser(res.user);
-      setIsLoading(false);
-    } catch (e) {
-      console.error(e);
-      setHasError(true);
-      setIsLoading(false);
-    }
-  }, []);
+  const authCtx = useContext(AuthContext);
 
   return (
     <BrowserRouter>
-      <Header user={user} />
-      {!user && <Route path="*" component={LoginPage} />}
+      <Header />
+      {!authCtx.user && <Route path="*" component={LoginPage} />}
 
-      {!isLoading && user && (
+      {!authCtx.isLoading && authCtx.user && (
         <>
           <Switch>
             <Route path="/testprep/fuelup/:id" component={FuelUpDetailsPage} />
@@ -60,11 +45,7 @@ function App() {
             <Route path="/testprep" exact component={TestPrepPage} />
             <Route path="/resource/:id" component={ResourceDetailsPage} />
             <Route path="/resource" exact component={ResourceListPage} />
-            <Route
-              path="/profile"
-              exact
-              render={() => <ProfilePage user={user} />}
-            />
+            <Route path="/profile" exact component={ProfilePage} />
             <Route path="/home" exact component={HomePage} />
             <Route path="*">
               <Redirect to="/home" />
