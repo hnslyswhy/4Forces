@@ -5,6 +5,7 @@
   @include main-container;
 
   &__title {
+    margin: 1rem 0;
     @include mobil-page-header;
 
     @include tablet {
@@ -25,22 +26,26 @@
   &__left {
     width: 100%;
     padding: 1rem;
-    padding-bottom: 2rem;
+    padding-bottom: 3rem;
     @include flexbox(column, center, center);
+
+    @include desktop {
+      margin-right: 1.5rem;
+    }
   }
 
   &__google,
   &__github {
     @include flexbox(row, center, center);
-    padding: 0.5rem 2rem;
-    width: 70%;
+    padding: 0.3rem 2rem;
+    width: 80%;
     border-radius: 4px;
-    color: $secondary-black;
+    color: $secondary-white;
     font-weight: 600;
   }
 
   &__google {
-    background-color: rgb(247, 96, 62);
+    background-color: rgb(247, 50, 6);
     &:hover {
       cursor: pointer;
       background-color: darken(rgb(247, 96, 62), 5);
@@ -48,39 +53,56 @@
   }
 
   &__github {
-    background-color: rgb(127, 229, 255);
+    background-color: #4696f7;
     margin-top: 1rem;
     &:hover {
       cursor: pointer;
-      background-color: darken(rgb(127, 229, 255), 5);
+      background-color: lighten(#4696f7, 3);
     }
-  }
 
-  &__icon {
-    opacity: 0.7;
+    @include desktop {
+      margin-top: 1.5rem;
+    }
   }
 
   &__center {
     width: 100%;
     @include flexbox(column, center, center);
+    @include desktop {
+      width: 1px;
+      height: 100%;
+      @include flexbox(row, center, center);
+    }
   }
 
   &__line {
-    width: 100%;
+    width: 80%;
     border: 1px solid $primary-gray;
+    @include desktop {
+      width: 1px;
+      height: 100%;
+    }
   }
 
   &__or {
     width: 2.5rem;
     height: 2.5rem;
+    padding-top: 0.4rem;
     border: 1px solid $primary-gray;
     background-color: $primary-gray;
     border-radius: 50%;
     text-align: center;
     margin-top: -1.3rem;
-    color: $primary-white;
+    color: $primary-black;
     @include mobil-body-large;
     font-weight: 600;
+
+    @include desktop {
+      margin-left: -1.3rem;
+      margin-top: 0;
+      padding: 0 0.5rem;
+      padding-top: 0.4rem;
+    }
   }
 
   &__right {
@@ -93,5 +115,11 @@
     width: 2rem;
     height: 2rem;
     margin-right: 1rem;
+  }
+
+  &__input,
+  &__button {
+    width: 80%;
+    margin: 0.5rem;
   }
 }

@@ -18,6 +18,35 @@ export async function auth() {
   return data;
 }
 
+/*********** update progress *************/
+export async function updateProgress(userId, lastPage, username) {
+  let response;
+  let data;
+  try {
+    response = await axios.patch(`http://localhost:8080/auth/user/${userId}`, {
+      page: lastPage,
+      username: username,
+    });
+    data = response.data;
+  } catch (e) {
+    console.error(e.message);
+  }
+  return data;
+}
+
+/*********** get progress *************/
+export async function getProgress(userId) {
+  let response;
+  let data;
+  try {
+    response = await axios.get(`http://localhost:8080/auth/user/${userId}`);
+    data = response.data;
+  } catch (e) {
+    console.error(e.message);
+  }
+  return data;
+}
+
 /********* get sentence list ************/
 export async function getSentencesList(endpoint) {
   let response;

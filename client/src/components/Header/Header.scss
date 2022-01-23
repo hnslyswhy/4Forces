@@ -10,6 +10,7 @@
   border-bottom-left-radius: 2.25rem;
   border-bottom-right-radius: 2.25rem;
   @include flexbox(column, flex-start, center);
+  position: relative;
 
   @include tablet {
     padding: 2rem 5rem;
@@ -80,9 +81,24 @@
     margin-top: 0.5rem;
     color: $primary-white;
     @include mobil-body-large;
+    font-weight: 600;
 
     @include tablet {
       @include body-large;
+    }
+  }
+
+  &__logout {
+    width: 1.5rem;
+    height: 1.5rem;
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    opacity: 0.8;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
     }
   }
 }

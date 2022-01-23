@@ -13,6 +13,7 @@ import ResourceListPage from "./pages/ResourceListPage/ResourceListPage";
 import SpeakingDetailsPage from "./pages/SpeakingDetailsPage/SpeakingDetailsPage";
 import SpeakingListPage from "./pages/SpeakingListPage/SpeakingListPage";
 import TestPrepPage from "./pages/TestPrepPage/TestPrepPage";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import { auth } from "../src/utilities/api";
 
 function App() {
@@ -23,8 +24,8 @@ function App() {
   useEffect(async () => {
     try {
       let res = await auth();
+      //console.log(res);
       setUser(res.user);
-      console.log(res);
       setIsLoading(false);
     } catch (e) {
       console.error(e);
@@ -59,6 +60,11 @@ function App() {
             <Route path="/testprep" exact component={TestPrepPage} />
             <Route path="/resource/:id" component={ResourceDetailsPage} />
             <Route path="/resource" exact component={ResourceListPage} />
+            <Route
+              path="/profile"
+              exact
+              render={() => <ProfilePage user={user} />}
+            />
             <Route path="/home" exact component={HomePage} />
             <Route path="*">
               <Redirect to="/home" />

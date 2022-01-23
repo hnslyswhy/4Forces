@@ -16,17 +16,19 @@ passport.use(
       let user = findOrCreateUser("google", profile);
       return done(null, user);
     }
-    /*    function (accessToken, refreshToken, profile, done) {
-      done(null, profile);
-    } */
   )
 );
 
 passport.serializeUser((user, cb) => {
-  cb(null, user);
+  user.then((userData) => {
+    // This callback expects a user.id.
+    // See stackoverflow: https://stackoverflow.com/questions/27637609/understanding-passport-serialize-deserialize
+    cb(null, userData.id);
+  });
 });
 
-passport.deserializeUser((user, cb) => {
+passport.deserializeUser((userId, cb) => {
+  let user = findOrCreateUser("google", { id: userId });
   cb(null, user);
 });
 
@@ -46,7 +48,6 @@ const findOrCreateUser = async (issuer, profile) => {
       .collection(issuer)
       .findOne({ id: profile.id });
 
-    console.log(result);
     if (!result) {
       const creatResult = await client
         .db("aviator")
@@ -66,7 +67,6 @@ const findOrCreateUser = async (issuer, profile) => {
     .collection(issuer)
     .findOne({ id: profile.id });
 
-  console.log(result);
   if (!result) {
     const creatResult = await req.dbClient
       .db("aviator")
