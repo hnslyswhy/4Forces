@@ -88,13 +88,35 @@
     }
   }
 
-  &__logout {
-    width: 1.5rem;
-    height: 1.5rem;
+  &__float {
     position: absolute;
     top: 1rem;
     right: 1.5rem;
     opacity: 0.8;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.2);
+    }
+
+    @include tablet {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+
+  &__avatar {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+  }
+
+  &__logout {
+    width: 1.5rem;
+    height: 1.5rem;
 
     &:hover {
       cursor: pointer;

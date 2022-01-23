@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Progress.scss";
 
-const Progress = ({ done }) => {
+const Progress = ({ done, className }) => {
   const [style, setStyle] = useState({});
 
   useEffect(() => {
@@ -9,7 +9,7 @@ const Progress = ({ done }) => {
   }, [done]);
 
   return (
-    <div className="progress">
+    <div className={`progress ${className}`}>
       <div className="progress-done" style={style}>
         {done}%
       </div>
