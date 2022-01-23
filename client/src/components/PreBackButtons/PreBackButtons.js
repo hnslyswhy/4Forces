@@ -9,10 +9,8 @@ const PreBackButtons = (props) => {
   const [baseRoute, setBaseRoute] = useState(null);
   const { pathname } = useLocation();
 
-  console.log(pathname);
-
   const handleUpdateProgress = () => {
-    updateProgress("61ec896563e88078b4afebb6", pathname, "huanyu");
+    updateProgress(props.currentId, "61ec896563e88078b4afebb6", pathname);
   };
 
   useEffect(() => {

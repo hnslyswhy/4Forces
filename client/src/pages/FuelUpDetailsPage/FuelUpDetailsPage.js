@@ -73,6 +73,7 @@ const FuelUpDetailsPage = (props) => {
             <SpeechToText />
             <PreBackButtons
               previousId={navIds.previousId}
+              currentId={id}
               nextId={navIds.nextId}
               cat="sentences"
             />

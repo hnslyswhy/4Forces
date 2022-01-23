@@ -19,14 +19,17 @@ export async function auth() {
 }
 
 /*********** update progress *************/
-export async function updateProgress(userId, lastPage, username) {
+export async function updateProgress(questionId, userId, lastPage) {
   let response;
   let data;
   try {
-    response = await axios.patch(`http://localhost:8080/auth/user/${userId}`, {
-      page: lastPage,
-      username: username,
-    });
+    response = await axios.patch(
+      `http://localhost:8080/auth/user/${userId}/progress/${questionId}`,
+      {
+        page: lastPage,
+        questionId: questionId,
+      }
+    );
     data = response.data;
   } catch (e) {
     console.error(e.message);

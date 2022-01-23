@@ -3,7 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import "./Header.scss";
 
 const Header = (props) => {
-  console.log(props.user);
+  // console.log(props.user);
 
   return (
     <header className="header">

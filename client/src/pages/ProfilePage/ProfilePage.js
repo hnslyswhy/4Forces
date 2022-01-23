@@ -1,20 +1,37 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { getProgress } from "../../utilities/api";
 import Progress from "../../components/Progress/Progress";
 import "./ProfilePage.scss";
 
 const ProfilePage = (props) => {
-  console.log(props.user);
+  //  console.log(props.user);
+  const history = useHistory();
 
   const [done, setDone] = useState(null);
+  const [lastPage, setLastPage] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
 
   useEffect(async () => {
-    let result = await getProgress("61ec896563e88078b4afebb6");
-    setDone(result.progress);
+    try {
+      let result = await getProgress("61ec896563e88078b4afebb6");
+      setDone(result.progress);
+      setLastPage(result.progress[0].lastPage);
+      setIsLoading(false);
+    } catch (e) {
+      console.error(e);
+      setHasError(true);
+      setIsLoading(false);
+    }
   }, []);
 
   const handleLogout = () => {
     window.open("http://localhost:8080/auth/logout", "_self");
+  };
+
+  const handleResume = () => {
+    history.push(`${lastPage}`);
   };
 
   return (
@@ -56,6 +73,7 @@ const ProfilePage = (props) => {
         ) : (
           ""
         )}
+        <button onClick={handleResume}>Resume</button>
       </section>
     </main>
   );

@@ -123,6 +123,7 @@ const ListeningDetailsPage = (props) => {
           <PreBackButtons
             className="listen-question__preBack"
             previousId={navIds.previousId}
+            currentId={id}
             nextId={navIds.nextId}
             cat="listeningquestions"
           />

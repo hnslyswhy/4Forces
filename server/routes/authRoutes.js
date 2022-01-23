@@ -49,65 +49,56 @@ authRouter.get(
   }
 );
 
-/*************get user progress***********/
-authRouter.get("/user/:id", async (req, res) => {
+/*************track user progress***********/
+authRouter.patch("/user/:userId/progress/:questionId", async (req, res) => {
   try {
     const result = await req.dbClient
       .db("aviator")
       .collection("userprogress")
-      .findOne({ userId: ObjectId(req.params.id) });
-    if (result) {
-      res.status(200).json(result);
-    } else {
-      res.status(404).json({ message: "Not Found" });
-    }
+      .updateOne(
+        {
+          userId: req.params.userId,
+          questionId: req.params.questionId,
+        },
+        {
+          $set: {
+            userId: req.params.userId,
+            questionId: req.params.questionId,
+            lastPage: req.body.page,
+            timestamp: Date.now(),
+          },
+        },
+        {
+          upsert: true,
+        }
+      );
   } catch (e) {
+    console.error(e);
     res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
 });
 
-/*************track user progress***********/
-authRouter.patch("/user/:id", async (req, res) => {
+/*************get user progress***********/
+authRouter.get("/user/:id", async (req, res) => {
   try {
+    console.log(req.params.id);
     const result = await req.dbClient
       .db("aviator")
       .collection("userprogress")
-      .findOne({ userId: ObjectId(req.params.id) });
+      .find({ userId: req.params.id })
+      .sort({ timestamp: -1 })
+      .toArray();
 
-    if (result) {
-      await req.dbClient
-        .db("aviator")
-        .collection("userprogress")
-        .updateOne(
-          { userId: ObjectId(req.params.id) },
-          {
-            $push: {
-              progress: {
-                lastPage: req.body.page,
-                timeStamp: Date.now(),
-              },
-            },
-          }
-        );
+    let userProgress = {
+      userId: req.params.id,
+      progress: result,
+    };
 
-      res.status(200).json({ message: "User progress updated" });
+    if (userProgress) {
+      res.status(200).json(userProgress);
     } else {
-      const results = await req.dbClient
-        .db("aviator")
-        .collection("userprogress")
-        .insertOne({
-          username: req.body.username,
-          userId: ObjectId(req.params.id),
-          progress: [
-            {
-              lastPage: req.body.page,
-              timeStamp: Date.now(),
-            },
-          ],
-        });
-
-      res.status(200).json({ message: "Start tracking user's progress" });
+      res.status(404).json({ message: "Not Found" });
     }
   } catch (e) {
     console.error(e);
