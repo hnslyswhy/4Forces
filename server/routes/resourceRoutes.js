@@ -103,67 +103,32 @@ resourceRouter.patch("/:id/likes", async (req, res) => {
   }
 });
 
-//// update a comment
-/* resourceRouter.patch("/:resourceId/comments/:commentId", async (req, res) => {
-  try {
-    const result = await req.dbClient
-      .db("resource")
-      .collection("resource")
-      .updateOne(
-        {
-          _id: ObjectId(req.params.resourceId),
-        },
-        {
-          $set: {
-            "comments.$[elem].content": req.body.content,
-            "comments.$[elem].timestamp": Date.now(),
-          },
-        },
-        { arrayFilters: [{ "elem.id": { $eq: req.params.commentId } }] }
-      );
-
-    if (result) {
-      res.status(200).json(result);
-    } else {
-      res.status(404).json({ message: "Not Found" });
-    }
-  } catch (e) {
-    console.error(e);
-    //  throw new Error(e);
-    res.status(500).json({ message: "Something went wrong" });
-  } finally {
-  }
-}); */
-
 /// create a comment of a resource
 resourceRouter.post("/:resourceId/comments", async (req, res) => {
   try {
     const result = await req.dbClient
       .db("resource")
-      .collection("resource")
+      .collection("comments")
       .updateOne(
         {
-          _id: ObjectId(req.params.resourceId),
+          resourceId: ObjectId(req.params.resourceId),
+          userId: req.body.userId,
         },
         {
-          $push: {
-            comments: {
-              id: req.body.id,
-              content: req.body.content,
-              timeStamp: Date.now(),
-              avatar:
-                "https://happyaviationenglish.sfo3.digitaloceanspaces.com/images/history-in-hd-KbsvM7Bzhsg-unsplash.jpg",
-              username: req.body.username,
-            },
+          $set: {
+            resourceId: req.params.resourceId,
+            userId: req.body.userId,
+            username: req.body.username,
+            avatar: req.body.avatar,
+            content: req.body.content,
+            commentPage: req.body.commentPage,
+            timestamp: Date.now(),
           },
-        }
+        },
+        { upsert: true }
       );
 
-    if (result) {
-      res.status(200).json(result);
-    } else {
-      res.status(404).json({ message: "Not Found" });
-    }
+    res.status(200).json(result);
   } catch (e) {
     console.error(e);
     res.status(500).json({ message: "Something went wrong" });
@@ -171,25 +136,37 @@ resourceRouter.post("/:resourceId/comments", async (req, res) => {
   }
 });
 
+/// get all comments of a resource
+resourceRouter.get("/:resourceId/comments", async (req, res) => {
+  try {
+    const results = await req.dbClient
+      .db("resource")
+      .collection("comments")
+      .find({ resourceId: req.params.resourceId })
+      .sort({ timestamp: -1 })
+      .toArray();
+
+    if (results) {
+      res.status(200).json(results);
+    } else {
+      res.status(404).json({ message: "Not Found" });
+    }
+  } catch (e) {
+    res.status(500).json({ message: "Something went wrong" });
+  } finally {
+  }
+});
+
 //// delete a comment of a resource
 resourceRouter.delete("/:resourceId/comments/:commentId", async (req, res) => {
+  console.log(req.params.commentId);
   try {
-    console.log(req.params.commentId);
     const result = await req.dbClient
       .db("resource")
-      .collection("resource")
-      .updateOne(
-        {
-          _id: ObjectId(req.params.resourceId),
-        },
-        {
-          $pull: {
-            comments: {
-              id: req.params.commentId,
-            },
-          },
-        }
-      );
+      .collection("comments")
+      .deleteOne({
+        _id: ObjectId(req.params.commentId),
+      });
 
     if (result) {
       res

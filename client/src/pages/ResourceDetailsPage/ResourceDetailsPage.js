@@ -16,7 +16,7 @@ const ResourceDetailsPage = () => {
   const [hasError, setHasError] = useState(false);
   const { id } = useParams();
 
-  useEffect(async () => {
+  const initiateData = async () => {
     window.scrollTo(0, 0);
     try {
       let result = await getAResource(id);
@@ -27,6 +27,10 @@ const ResourceDetailsPage = () => {
       setHasError(true);
       setIsLoading(false);
     }
+  };
+
+  useEffect(() => {
+    initiateData();
   }, [id]);
 
   return (
@@ -50,9 +54,10 @@ const ResourceDetailsPage = () => {
             {resource.type === "doc" && <Climb />}
             <ResourceDescription
               data={resource}
+              updateData={initiateData}
               className="main-resource__description"
             />
-            <ResourceComments data={resource} />
+            <ResourceComments resourceId={id} />
             <ResourceAddComment />
           </section>
 

@@ -189,6 +189,7 @@ export async function patchResourceLike(id, likes) {
       }
     );
     data = response.data;
+    console.log(data);
   } catch (e) {
     console.error(e.message);
   }
@@ -196,7 +197,14 @@ export async function patchResourceLike(id, likes) {
 }
 
 /********* add a comment ************/
-export async function addAComment(resourceId, username, content) {
+export async function addAComment(
+  resourceId,
+  userId,
+  username,
+  avatar,
+  content,
+  commentPage
+) {
   let response;
   let data;
   try {
@@ -204,13 +212,48 @@ export async function addAComment(resourceId, username, content) {
     response = await axios.post(
       `http://localhost:8080/resource/${resourceId}/comments`,
       {
+        resourceId: resourceId,
+        userId: userId,
         username: username,
+        avatar: avatar,
         content: content,
-        id: uuidv4(),
+        commentPage: commentPage,
       }
     );
     data = response.data;
     console.log(data);
+  } catch (e) {
+    console.error(e.message);
+  }
+  return data;
+}
+
+/********* get all comments  by resourceId ************/
+export async function getAResourceComments(resourceId) {
+  let response;
+  let data;
+  try {
+    //  response = await axios.get(`${baseUrl}/resource/${id}`);
+    response = await axios.get(
+      `http://localhost:8080/resource/${resourceId}/comments`
+    );
+    data = response.data;
+  } catch (e) {
+    console.error(e.message);
+  }
+  return data;
+}
+
+/********* get all comments  by userId ************/
+export async function getAUserComments(userId) {
+  let response;
+  let data;
+  try {
+    //  response = await axios.get(`${baseUrl}/resource/${id}`);
+    response = await axios.get(
+      `http://localhost:8080/auth/user/${userId}/comments`
+    );
+    data = response.data;
   } catch (e) {
     console.error(e.message);
   }

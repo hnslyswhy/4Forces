@@ -4,6 +4,8 @@
 .profile {
   @include main-container;
   position: relative;
+  height: fit-content;
+  padding-bottom: 2rem;
 
   &__logout {
     width: 1.5rem;
@@ -62,7 +64,7 @@
     border-top-left-radius: 3rem;
   }
 
-  &__bottom {
+  &__mid {
     margin-top: 2rem;
     width: 100%;
     @include flexbox(column, flex-start, center);
@@ -71,7 +73,8 @@
     }
   }
 
-  &__progress-title {
+  &__progress-title,
+  &__title {
     @include mobil-subheader;
     @include tablet {
       @include subheader;
@@ -83,6 +86,65 @@
 
     @include tablet {
       width: 70%;
+    }
+  }
+
+  &__bottom {
+    margin-top: 2rem;
+    width: 100%;
+    @include flexbox(column, flex-start, center);
+    @include tablet {
+      margin-top: 4rem;
+    }
+  }
+
+  &__title {
+    width: 80%;
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid $primary-gray;
+    @include tablet {
+      width: 70%;
+    }
+  }
+
+  &__comment-container {
+    margin: 0.5rem 0;
+    @include flexbox(row, space-between, center);
+    width: 80%;
+
+    @include tablet {
+      width: 70%;
+    }
+  }
+
+  &__comment-content {
+    @include mobil-body-small;
+    height: 2.25rem;
+    line-height: 2.25rem;
+    overflow: hidden;
+    @include tablet {
+      @include body-small;
+    }
+  }
+
+  &__comment-time {
+    @include mobil-body-medium;
+    margin-right: 1rem;
+    color: $primary-blue;
+    @include tablet {
+      @include body-medium;
+    }
+  }
+
+  &__comment-button {
+    padding: 0.5rem;
+    border-radius: 50%;
+    margin-left: 1rem;
+    @include mobil-labels;
+    color: $primary-blue;
+    @include tablet {
+      @include labels;
     }
   }
 }

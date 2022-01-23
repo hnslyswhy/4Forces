@@ -11,6 +11,7 @@ function ResourceDescription(props) {
 
   const handleLike = () => {
     patchResourceLike(id, 1);
+    props.updateData();
   };
 
   return (

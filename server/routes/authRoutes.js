@@ -50,7 +50,8 @@ authRouter.get(
   }
 );
 
-/*************track user progress***********/
+/************* user progress ***********/
+//update user progress
 authRouter.patch("/user/:userId/progress/:questionId", async (req, res) => {
   try {
     const result = await req.dbClient
@@ -73,6 +74,7 @@ authRouter.patch("/user/:userId/progress/:questionId", async (req, res) => {
           upsert: true,
         }
       );
+    res.status(200).json(result);
   } catch (e) {
     console.error(e);
     res.status(500).json({ message: "Something went wrong" });
@@ -80,7 +82,28 @@ authRouter.patch("/user/:userId/progress/:questionId", async (req, res) => {
   }
 });
 
-/*************get user progress***********/
+/// get all comments of a user
+authRouter.get("/user/:userId/comments", async (req, res) => {
+  try {
+    const results = await req.dbClient
+      .db("resource")
+      .collection("comments")
+      .find({ userId: req.params.userId })
+      .sort({ timestamp: -1 })
+      .toArray();
+
+    if (results) {
+      res.status(200).json(results);
+    } else {
+      res.status(404).json({ message: "Not Found" });
+    }
+  } catch (e) {
+    res.status(500).json({ message: "Something went wrong" });
+  } finally {
+  }
+});
+
+////get user progress
 authRouter.get("/user/:id", async (req, res) => {
   try {
     console.log(req.params.id);

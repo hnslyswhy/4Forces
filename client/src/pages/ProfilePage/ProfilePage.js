@@ -1,26 +1,30 @@
 import React, { useEffect, useState, useContext } from "react";
 import AuthContext from "../../utilities/AuthContext";
 import { useHistory } from "react-router-dom";
-import { getProgress } from "../../utilities/api";
+import { getProgress, getAUserComments } from "../../utilities/api";
 import Progress from "../../components/Progress/Progress";
-import "./ProfilePage.scss";
 import LoadingSpinner from "../../utilities/LoadingSpinner/LoadingSpinner";
 import NotFound from "../../utilities/NotFound/NotFound";
+import { getTimeDifference } from "../../utilities/timeConverter";
+import "./ProfilePage.scss";
 
 const ProfilePage = () => {
   const history = useHistory();
   const authCtx = useContext(AuthContext);
 
   const [done, setDone] = useState(null);
+  const [comments, setComments] = useState(null);
   const [lastPage, setLastPage] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
   useEffect(async () => {
     try {
-      let result = await getProgress("61ec896563e88078b4afebb6");
+      let result = await getProgress(authCtx.user._id);
+      let commentResults = await getAUserComments(authCtx.user._id);
       setDone(result.progress);
       setLastPage(result.progress[0].lastPage);
+      setComments(commentResults);
       setIsLoading(false);
     } catch (e) {
       console.error(e);
@@ -37,11 +41,15 @@ const ProfilePage = () => {
     history.push(`${lastPage}`);
   };
 
+  const handleGoToComments = (path) => {
+    history.push(`${path}`);
+  };
+
   return (
     <>
       {isLoading && <LoadingSpinner />}
       {!isLoading && hasError && <NotFound />}
-      {!isLoading && !hasError && done && lastPage && (
+      {!isLoading && !hasError && done && lastPage && comments && (
         <main className="profile">
           <svg
             aria-hidden="true"
@@ -75,7 +83,7 @@ const ProfilePage = () => {
             </div>
           </section>
 
-          <section className="profile__bottom">
+          <section className="profile__mid">
             <h2 className="profile__progress-title">Your Progress</h2>
             {done ? (
               <Progress done={done.length} className="profile__progress" />
@@ -83,6 +91,26 @@ const ProfilePage = () => {
               ""
             )}
             <button onClick={handleResume}>Resume</button>
+          </section>
+
+          <section className="profile__bottom">
+            <h2 className="profile__title">My Comments</h2>
+            {comments.map((comment) => (
+              <div key={comment._id} className="profile__comment-container">
+                <p className="profile__comment-time">
+                  {getTimeDifference(comment.timestamp)}
+                </p>
+                <p className="profile__comment-content">{comment.content}</p>
+                <button
+                  className="profile__comment-button"
+                  onClick={() => {
+                    handleGoToComments(comment.commentPage);
+                  }}
+                >
+                  Go
+                </button>
+              </div>
+            ))}
           </section>
         </main>
       )}
