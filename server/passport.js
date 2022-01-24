@@ -38,8 +38,7 @@ const { MongoClient } = require("mongodb");
 
 /************************/
 const findOrCreateUser = async (issuer, profile) => {
-  const uri =
-    "mongodb+srv://hnslyswhy:47r8FLXi7k47@cluster0.5mivt.mongodb.net/HappyAviator?retryWrites=true&w=majority";
+  const uri = process.env.MONGODB_URL; 
   client = new MongoClient(uri);
   try {
     await client.connect();
