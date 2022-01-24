@@ -1,0 +1,29 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.pre-back {
+  width: 100%;
+  padding: 2rem 0;
+  @include flexbox(row, space-between, center);
+
+  @include tablet {
+    padding: 4rem 0;
+  }
+
+  &__icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    opacity: 0.6;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+      transform: scale(1.2);
+    }
+
+    @include tablet {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+}

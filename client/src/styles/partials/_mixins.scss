@@ -1,5 +1,26 @@
 @use "variables" as *;
 
+@mixin main-container {
+  width: 85%;
+  margin: auto;
+  max-width: 60rem;
+  margin-top: -6rem;
+  padding-top: 5rem;
+  background-color: $primary-white;
+  height: 70vh;
+  min-height: 25rem;
+  border-top-left-radius: 7rem;
+  box-shadow: 0 2px 4px #8c8b8baf;
+  position: relative;
+  @include flexbox(column, flex-start, center);
+
+  @include desktop {
+    padding-top: 7.5rem;
+    padding-bottom: 3rem;
+    margin-top: -9rem;
+    border-top-left-radius: 10rem;
+  }
+}
 //responsive
 @mixin tablet {
   @media screen and (min-width: $tablet-breakpoint) {
@@ -73,8 +94,8 @@
 
 @mixin mobil-subheader {
   font-weight: 600;
-  line-height: 1.75rem;
-  font-size: 1.25rem;
+  line-height: 2rem;
+  font-size: 1.2rem;
 }
 
 @mixin mobil-labels {

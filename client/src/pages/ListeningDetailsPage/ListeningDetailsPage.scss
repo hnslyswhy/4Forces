@@ -1,0 +1,130 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.listen-question {
+  width: 85%;
+  max-width: 60rem;
+  margin: auto;
+  margin-top: -6rem;
+  padding-top: 2rem;
+  background-color: $primary-white;
+  height: fit-content;
+  min-height: 25rem;
+  border-top-left-radius: 7rem;
+  box-shadow: 0 2px 4px #8c8b8baf;
+  position: relative;
+  @include flexbox(column, flex-start, center);
+
+  @include desktop {
+    margin-top: -9rem;
+    border-top-left-radius: 10rem;
+  }
+
+  &__back {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+
+    @include tablet {
+      top: 1rem;
+      right: 1rem;
+      transform: scale(1.2);
+    }
+    @include desktop {
+      top: 2rem;
+      right: 2rem;
+    }
+  }
+
+  &__top {
+    width: 80%;
+    margin: auto;
+  }
+
+  &__title {
+    @include mobil-subheader;
+    text-align: center;
+
+    @include tablet {
+      @include subheader;
+    }
+  }
+
+  &__audio {
+    width: 80%;
+    margin: auto;
+  }
+
+  &__form {
+    width: 80%;
+    margin: auto;
+    @include flexbox(column, flex-start, center);
+
+    @include tablet {
+      margin-top: 2rem;
+    }
+
+    &--right {
+      border: 1px solid $primary-blue;
+      border-top-left-radius: 4rem;
+      box-shadow: 0 1px 3px #242424fe;
+    }
+  }
+
+  /*   &__entries {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: $secondary-blue;
+    }
+  } */
+
+  &__input {
+    display: none;
+  }
+
+  &__label {
+    width: 100%;
+    @include mobil-body-medium;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0;
+    border-radius: 4px;
+
+    @include tablet {
+      @include body-medium;
+    }
+
+    &:hover {
+      background-color: $secondary-blue;
+    }
+
+    &--clicked {
+      background-color: $secondary-white;
+    }
+  }
+
+  &__check {
+    @include mobil-labels;
+    color: $primary-blue;
+    text-align: center;
+
+    @include tablet {
+      @include labels;
+    }
+  }
+
+  &__reference {
+    width: 80%;
+    margin: auto;
+    margin-top: 1rem;
+    @include flexbox(column, flex-start, flex-start);
+  }
+
+  &__preBack {
+    width: 80%;
+    margin: auto;
+  }
+}

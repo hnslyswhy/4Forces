@@ -1,0 +1,26 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.progress {
+  background-color: #d8d8d8;
+  border-radius: 20px;
+  position: relative;
+  margin: 15px 0;
+  height: 20px;
+  width: 300px;
+}
+
+.progress-done {
+  background: linear-gradient(to left, #4696f7, #9ac3f5);
+  // box-shadow: 0 2px 2px -5px #76d9fa, 0 2px 3px #388ef8;
+  border-radius: 20px;
+  color: rgb(10, 9, 9);
+  @include mobil-labels;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 0;
+  opacity: 0;
+  transition: 1s ease 0.3s;
+}

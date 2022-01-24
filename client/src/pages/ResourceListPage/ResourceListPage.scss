@@ -1,0 +1,23 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.resource-main {
+  width: 85%;
+  margin: auto;
+  max-width: 60rem;
+  margin-top: -6rem;
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+  background-color: $primary-white;
+  height: fit-content;
+  min-height: 25rem;
+  border-top-left-radius: 7rem;
+  box-shadow: 0 2px 4px #8c8b8baf;
+  position: relative;
+  @include flexbox(column, flex-start, center);
+  @include desktop {
+    margin-top: -9rem;
+    border-top-left-radius: 10rem;
+    padding-top: 4rem;
+  }
+}

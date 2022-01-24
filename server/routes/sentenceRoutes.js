@@ -2,20 +2,13 @@ const { cloneNode } = require("domhandler");
 const express = require("express");
 const sentenceRouter = express.Router();
 
-const { MongoClient, ObjectId } = require("mongodb");
-const uri =
-  "mongodb+srv://hnslyswhy:47r8FLXi7k47@cluster0.5mivt.mongodb.net/HappyAviator?retryWrites=true&w=majority";
-
- //get all 
+/* //get all
 sentenceRouter.get("/", async (req, res) => {
-  const client = new MongoClient(uri);
+  // const client = new MongoClient(uri);
   try {
-    await client.connect();
-    const results = await client
-      .db("testprep")
-      .collection("sentences")
-      .find({ })
-      .toArray();
+    //    await client.connect();
+    //   const results = await client
+    req.dbClient.db("testprep").collection("sentences").find({}).toArray();
     if (results.length !== 0) {
       res.status(200).json(results);
     } else {
@@ -23,24 +16,21 @@ sentenceRouter.get("/", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
-  } finally {
-    await client.close();
+        throw new Error(e);
+    // } finally {
+    //   
+    //  }
   }
-});
+}); */
 
-  //get all intermediate level
+//get all intermediate level
 sentenceRouter.get("/advanced", async (req, res) => {
-  const client = new MongoClient(uri);
   try {
-    await client.connect();
-    const results = await client
+    const results = await req.dbClient
       .db("testprep")
       .collection("sentences")
-      .find({ "level": "advanced" })
+      .find({ level: "advanced" })
       .toArray();
-
-      console.log("##### advanced level sentence count : ", results.length)
-
     if (results.length !== 0) {
       res.status(200).json(results);
     } else {
@@ -48,24 +38,20 @@ sentenceRouter.get("/advanced", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
+    //   throw new Error(e);
+    res.status(500).json({ message: "Something went wrong" });
   } finally {
-    await client.close();
   }
 });
 
-
-  //get all intermediate level
+//get all intermediate level
 sentenceRouter.get("/intermediate", async (req, res) => {
-  const client = new MongoClient(uri);
   try {
-    await client.connect();
-    const results = await client
+    const results = await req.dbClient
       .db("testprep")
       .collection("sentences")
-      .find({ "level": "intermediate" })
+      .find({ level: "intermediate" })
       .toArray();
-
-      console.log("##### intermediate level sentence count : ", results.length)
 
     if (results.length !== 0) {
       res.status(200).json(results);
@@ -74,24 +60,20 @@ sentenceRouter.get("/intermediate", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
+    //  throw new Error(e);
+    res.status(500).json({ message: "Something went wrong" });
   } finally {
-    await client.close();
   }
 });
 
-
-  //get all entry level
+//get all entry level
 sentenceRouter.get("/entry", async (req, res) => {
-  const client = new MongoClient(uri);
   try {
-    await client.connect();
-    const results = await client
+    const results = await req.dbClient
       .db("testprep")
       .collection("sentences")
-      .find({ "level": "entry" })
+      .find({ level: "entry" })
       .toArray();
-
-      console.log("##### entrylevel sentence count : ", results.length)
 
     if (results.length !== 0) {
       res.status(200).json(results);
@@ -100,22 +82,46 @@ sentenceRouter.get("/entry", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
+    // throw new Error(e);
+    res.status(500).json({ message: "Something went wrong" });
   } finally {
-    await client.close();
   }
 });
 
 // get one by id
 // :id will take all the routes, thus need to stay in the end
 sentenceRouter.get("/:id", async (req, res) => {
-  const client = new MongoClient(uri);
   try {
-    await client.connect();
-    const result = await client
+    const result = await req.dbClient
       .db("testprep")
       .collection("sentences")
-      .findOne({ _id: ObjectId.createFromHexString(req.params.id) });
+      .findOne({ id: req.params.id });
 
+    const levelData = await req.dbClient
+      .db("testprep")
+      .collection("sentences")
+      .find({ level: result.level })
+      .toArray();
+
+    let targetIndex = levelData.findIndex(
+      (sentence) => sentence.id === req.params.id
+    );
+
+    let previousId;
+    let nextId;
+    if (targetIndex === 0) {
+      previousId = "";
+      nextId = levelData[targetIndex + 1].id;
+    } else if (targetIndex === levelData.length - 1) {
+      previousId = levelData[targetIndex - 1].id;
+      nextId = "";
+    } else {
+      previousId = levelData[targetIndex - 1].id;
+      nextId = levelData[targetIndex + 1].id;
+    }
+
+    result["previousId"] = previousId;
+    result["nextId"] = nextId;
     if (result) {
       res.status(200).json(result);
     } else {
@@ -123,12 +129,10 @@ sentenceRouter.get("/:id", async (req, res) => {
     }
   } catch (e) {
     console.error(e);
+    //  throw new Error(e);
+    res.status(500).json({ message: "Something went wrong" });
   } finally {
-    await client.close();
   }
 });
-
-
-
 
 module.exports = sentenceRouter;

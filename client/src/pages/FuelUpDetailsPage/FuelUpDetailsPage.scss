@@ -1,0 +1,58 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.fuel-main {
+  width: 85%;
+  max-width: 60rem;
+  margin: auto;
+  margin-top: -6rem;
+  padding-top: 1rem;
+  background-color: $primary-white;
+  height: fit-content;
+  min-height: 25rem;
+  border-top-left-radius: 7rem;
+  box-shadow: 0 2px 4px #8c8b8baf;
+  position: relative;
+  @include flexbox(column, flex-start, center);
+
+  @include desktop {
+    margin-top: -9rem;
+    border-top-left-radius: 10rem;
+  }
+
+  &__back {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+
+    @include tablet {
+      top: 1rem;
+      right: 1rem;
+      transform: scale(1.2);
+    }
+
+    @include desktop {
+      top: 2rem;
+      right: 2rem;
+    }
+  }
+}
+
+.fuel {
+  width: 80%;
+  margin: auto;
+  margin-top: 3.5rem;
+  @include desktop {
+    margin-top: 6rem;
+  }
+
+  &__instruction {
+    @include mobil-labels;
+    margin-top: 1.5rem;
+
+    @include tablet {
+      @include labels;
+      margin-top: 2rem;
+    }
+  }
+}

@@ -1,53 +1,74 @@
 const { json } = require("express");
+const passport = require("passport");
+const cookieSession = require("cookie-session");
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
+
+const passportSetup = require("./passport");
+const authRouter = require("./routes/authRoutes");
 const sentenceRouter = require("./routes/sentenceRoutes");
 const listeningQuestionRouter = require("./routes/listeningQuestionRoutes");
 const speakingQuestionRouter = require("./routes/speakingQuestionRoutes");
+const resourceRouter = require("./routes/resourceRoutes");
 
 // mongo
+//reference video: https://www.mongodb.com/blog/post/quick-start-nodejs-mongodb-how-to-get-connected-to-your-database
 const { MongoClient } = require("mongodb");
 
+let client;
 async function main() {
   const uri =
     "mongodb+srv://hnslyswhy:47r8FLXi7k47@cluster0.5mivt.mongodb.net/HappyAviator?retryWrites=true&w=majority";
-  const client = new MongoClient(uri);
-  // connect to cluster
+  client = new MongoClient(uri);
   try {
     await client.connect();
-    // await getDatabases(client);
   } catch (e) {
     console.error(e);
   } finally {
-    await client.close();
   }
 }
 
 main().catch(console.error);
 
-/* // get a list of databases
-async function getDatabases(client) {
-  const databasesList = await client.db().admin().listDatabases();
-  console.log("databases");
-  databasesList.databases.forEach((db) => {
-    console.log(`- ${db.name}`);
-  });
-}
-
- */
-
 const app = express();
 dotenv.config();
 
 // middle
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    methods: "GET, POST, PATCH, DELETE, PUT",
+    credentials: true,
+  })
+);
 app.use(express.json());
+
+//// mongodb
+app.use((req, res, next) => {
+  req.dbClient = client;
+  next();
+});
+
+///cookie session maxAge: max duration 1 day
+app.use(
+  cookieSession({
+    name: "session",
+    keys: ["ann"],
+    maxAge: 24 * 60 * 60 * 100,
+  })
+);
+
+/// passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 //routes
 app.use("/sentences", sentenceRouter);
 app.use("/listeningquestions", listeningQuestionRouter);
-app.use("/speakingquestions", speakingQuestionRouter)
+app.use("/speakingquestions", speakingQuestionRouter);
+app.use("/resource", resourceRouter);
+app.use("/auth", authRouter);
 
 //port
 app.listen(process.env.PORT || 5050, () => {

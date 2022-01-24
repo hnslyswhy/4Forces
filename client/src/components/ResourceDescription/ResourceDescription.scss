@@ -1,0 +1,97 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.main-description {
+  padding: 1rem;
+  @include tablet {
+    padding: 2rem;
+  }
+
+  &__title {
+    @include mobil-subheader;
+    text-align: center;
+    @include tablet {
+      @include subheader;
+    }
+  }
+
+  &__content {
+    margin-top: 1rem;
+    @include flexbox(row, space-between, space-between);
+  }
+
+  &__info-container {
+    @include tablet {
+      @include flexbox(row, space-between, center);
+    }
+  }
+
+  &__channel {
+    @include mobil-labels;
+    @include tablet {
+      @include labels;
+    }
+  }
+
+  &__strong {
+    color: $primary-blue;
+  }
+
+  &__social-container {
+    @include flexbox(column, center, center);
+    @include tablet {
+      @include flexbox(row, center, center);
+    }
+  }
+
+  &__social {
+    @include flexbox(row, space-between, center);
+    @include tablet {
+      margin-left: 1rem;
+    }
+  }
+
+  &__view {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+    opacity: 0.7;
+
+    @include tablet {
+      width: 2rem;
+      height: 2rem;
+      margin-right: 1rem;
+    }
+  }
+
+  &__like {
+    color: $primary-blue;
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+    @include tablet {
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-right: 1rem;
+    }
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+  }
+
+  &__time {
+    @include tablet {
+      margin-left: 1rem;
+    }
+  }
+
+  &__time,
+  &__like-count,
+  &__view-count {
+    @include mobil-body-medium;
+    @include tablet {
+      @include body-medium;
+    }
+  }
+}

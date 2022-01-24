@@ -1,0 +1,42 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.audio {
+  padding: 1rem;
+  @include flexbox(row, space-around, center);
+  border-bottom: 1px solid $primary-gray;
+  @include tablet {
+    padding: 2rem;
+  }
+
+  &__icon {
+    width: 1.875rem;
+    height: 1.875rem;
+    margin: 0 0.5rem;
+    opacity: 0.7;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+      transform: scale(1.2);
+    }
+
+    @include tablet {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  }
+
+  &__speed {
+    margin-left: 0.5rem;
+    @include mobil-body-medium;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    @include tablet {
+      @include body-medium;
+    }
+  }
+}

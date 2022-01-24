@@ -1,0 +1,59 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.resource {
+  &__videos,
+  &__docs {
+    width: 100%;
+    padding: 1rem;
+    @include tablet {
+      @include flexbox(row, space-between, center);
+      padding: 2rem;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__title,
+  &__doc-title {
+    @include mobil-subheader;
+    color: $primary-blue;
+    text-align: center;
+    padding: 1.5rem 0;
+    width: 80%;
+    margin: auto;
+    border-bottom: 1px solid $primary-gray;
+
+    @include tablet {
+      @include subheader;
+      padding: 1.5rem 0;
+    }
+  }
+
+  &__doc-title {
+    margin-top: 2rem;
+  }
+
+  &__link {
+    @include tablet {
+      width: 46%;
+    }
+    @include desktop {
+      width: 31%;
+    }
+  }
+
+  &__video-card,
+  &__doc-card {
+    width: 100%;
+    margin-top: 1rem;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $secondary-white;
+    }
+
+    @include tablet {
+      margin-top: 2rem;
+    }
+  }
+}

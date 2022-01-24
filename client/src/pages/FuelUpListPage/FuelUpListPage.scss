@@ -1,0 +1,82 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.fuelUpList {
+  width: 85%;
+  margin: auto;
+  max-width: 60rem;
+  margin-top: -6rem;
+  padding-top: 5rem;
+  background-color: $primary-white;
+  height: 70vh;
+  min-height: 25rem;
+  border-top-left-radius: 7rem;
+  box-shadow: 0 2px 4px #8c8b8baf;
+  position: relative;
+  @include flexbox(column, flex-start, center);
+
+  @include desktop {
+    padding-top: 7.5rem;
+    padding-bottom: 3rem;
+    margin-top: -9rem;
+    border-top-left-radius: 10rem;
+  }
+
+  &__item {
+    width: 80%;
+    height: fit-content;
+    padding: 1rem 0.5rem;
+    margin: 1rem 0;
+    border-radius: 4px;
+    border: 1px solid $primary-gray;
+    //box-shadow: 0 1px 4px rgb(205, 206, 207);
+    overflow-y: scroll;
+    &:hover {
+      cursor: pointer;
+    }
+
+    @include tablet {
+      padding: 2rem 1rem;
+    }
+  }
+
+  &__title {
+    @include mobil-subheader;
+
+    @include tablet {
+      @include subheader;
+    }
+  }
+
+  &__sentences {
+    @include flexbox(row, space-between, center);
+  }
+
+  &__info {
+    @include mobil-body-large;
+  }
+
+  &__toggle {
+    width: 100%;
+    @include flexbox(row, flex-start, center);
+    flex-wrap: wrap;
+  }
+
+  &__question {
+    text-align: center;
+    color: $primary-gray;
+    @include mobil-body-small;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    background-color: $primary-blue;
+    margin: 0.25rem;
+    padding: 0.25rem;
+
+    @include tablet {
+      width: 2rem;
+      height: 2rem;
+      @include body-small;
+    }
+  }
+}

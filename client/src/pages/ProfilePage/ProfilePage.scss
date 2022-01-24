@@ -1,0 +1,163 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.profile {
+  @include main-container;
+  position: relative;
+  height: fit-content;
+  padding-bottom: 2rem;
+  @include tablet {
+    padding-bottom: 4rem;
+  }
+
+  &__logout {
+    width: 1.5rem;
+    height: 1.5rem;
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+    opacity: 0.9;
+
+    @include tablet {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.2);
+      opacity: 1;
+    }
+  }
+
+  &__top {
+    width: 100%;
+    @include flexbox(column, flex-start, center);
+  }
+
+  &__greeting {
+    @include mobil-subheader;
+    margin-bottom: 2rem;
+
+    @include tablet {
+      @include subheader;
+    }
+  }
+
+  &__strong {
+    @include mobil-page-header;
+    color: $primary-blue;
+    margin-left: 0.5rem;
+
+    @include tablet {
+      @include page-header;
+    }
+  }
+
+  &__container {
+    width: 6.25rem;
+    height: 6.25rem;
+    border-top-left-radius: 3rem;
+    border: 1px solid $primary-blue;
+    box-shadow: 1px 2px 4px #b8e4f9fe;
+  }
+
+  &__image {
+    object-fit: cover;
+    border-top-left-radius: 3rem;
+  }
+
+  &__mid {
+    margin-top: 2rem;
+    width: 100%;
+    @include flexbox(column, flex-start, center);
+    @include tablet {
+      margin-top: 4rem;
+    }
+  }
+
+  &__progress-title,
+  &__title {
+    @include mobil-subheader;
+    @include tablet {
+      @include subheader;
+    }
+  }
+
+  &__progress {
+    width: 80%;
+
+    @include tablet {
+      width: 70%;
+    }
+  }
+
+  &__bottom {
+    margin-top: 2rem;
+    width: 100%;
+    @include flexbox(column, flex-start, center);
+    @include tablet {
+      width: 80%;
+      margin: auto;
+      margin-top: 4rem;
+      @include flexbox(row, space-between, center);
+      flex-wrap: wrap;
+    }
+  }
+
+  &__title {
+    width: 80%;
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid $primary-gray;
+    @include tablet {
+      width: 80%;
+      padding-top: 2rem;
+      margin: auto;
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__comment-container {
+    margin: 0.5rem 0;
+    @include flexbox(row, space-between, center);
+    width: 80%;
+
+    @include tablet {
+      width: 45%;
+    }
+  }
+
+  &__comment-content {
+    @include mobil-body-small;
+    height: 2.25rem;
+    line-height: 2.25rem;
+    overflow: hidden;
+    @include tablet {
+      @include body-small;
+      height: 1.1rem;
+      line-height: 1.1rem;
+      overflow: hidden;
+    }
+  }
+
+  &__comment-time {
+    @include mobil-body-medium;
+    margin-right: 1rem;
+    color: $primary-blue;
+    @include tablet {
+      @include body-medium;
+    }
+  }
+
+  &__comment-button {
+    padding: 0.5rem;
+    border-radius: 50%;
+    margin-left: 1rem;
+    @include mobil-labels;
+    color: $primary-blue;
+    @include tablet {
+      @include labels;
+    }
+  }
+}
