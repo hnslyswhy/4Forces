@@ -1,5 +1,4 @@
 import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
 
 const baseUrl = process.env.REACT_APP_API_URL; // ?????
 
@@ -222,6 +221,22 @@ export async function addAComment(
     );
     data = response.data;
     console.log(data);
+  } catch (e) {
+    console.error(e.message);
+  }
+  return data;
+}
+
+/****************** edit a comment by id *******************/
+export async function editAComment(resourceId, commentId, content) {
+  console.log(commentId);
+  let data;
+  try {
+    let response = await axios.patch(
+      `http://localhost:8080/resource/${resourceId}/comments/${commentId}`,
+      { content: content }
+    );
+    data = response.data;
   } catch (e) {
     console.error(e.message);
   }

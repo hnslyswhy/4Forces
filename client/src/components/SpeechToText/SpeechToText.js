@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
@@ -6,7 +6,7 @@ import NotFound from "../../utilities/NotFound/NotFound";
 import speaking from "../../assets/icons/speakingMic.svg";
 import "./SpeechToText.scss";
 
-const SpeechToText = (props) => {
+const SpeechToText = () => {
   const {
     transcript,
     listening,

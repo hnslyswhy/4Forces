@@ -27,7 +27,7 @@ const useConversationSpeech = (conversation, rate = 1, onConversationEnd) => {
     let voices = synth.getVoices();
     setTimeout(() => {
       setAllVoices(voices);
-    }, 500);
+    }, 800);
   }, []);
 
   /* // This event handler will notify when the list of voices is returned.

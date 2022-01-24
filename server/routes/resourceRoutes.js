@@ -10,6 +10,7 @@ resourceRouter.get("/video", async (req, res) => {
       .db("resource")
       .collection("resource")
       .find({ type: "video" })
+      .sort({ views: -1 })
       .toArray();
 
     if (results.length !== 0) {
@@ -62,6 +63,8 @@ resourceRouter.get("/:id", async (req, res) => {
       .collection("resource")
       .findOne({ _id: ObjectId(req.params.id) });
 
+    console.log(result);
+
     if (result) {
       res.status(200).json(result);
     } else {
@@ -93,6 +96,39 @@ resourceRouter.patch("/:id/likes", async (req, res) => {
       res
         .status(200)
         .json(`${result.modifiedCount} document(s) was/were updated.`);
+    } else {
+      res.status(404).json({ message: "Not Found" });
+    }
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ message: "Something went wrong" });
+  } finally {
+  }
+});
+
+///edit a comment
+resourceRouter.patch("/:resourceId/comments/:commentId", async (req, res) => {
+  try {
+    const result = await req.dbClient
+      .db("resource")
+      .collection("comments")
+      .updateOne(
+        {
+          resourceId: req.params.resourceId,
+          _id: ObjectId(req.params.commentId),
+        },
+        {
+          $set: {
+            content: req.body.content,
+          },
+        }
+      );
+    console.log(result);
+    console.log(req.body.content);
+    console.log(req.params.commentId);
+    console.log(req.params.resourceId);
+    if (result) {
+      res.status(200).json(result);
     } else {
       res.status(404).json({ message: "Not Found" });
     }
@@ -146,6 +182,7 @@ resourceRouter.get("/:resourceId/comments", async (req, res) => {
       .sort({ timestamp: -1 })
       .toArray();
 
+    console.log(results);
     if (results) {
       res.status(200).json(results);
     } else {
