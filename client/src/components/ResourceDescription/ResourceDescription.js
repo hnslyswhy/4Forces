@@ -7,7 +7,7 @@ import "./ResourceDescription.scss";
 
 function ResourceDescription(props) {
   const { id } = useParams();
-  const { title, channel, timestamp, likes, views } = props.data;
+  const { title, username, timestamp, likes, views } = props.data;
 
   const handleLike = () => {
     patchResourceLike(id, 1);
@@ -20,7 +20,7 @@ function ResourceDescription(props) {
       <div className="main-description__content">
         <div className="main-description__info-container">
           <p className="main-description__channel">
-            By <span className="main-description__strong">{channel}</span>
+            By <span className="main-description__strong">{username}</span>
           </p>
           <p className="main-description__time">
             {getTimeDifference(timestamp)}

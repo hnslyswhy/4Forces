@@ -5,9 +5,9 @@ import climb from "../../assets/images/climb.jpg";
 import climbTypes from "../../assets/images/climbTypes.gif";
 import speeds from "../../assets/images/speeds.jpg";
 
-const Climb = () => {
+const Climb = (props) => {
   return (
-    <div>
+    <div className={props.className}>
       <title />
       {/*[if !mso]><!-- */}
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
@@ -117,26 +117,20 @@ const Climb = () => {
                                     style={{
                                       width: "100%",
                                       height: "300px",
-                                      backgroundImage:
+                                      /*  backgroundImage:
                                         "url(" +
                                         "../../assets/images/headerPic.jpg" +
-                                        ")",
+                                        ")", */
                                     }}
                                   >
-                                    {/*  <img
+                                    <img
                                       alt=""
                                       src={headerPic}
                                       style={{
-                                        border: "none",
-                                        borderRadius: "px",
-                                        display: "block",
-                                        outline: "none",
-                                        textDecoration: "none",
-                                        height: "300px",
+                                        height: "100%",
                                         width: "100%",
-                                        fontSize: "13px",
                                       }}
-                                    /> */}
+                                    />
                                   </td>
                                 </tr>
                               </tbody>

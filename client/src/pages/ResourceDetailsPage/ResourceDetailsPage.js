@@ -51,7 +51,7 @@ const ResourceDetailsPage = () => {
                 />
               </div>
             )}
-            {resource.type === "doc" && <Climb />}
+            {resource.type === "doc" && <Climb className="climb" />}
             <ResourceDescription
               data={resource}
               updateData={initiateData}
