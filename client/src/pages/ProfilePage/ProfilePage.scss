@@ -6,6 +6,9 @@
   position: relative;
   height: fit-content;
   padding-bottom: 2rem;
+  @include tablet {
+    padding-bottom: 4rem;
+  }
 
   &__logout {
     width: 1.5rem;
@@ -94,7 +97,11 @@
     width: 100%;
     @include flexbox(column, flex-start, center);
     @include tablet {
+      width: 80%;
+      margin: auto;
       margin-top: 4rem;
+      @include flexbox(row, space-between, center);
+      flex-wrap: wrap;
     }
   }
 
@@ -104,7 +111,10 @@
     padding-top: 1rem;
     border-top: 1px solid $primary-gray;
     @include tablet {
-      width: 70%;
+      width: 80%;
+      padding-top: 2rem;
+      margin: auto;
+      margin-bottom: 1rem;
     }
   }
 
@@ -114,7 +124,7 @@
     width: 80%;
 
     @include tablet {
-      width: 70%;
+      width: 45%;
     }
   }
 
@@ -125,6 +135,9 @@
     overflow: hidden;
     @include tablet {
       @include body-small;
+      height: 1.1rem;
+      line-height: 1.1rem;
+      overflow: hidden;
     }
   }
 
