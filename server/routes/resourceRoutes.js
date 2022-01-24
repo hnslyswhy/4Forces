@@ -19,7 +19,6 @@ resourceRouter.get("/video", async (req, res) => {
       res.status(404).json({ message: "Not Found" });
     }
   } catch (e) {
-    console.error(e);
     // throw new Error(e);
     res.status(500).json({ message: "Something went wrong" });
   } finally {
@@ -41,8 +40,6 @@ resourceRouter.get("/doc", async (req, res) => {
       res.status(404).json({ message: "Not Found" });
     }
   } catch (e) {
-    console.error(e);
-    //  throw new Error(e);
     res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
@@ -50,12 +47,15 @@ resourceRouter.get("/doc", async (req, res) => {
 
 // get one by id
 resourceRouter.get("/:id", async (req, res) => {
+  console.log(req.headers);
   try {
-    //  update the views
-    const updateResult = await req.dbClient
-      .db("resource")
-      .collection("resource")
-      .updateOne({ _id: ObjectId(req.params.id) }, { $inc: { views: 1 } });
+    if (req.headers.isFirstTimeVisit) {
+      //  update the views
+      const updateResult = await req.dbClient
+        .db("resource")
+        .collection("resource")
+        .updateOne({ _id: ObjectId(req.params.id) }, { $inc: { views: 1 } });
+    }
 
     // find the target
     const result = await req.dbClient
@@ -63,16 +63,12 @@ resourceRouter.get("/:id", async (req, res) => {
       .collection("resource")
       .findOne({ _id: ObjectId(req.params.id) });
 
-    console.log(result);
-
     if (result) {
       res.status(200).json(result);
     } else {
       res.status(404).json({ message: "Not Found" });
     }
   } catch (e) {
-    console.error(e);
-    //  throw new Error(e);
     res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
@@ -81,8 +77,6 @@ resourceRouter.get("/:id", async (req, res) => {
 /*************************************************************/
 //// get update likes of a resource
 resourceRouter.patch("/:id/likes", async (req, res) => {
-  console.log(req.params.id);
-  console.log(req.body.increment);
   try {
     const result = await req.dbClient
       .db("resource")
@@ -100,7 +94,6 @@ resourceRouter.patch("/:id/likes", async (req, res) => {
       res.status(404).json({ message: "Not Found" });
     }
   } catch (e) {
-    console.error(e);
     res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
@@ -123,17 +116,12 @@ resourceRouter.patch("/:resourceId/comments/:commentId", async (req, res) => {
           },
         }
       );
-    console.log(result);
-    console.log(req.body.content);
-    console.log(req.params.commentId);
-    console.log(req.params.resourceId);
     if (result) {
       res.status(200).json(result);
     } else {
       res.status(404).json({ message: "Not Found" });
     }
   } catch (e) {
-    console.error(e);
     res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
@@ -166,7 +154,6 @@ resourceRouter.post("/:resourceId/comments", async (req, res) => {
 
     res.status(200).json(result);
   } catch (e) {
-    console.error(e);
     res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
@@ -182,7 +169,6 @@ resourceRouter.get("/:resourceId/comments", async (req, res) => {
       .sort({ timestamp: -1 })
       .toArray();
 
-    console.log(results);
     if (results) {
       res.status(200).json(results);
     } else {
@@ -196,7 +182,6 @@ resourceRouter.get("/:resourceId/comments", async (req, res) => {
 
 //// delete a comment of a resource
 resourceRouter.delete("/:resourceId/comments/:commentId", async (req, res) => {
-  console.log(req.params.commentId);
   try {
     const result = await req.dbClient
       .db("resource")
@@ -213,7 +198,6 @@ resourceRouter.delete("/:resourceId/comments/:commentId", async (req, res) => {
       res.status(404).json({ message: "Not Found" });
     }
   } catch (e) {
-    console.error(e);
     res.status(500).json({ message: "Something went wrong" });
   } finally {
   }

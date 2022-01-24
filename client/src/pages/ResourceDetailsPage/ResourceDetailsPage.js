@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { getAResource } from "../../utilities/api";
 import LoadingSpinner from "../../utilities/LoadingSpinner/LoadingSpinner";
@@ -15,6 +15,7 @@ const ResourceDetailsPage = () => {
   const [resource, setResource] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+  const firstTimeVisitRef = useRef(true);
   const [eTag, setETag] = useState(uuidv4());
   const { id } = useParams();
 
@@ -27,7 +28,8 @@ const ResourceDetailsPage = () => {
   const initiateData = async () => {
     window.scrollTo(0, 0);
     try {
-      let result = await getAResource(id);
+      console.log(firstTimeVisitRef.current);
+      let result = await getAResource(id, firstTimeVisitRef.current);
       setResource(result);
       setIsLoading(false);
       setETag(uuidv4());
@@ -41,6 +43,7 @@ const ResourceDetailsPage = () => {
   useEffect(() => {
     resetState();
     initiateData();
+    firstTimeVisitRef.current = false;
   }, [id]);
 
   return (
@@ -66,6 +69,7 @@ const ResourceDetailsPage = () => {
               data={resource}
               updateData={initiateData}
               className="main-resource__description"
+              isFirstTimeVisit={firstTimeVisitRef.current}
             />
             <ResourceComments
               resourceId={id}

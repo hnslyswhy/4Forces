@@ -155,12 +155,17 @@ export async function getResourceList(endpoint) {
 }
 
 /********* get a resource  by id ************/
-export async function getAResource(id) {
+export async function getAResource(id, isFirstTimeVisit) {
+  console.log(isFirstTimeVisit);
   let response;
   let data;
   try {
     //  response = await axios.get(`${baseUrl}/resource/${id}`);
-    response = await axios.get(`http://localhost:8080/resource/${id}`);
+    response = await axios.get(`http://localhost:8080/resource/${id}`, {
+      headers: {
+        isFirstTimeVisit: isFirstTimeVisit,
+      },
+    });
     data = response.data;
   } catch (e) {
     console.error(e.message);
@@ -173,7 +178,6 @@ export async function patchResourceLike(id, likes) {
   let response;
   let data;
 
-  console.log(id, likes);
   try {
     //  response = await axios.get(`${baseUrl}/resource/${id}`);
     response = await axios.patch(
