@@ -10,6 +10,7 @@ resourceRouter.get("/video", async (req, res) => {
       .db("resource")
       .collection("resource")
       .find({ type: "video" })
+      .sort({ views: -1 })
       .toArray();
 
     if (results.length !== 0) {
@@ -18,7 +19,6 @@ resourceRouter.get("/video", async (req, res) => {
       res.status(404).json({ message: "Not Found" });
     }
   } catch (e) {
-    console.error(e);
     // throw new Error(e);
     res.status(500).json({ message: "Something went wrong" });
   } finally {
@@ -40,8 +40,6 @@ resourceRouter.get("/doc", async (req, res) => {
       res.status(404).json({ message: "Not Found" });
     }
   } catch (e) {
-    console.error(e);
-    //  throw new Error(e);
     res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
@@ -68,8 +66,6 @@ resourceRouter.get("/:id", async (req, res) => {
       res.status(404).json({ message: "Not Found" });
     }
   } catch (e) {
-    console.error(e);
-    //  throw new Error(e);
     res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
@@ -78,8 +74,6 @@ resourceRouter.get("/:id", async (req, res) => {
 /*************************************************************/
 //// get update likes of a resource
 resourceRouter.patch("/:id/likes", async (req, res) => {
-  console.log(req.params.id);
-  console.log(req.body.increment);
   try {
     const result = await req.dbClient
       .db("resource")
@@ -97,7 +91,34 @@ resourceRouter.patch("/:id/likes", async (req, res) => {
       res.status(404).json({ message: "Not Found" });
     }
   } catch (e) {
-    console.error(e);
+    res.status(500).json({ message: "Something went wrong" });
+  } finally {
+  }
+});
+
+///edit a comment
+resourceRouter.patch("/:resourceId/comments/:commentId", async (req, res) => {
+  try {
+    const result = await req.dbClient
+      .db("resource")
+      .collection("comments")
+      .updateOne(
+        {
+          resourceId: req.params.resourceId,
+          _id: ObjectId(req.params.commentId),
+        },
+        {
+          $set: {
+            content: req.body.content,
+          },
+        }
+      );
+    if (result) {
+      res.status(200).json(result);
+    } else {
+      res.status(404).json({ message: "Not Found" });
+    }
+  } catch (e) {
     res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
@@ -130,7 +151,6 @@ resourceRouter.post("/:resourceId/comments", async (req, res) => {
 
     res.status(200).json(result);
   } catch (e) {
-    console.error(e);
     res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
@@ -159,7 +179,6 @@ resourceRouter.get("/:resourceId/comments", async (req, res) => {
 
 //// delete a comment of a resource
 resourceRouter.delete("/:resourceId/comments/:commentId", async (req, res) => {
-  console.log(req.params.commentId);
   try {
     const result = await req.dbClient
       .db("resource")
@@ -176,7 +195,6 @@ resourceRouter.delete("/:resourceId/comments/:commentId", async (req, res) => {
       res.status(404).json({ message: "Not Found" });
     }
   } catch (e) {
-    console.error(e);
     res.status(500).json({ message: "Something went wrong" });
   } finally {
   }

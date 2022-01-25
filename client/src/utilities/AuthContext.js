@@ -13,7 +13,7 @@ export const AuthContextProvider = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
-  useEffect(async () => {
+  const initiateAuth = async () => {
     try {
       let res = await auth();
       if (res !== undefined) {
@@ -25,6 +25,10 @@ export const AuthContextProvider = (props) => {
       setHasError(true);
       setIsLoading(false);
     }
+  };
+
+  useEffect(() => {
+    initiateAuth();
   }, []);
 
   return (

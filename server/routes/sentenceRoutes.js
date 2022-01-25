@@ -2,27 +2,6 @@ const { cloneNode } = require("domhandler");
 const express = require("express");
 const sentenceRouter = express.Router();
 
-/* //get all
-sentenceRouter.get("/", async (req, res) => {
-  // const client = new MongoClient(uri);
-  try {
-    //    await client.connect();
-    //   const results = await client
-    req.dbClient.db("testprep").collection("sentences").find({}).toArray();
-    if (results.length !== 0) {
-      res.status(200).json(results);
-    } else {
-      res.status(404).json({ message: "Not Found" });
-    }
-  } catch (e) {
-    console.error(e);
-        throw new Error(e);
-    // } finally {
-    //   
-    //  }
-  }
-}); */
-
 //get all intermediate level
 sentenceRouter.get("/advanced", async (req, res) => {
   try {
@@ -110,11 +89,11 @@ sentenceRouter.get("/:id", async (req, res) => {
     let previousId;
     let nextId;
     if (targetIndex === 0) {
-      previousId = "";
+      previousId = "/testprep";
       nextId = levelData[targetIndex + 1].id;
     } else if (targetIndex === levelData.length - 1) {
       previousId = levelData[targetIndex - 1].id;
-      nextId = "";
+      nextId = "/testprep";
     } else {
       previousId = levelData[targetIndex - 1].id;
       nextId = levelData[targetIndex + 1].id;

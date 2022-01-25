@@ -26,8 +26,7 @@ const SpeakingDetailsPage = () => {
     setTotal(null);
   };
 
-  useEffect(async () => {
-    resetState();
+  const initiateQuestion = async () => {
     try {
       let res = await getASpeakingQuestion(id);
       setQuestion(res);
@@ -56,6 +55,11 @@ const SpeakingDetailsPage = () => {
       setHasError(true);
       setIsLoading(false);
     }
+  };
+
+  useEffect(() => {
+    resetState();
+    initiateQuestion();
   }, [id, questionId]);
 
   const handleGoBack = () => {

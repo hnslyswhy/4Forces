@@ -22,9 +22,15 @@ const ProfilePage = () => {
     try {
       let result = await getProgress(authCtx.user._id);
       let commentResults = await getAUserComments(authCtx.user._id);
-      setDone(result.progress);
-      setLastPage(result.progress[0].lastPage);
-      setComments(commentResults);
+      if (result.progress.length) {
+        setDone(result.progress);
+        setLastPage(result.progress[0].lastPage);
+      }
+
+      if (commentResults.length) {
+        setComments(commentResults);
+      }
+
       setIsLoading(false);
     } catch (e) {
       console.error(e);
@@ -49,7 +55,7 @@ const ProfilePage = () => {
     <>
       {isLoading && <LoadingSpinner />}
       {!isLoading && hasError && <NotFound />}
-      {!isLoading && !hasError && done && lastPage && comments && (
+      {!isLoading && !hasError && (
         <main className="profile">
           <svg
             aria-hidden="true"
@@ -83,35 +89,39 @@ const ProfilePage = () => {
             </div>
           </section>
 
-          <section className="profile__mid">
-            <h2 className="profile__progress-title">Your Progress</h2>
-            {done ? (
-              <Progress done={done.length} className="profile__progress" />
-            ) : (
-              ""
-            )}
-            <button onClick={handleResume}>Resume</button>
-          </section>
+          {done && lastPage && (
+            <section className="profile__mid">
+              <h2 className="profile__progress-title">Your Progress</h2>
+              {done ? (
+                <Progress done={done.length} className="profile__progress" />
+              ) : (
+                ""
+              )}
+              <button onClick={handleResume}>Resume</button>
+            </section>
+          )}
 
-          <section className="profile__bottom">
-            <h2 className="profile__title">My Comments</h2>
-            {comments.map((comment) => (
-              <div key={comment._id} className="profile__comment-container">
-                <p className="profile__comment-time">
-                  {getTimeDifference(comment.timestamp)}
-                </p>
-                <p className="profile__comment-content">{comment.content}</p>
-                <button
-                  className="profile__comment-button"
-                  onClick={() => {
-                    handleGoToComments(comment.commentPage);
-                  }}
-                >
-                  Go
-                </button>
-              </div>
-            ))}
-          </section>
+          {comments && (
+            <section className="profile__bottom">
+              <h2 className="profile__title">Comments History</h2>
+              {comments.map((comment) => (
+                <div key={comment._id} className="profile__comment-container">
+                  <p className="profile__comment-time">
+                    {getTimeDifference(comment.timestamp)}
+                  </p>
+                  <p className="profile__comment-content">{comment.content}</p>
+                  <button
+                    className="profile__comment-button"
+                    onClick={() => {
+                      handleGoToComments(comment.commentPage);
+                    }}
+                  >
+                    Go
+                  </button>
+                </div>
+              ))}
+            </section>
+          )}
         </main>
       )}
     </>

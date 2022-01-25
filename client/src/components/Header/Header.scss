@@ -4,16 +4,16 @@
 
 .header {
   width: 100%;
-  height: 14rem;
+  height: 17rem;
   background-color: $primary-blue;
-  padding: 1.5rem 1rem;
-  border-bottom-left-radius: 2.25rem;
-  border-bottom-right-radius: 2.25rem;
+  padding: 3.5rem 1rem;
+  border-bottom-left-radius: 4rem;
+  border-bottom-right-radius: 4rem;
   @include flexbox(column, flex-start, center);
   position: relative;
 
   @include tablet {
-    padding: 2rem 5rem;
+    padding: 5rem 5rem;
     @include flexbox(row, space-between, flex-start);
   }
 

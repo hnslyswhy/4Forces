@@ -33,6 +33,24 @@
     margin-top: 2rem;
   }
 
+  &__sort {
+    width: 70%;
+    margin: auto;
+    margin-top: 1rem;
+    @include flexbox(row, space-between, center);
+  }
+
+  &__order {
+    @include mobil-body-small;
+    font-weight: 600;
+    color: $primary-gray;
+
+    &:hover {
+      cursor: pointer;
+      color: $primary-blue;
+    }
+  }
+
   &__link {
     @include tablet {
       width: 46%;

@@ -12,7 +12,6 @@ passport.use(
       callbackURL: process.env.GOOGLE_CALLBACK_URL,
     },
     function (accessToken, refreshToken, profile, done) {
-      console.log("i logged in");
       let user = findOrCreateUser("google", profile);
       return done(null, user);
     }
@@ -20,7 +19,9 @@ passport.use(
 );
 
 passport.serializeUser((user, cb) => {
+  console.log(user);
   user.then((userData) => {
+    console.log(userData);
     // This callback expects a user.id.
     // See stackoverflow: https://stackoverflow.com/questions/27637609/understanding-passport-serialize-deserialize
     cb(null, userData.id);
@@ -29,6 +30,7 @@ passport.serializeUser((user, cb) => {
 
 passport.deserializeUser((userId, cb) => {
   let user = findOrCreateUser("google", { id: userId });
+  console.log(user);
   cb(null, user);
 });
 
@@ -56,27 +58,12 @@ const findOrCreateUser = async (issuer, profile) => {
         .collection(issuer)
         .insertOne(profile);
 
-      return creatResult;
+      return profile;
     } else {
       return result;
     }
   } catch (e) {
     console.error(e);
   } finally {
-  }
-  const result = await client
-    .db("aviator")
-    .collection(issuer)
-    .findOne({ id: profile.id });
-
-  if (!result) {
-    const creatResult = await req.dbClient
-      .db("aviator")
-      .collection(issuer)
-      .insertOne(profile);
-
-    return creatResult;
-  } else {
-    return result;
   }
 };
