@@ -32,6 +32,18 @@ const ResourceList = (props) => {
       });
   }, []);
 
+  const handleSortByTime = () => {
+    let temp = [...videos];
+    temp.sort((a, b) => a.timestamp - b.timestamp);
+    setVideos(temp);
+  };
+
+  const handleSortByLikes = () => {
+    let temp = [...videos];
+    temp.sort((a, b) => b.likes - a.likes);
+    setVideos(temp);
+  };
+
   return (
     <>
       {isLoading && <LoadingSpinner />}
@@ -39,6 +51,14 @@ const ResourceList = (props) => {
       {!isLoading && !hasError && (
         <aside className={`resource ${props.className}`}>
           <p className="resource__title">VIDEOS</p>
+          <div className="resource__sort">
+            <span className="resource__order" onClick={handleSortByLikes}>
+              Hottest
+            </span>
+            <span className="resource__order" onClick={handleSortByTime}>
+              Latest
+            </span>
+          </div>
           <section className="resource__videos">
             {videos.map((item) => (
               <Link

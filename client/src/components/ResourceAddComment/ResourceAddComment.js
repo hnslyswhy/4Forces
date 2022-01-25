@@ -4,11 +4,9 @@ import { addAComment } from "../../utilities/api";
 import AuthContext from "../../utilities/AuthContext";
 import "./ResourceAddComment.scss";
 
-const ResourceAddComment = () => {
+const ResourceAddComment = (props) => {
   const authCtx = useContext(AuthContext);
   const { pathname } = useLocation();
-  console.log(authCtx);
-  console.log(pathname);
 
   const { id } = useParams();
   const handleSubmit = (e) => {
@@ -22,7 +20,7 @@ const ResourceAddComment = () => {
       pathname
     );
     e.target.reset();
-    window.location.reload(true); // how to update properly
+    props.updateData();
   };
 
   return (

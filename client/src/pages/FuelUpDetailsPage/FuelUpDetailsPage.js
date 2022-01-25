@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useParams, useLocation } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { getASentence } from "../../utilities/api";
 import LoadingSpinner from "../../utilities/LoadingSpinner/LoadingSpinner";
 import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
@@ -28,8 +28,7 @@ const FuelUpDetailsPage = (props) => {
     setNavIds({ previousId: "", nextId: "" });
   };
 
-  useEffect(async () => {
-    resetState();
+  const initiateSentence = async () => {
     try {
       let res = await getASentence(id);
       setSentence(res);
@@ -43,6 +42,11 @@ const FuelUpDetailsPage = (props) => {
       setHasError(true);
       setIsLoading(false);
     }
+  };
+
+  useEffect(() => {
+    resetState();
+    initiateSentence();
   }, [id]);
 
   const handleGoBack = () => {

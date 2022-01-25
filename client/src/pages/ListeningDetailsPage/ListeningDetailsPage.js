@@ -18,7 +18,6 @@ const ListeningDetailsPage = (props) => {
   const [question, setQuestion] = useState(null);
   const [navIds, setNavIds] = useState({});
   const [isRightAnswer, setIsRightAnswer] = useState({});
-  const [isClicked, setIsClicked] = useState(false);
 
   const resetState = () => {
     setHasError(false);
@@ -28,9 +27,8 @@ const ListeningDetailsPage = (props) => {
     setNavIds({ previousId: "", nextId: "" });
   };
 
-  useEffect(async () => {
+  const initiateQuestion = async () => {
     try {
-      resetState();
       let res = await getAQuestion(id);
       setQuestion(res);
       setNavIds({
@@ -43,11 +41,15 @@ const ListeningDetailsPage = (props) => {
       setHasError(true);
       setIsLoading(false);
     }
+  };
+
+  useEffect(() => {
+    resetState();
+    initiateQuestion();
   }, [id]);
 
   const handleChooseAnswer = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
     if (e.target.value.toLowerCase() === question.answer) {
       setIsRightAnswer({ isClicked: true, message: "Well Done!" });
     } else {

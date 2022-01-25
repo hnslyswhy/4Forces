@@ -3,6 +3,8 @@ const passport = require("passport");
 const cookieSession = require("cookie-session");
 const express = require("express");
 const cors = require("cors");
+const helmet = require("helmet");
+const morgan = require("morgan");
 const dotenv = require("dotenv");
 
 const passportSetup = require("./passport");
@@ -45,6 +47,12 @@ app.use(
   })
 );
 app.use(express.json());
+
+/// http header middleware
+app.use(helmet());
+
+/// morgan logger
+app.use(morgan("dev"));
 
 //// mongodb
 app.use((req, res, next) => {

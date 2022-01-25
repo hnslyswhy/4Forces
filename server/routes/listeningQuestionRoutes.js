@@ -1,27 +1,6 @@
 const express = require("express");
 const listeningQuestionRouter = express.Router();
 
-/* //get all
-listeningQuestionRouter.get("/", async (req, res) => {
-  try {
-    const results = await req.dbClient
-      .db("testprep")
-      .collection("listeningquestions")
-      .find({})
-      .toArray();
-    if (results.length !== 0) {
-      res.status(200).json(results);
-    } else {
-      res.status(404).json({ message: "Not Found" });
-    }
-  } catch (e) {
-    console.error(e);
-  //      throw new Error(e);
-      res.status(500).json({ message: "Something went wrong" });
-  } finally {
-  }
-}); */
-
 //get all act questions
 listeningQuestionRouter.get("/radiocommunication", async (req, res) => {
   try {
@@ -31,14 +10,11 @@ listeningQuestionRouter.get("/radiocommunication", async (req, res) => {
       .find({ type: "radio_communication" })
       .toArray();
     if (results.length !== 0) {
-      console.log(results);
       res.status(200).json(results);
     } else {
       res.status(404).json({ message: "Not Found" });
     }
   } catch (e) {
-    console.error(e);
-    //  throw new Error(e);
     res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
@@ -53,14 +29,11 @@ listeningQuestionRouter.get("/aviationscenario", async (req, res) => {
       .find({ type: "aviation_scenario" })
       .toArray();
     if (results.length !== 0) {
-      console.log(results);
       res.status(200).json(results);
     } else {
       res.status(404).json({ message: "Not Found" });
     }
   } catch (e) {
-    console.error(e);
-    //  throw new Error(e);
     res.status(500).json({ message: "Something went wrong" });
   } finally {
   }
@@ -87,11 +60,11 @@ listeningQuestionRouter.get("/:id", async (req, res) => {
     let previousId;
     let nextId;
     if (targetIndex === 0) {
-      previousId = "";
+      previousId = "/testprep";
       nextId = typeData[targetIndex + 1].id;
     } else if (targetIndex === typeData.length - 1) {
       previousId = typeData[targetIndex - 1].id;
-      nextId = "";
+      nextId = "/testprep";
     } else {
       previousId = typeData[targetIndex - 1].id;
       nextId = typeData[targetIndex + 1].id;
@@ -106,8 +79,6 @@ listeningQuestionRouter.get("/:id", async (req, res) => {
       res.status(404).json({ message: "Not Found" });
     }
   } catch (e) {
-    console.error(e);
-    //   throw new Error(e);
     res.status(500).json({ message: "Something went wrong" });
   } finally {
   }

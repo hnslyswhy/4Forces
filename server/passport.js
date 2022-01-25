@@ -12,7 +12,6 @@ passport.use(
       callbackURL: process.env.GOOGLE_CALLBACK_URL,
     },
     function (accessToken, refreshToken, profile, done) {
-      console.log("i logged in");
       let user = findOrCreateUser("google", profile);
       return done(null, user);
     }

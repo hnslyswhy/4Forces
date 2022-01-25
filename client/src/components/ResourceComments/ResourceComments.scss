@@ -80,6 +80,23 @@
     }
   }
 
+  &__edit {
+    height: 1.2rem;
+    width: 1.2rem;
+    opacity: 0.8;
+    margin-left: 1rem;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+    }
+
+    @include tablet {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
   &__text {
     margin-top: 1rem;
     @include mobil-body-medium;

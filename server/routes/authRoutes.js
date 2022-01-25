@@ -106,7 +106,6 @@ authRouter.get("/user/:userId/comments", async (req, res) => {
 ////get user progress
 authRouter.get("/user/:id", async (req, res) => {
   try {
-    console.log(req.params.id);
     const result = await req.dbClient
       .db("aviator")
       .collection("userprogress")

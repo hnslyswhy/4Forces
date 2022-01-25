@@ -9,12 +9,22 @@ import "./SpeakingListPage.scss";
 const SpeakingListPage = () => {
   const [showingQuestions, setShowingQuestion] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
   const [questions, setQuestions] = useState(null);
 
-  useEffect(async () => {
-    let res = await getSpeakingQuestionsList();
-    setQuestions(res);
-    setIsLoading(false);
+  const initiateQuestions = async () => {
+    try {
+      let res = await getSpeakingQuestionsList();
+      setQuestions(res);
+      setIsLoading(false);
+    } catch (e) {
+      setHasError(true);
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    initiateQuestions();
   }, []);
 
   const handleToggleQuestion = () => {
@@ -24,7 +34,8 @@ const SpeakingListPage = () => {
   return (
     <>
       {isLoading && <LoadingSpinner />}
-      {!isLoading && questions.length && (
+      {!isLoading && hasError && <NotFound />}
+      {!isLoading && !hasError && questions.length && (
         <main className="speaking">
           <div className="speaking__item" onClick={handleToggleQuestion}>
             <p className="speaking__title">Short Answer Questions</p>

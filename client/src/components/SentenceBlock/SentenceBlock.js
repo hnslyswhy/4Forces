@@ -6,7 +6,6 @@ const SentenceBlock = (props) => {
   const [wordsChoices, setWordsChoices] = useState(
     props.blockString.split(" ")
   );
-  const [isRightAnswer, setIsRightAnswer] = useState(false);
   const [message, setMessage] = useState(null);
   const rightOrder = props.blockString.split(" ");
 
@@ -23,10 +22,6 @@ const SentenceBlock = (props) => {
     setWordsChoices(randomOrder);
   }, [props.blockString]);
 
-  useEffect(() => {
-    checkAnswer();
-  }, [userChoices]);
-
   const checkAnswer = () => {
     if (userChoices.length !== rightOrder.length) {
       return;
@@ -37,10 +32,13 @@ const SentenceBlock = (props) => {
           return;
         }
       }
-      setIsRightAnswer(true);
       setMessage(["Congrats!"]);
     }
   };
+
+  useEffect(() => {
+    checkAnswer();
+  }, [userChoices]);
 
   const handleClickUserChoice = (index) => {
     // add to word choice end

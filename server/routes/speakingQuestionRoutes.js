@@ -39,11 +39,11 @@ speakingQuestionRouter.get("/:id", async (req, res) => {
     let previousId;
     let nextId;
     if (req.params.id === "4000") {
-      previousId = "";
+      previousId = "/testprep";
       nextId = String(parseInt(req.params.id) + 1);
     } else if (req.params.id === String(results.length - 1 + 4000)) {
       previousId = String(parseInt(req.params.id) - 1);
-      nextId = "";
+      nextId = "/testprep";
     } else {
       previousId = String(parseInt(req.params.id) - 1);
       nextId = String(parseInt(req.params.id) + 1);

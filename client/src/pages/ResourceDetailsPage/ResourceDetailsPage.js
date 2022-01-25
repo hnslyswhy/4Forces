@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { getAResource } from "../../utilities/api";
 import LoadingSpinner from "../../utilities/LoadingSpinner/LoadingSpinner";
@@ -7,6 +7,7 @@ import ResourceDescription from "../../components/ResourceDescription/ResourceDe
 import ResourceList from "../../components/ResourceList/ResourceList";
 import ResourceComments from "../../components/ResourceComments/ResourceComments";
 import ResourceAddComment from "../../components/ResourceAddComment/ResourceAddComment";
+import { v4 as uuidv4 } from "uuid";
 import "./ResourceDetailsPage.scss";
 import Climb from "../../components/Climb/Climb";
 
@@ -14,14 +15,21 @@ const ResourceDetailsPage = () => {
   const [resource, setResource] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+  const [eTag, setETag] = useState(uuidv4());
   const { id } = useParams();
 
+  const resetState = () => {
+    setHasError(false);
+    setResource(null);
+    setIsLoading(true);
+  };
+
   const initiateData = async () => {
-    window.scrollTo(0, 0);
     try {
       let result = await getAResource(id);
       setResource(result);
       setIsLoading(false);
+      setETag(uuidv4());
     } catch (e) {
       console.error(e);
       setHasError(true);
@@ -30,6 +38,7 @@ const ResourceDetailsPage = () => {
   };
 
   useEffect(() => {
+    resetState();
     initiateData();
   }, [id]);
 
@@ -51,14 +60,18 @@ const ResourceDetailsPage = () => {
                 />
               </div>
             )}
-            {resource.type === "doc" && <Climb />}
+            {resource.type === "doc" && <Climb className="climb" />}
             <ResourceDescription
               data={resource}
               updateData={initiateData}
               className="main-resource__description"
             />
-            <ResourceComments resourceId={id} />
-            <ResourceAddComment />
+            <ResourceComments
+              resourceId={id}
+              eTag={eTag}
+              updateData={initiateData}
+            />
+            <ResourceAddComment updateData={initiateData} />
           </section>
 
           <ResourceList className="main-resource__aside" />
