@@ -118,7 +118,7 @@ export async function getSpeakingQuestionsList() {
   let response;
   let data;
   try {
-    response = await axios.get("${baseUrl}/speakingquestions");
+    response = await axios.get(`${baseUrl}/speakingquestions`);
     data = response.data;
   } catch (e) {
     console.error(e.message);
