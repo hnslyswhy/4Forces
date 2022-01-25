@@ -1,43 +1,59 @@
-# HAPPY AVIATOR
+# 4Forces
 
-## CAPSTONE - FULL STACK
+4Forces is an online platform assisting aviators to practice aviation communication in English and master aviation knowledge needed in their exams. It also aims to bridges aviation learners with aviation training providers, providing them a platform to get connected.
 
-# Quick Started
+## Screenshots
 
-## Clone the project to your local directory
+![App Screenshot](https://happyaviationenglish.sfo3.digitaloceanspaces.com/images/screenshot.png)
 
-git clone <repo> <directory>
+## Demo
 
-## To start client
+[Video Demo](https://happyaviationenglish.sfo3.digitaloceanspaces.com/videos/React%20App.mp4)
 
-### install node modules
+Or
 
-In the client directory, you can run:
+[webiste link coming soon]
 
-### `npm i`
+## Installation
 
-once all the node modules are installed
+1. Clone this repo
+2. Setup backend
 
-### `npm start`
+```bash
+  cd server
+  npm i
+  npm start
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+3. Setup frontend
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+  cd client
+  npm i
+  npm start
+```
 
-## start server directory
+4. Set environment variables:
 
-### install node modules
+```bash
+PORT = <PORT_NUMER>
+SESSION_SECRET= <SECRET_KEY>
+GOOGLE_CLIENT_ID = <YOUR_ID>
+GOOGLE_CLIENT_SECRET = <YOUR_KEY>
+GOOGLE_CALLBACK_URL = http://localhost:8080/auth/redirect/google
+CLIENT_URL = http://localhost:3000
+MONGODB_URL =
+```
 
-In the server directory, you can run:
+## Tech Stack
 
-### `npm i`
+**Client:** React.Js, React Hooks, React Router, Axios, Sass, Web API - SpeechSynthesis, React-Speech-Recognition
 
-### `npm start`
+**Server:** NodeJS, Express, Nodemon, PassportJS, Passport-google-oauth20, Helmet, Morgan
 
-You should see the server running on port 8080
+**Storage:** Mongodb, Object store(Digital Ocean)
 
-The server will reload when you make changes..
 
-**Note:**
+## Acknowledgement
+
+It has been an amazing 12 weeks in BrainStation. I want to give my sincere thanks to the awesome educators and teaching assitants as well as the career sucess team. I wouldn't be able to pull this out without your help.
