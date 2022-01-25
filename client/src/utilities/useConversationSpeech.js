@@ -27,21 +27,20 @@ const useConversationSpeech = (conversation, rate = 1, onConversationEnd) => {
     let voices = synth.getVoices();
     setTimeout(() => {
       setAllVoices(voices);
-    }, 800);
+    }, 1000);
   }, []);
 
-  /* // This event handler will notify when the list of voices is returned.
+  // notify when the list of voices is returned.
   synth.onvoiceschanged = () => {
     let voices = synth.getVoices();
     if (voices && voices.length) {
       setAllVoices(voices);
-    
-      voices.forEach((voice, index) => {
+
+      /*    voices.forEach((voice, index) => {
         console.log(`${index}: ${voice.lang} ${voice.name}`);
-      });
-  
+      }); */
     }
-  };  */
+  };
 
   const initConversation = () => {
     if (synth.speaking) {

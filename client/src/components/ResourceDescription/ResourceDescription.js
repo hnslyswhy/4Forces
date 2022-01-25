@@ -1,6 +1,5 @@
 import { getTimeDifference } from "../../utilities/timeConverter";
 import { patchResourceLike } from "../../utilities/api";
-import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import eye from "../../assets/icons/eye.svg";
 import "./ResourceDescription.scss";

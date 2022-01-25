@@ -7,8 +7,6 @@ import "./ResourceAddComment.scss";
 const ResourceAddComment = (props) => {
   const authCtx = useContext(AuthContext);
   const { pathname } = useLocation();
-  console.log(authCtx);
-  console.log(pathname);
 
   const { id } = useParams();
   const handleSubmit = (e) => {

@@ -40,8 +40,6 @@ const FuelUpListPage = () => {
         );
 
         setVisited(visitedSentences);
-        console.log(visited);
-        console.log(sentences);
         setIsLoading(false);
       })
       .catch((e) => {

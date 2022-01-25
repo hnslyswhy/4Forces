@@ -4,14 +4,15 @@ import deleteIcon from "../../assets/icons/deleteIcon.svg";
 import edit from "../../assets/icons/edit.svg";
 import { useParams } from "react-router-dom";
 import { getAResourceComments, editAComment } from "../../utilities/api";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
+import AuthContext from "../../utilities/AuthContext";
 import "./ResourceComments.scss";
 import LoadingSpinner from "../../utilities/LoadingSpinner/LoadingSpinner";
 import NotFound from "../../utilities/NotFound/NotFound";
 import EditModal from "../EditModal/EditModal";
-import { v4 as uuidv4 } from "uuid";
 
 function ResourceComments(props) {
+  const authCtx = useContext(AuthContext);
   const { id } = useParams();
   const [comments, setComments] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -35,19 +36,18 @@ function ResourceComments(props) {
     initiateComments(id);
   }, [props.id, props.eTag]);
 
-  /*   const refresh = () => {
-    console.log(typeof props.updateData);
-    props.updateData();
-  };
- */
-  const handleDelete = (id, commentId) => {
-    deleteComment(id, commentId);
-    initiateComments(id);
+  const handleDelete = (id, commentId, userId) => {
+    if (userId === authCtx.user._id) {
+      deleteComment(id, commentId);
+      props.updateData();
+    }
   };
 
-  const handleToggleModal = (commentId) => {
-    setIsShowingModal(!isShowingModal);
-    commentIdRef.current = commentId;
+  const handleToggleModal = (commentId, userId) => {
+    if (userId === authCtx.user._id) {
+      setIsShowingModal(!isShowingModal);
+      commentIdRef.current = commentId;
+    }
   };
   return (
     <>
@@ -60,7 +60,7 @@ function ResourceComments(props) {
               resourceId={id}
               commentId={commentIdRef}
               toggleModal={setIsShowingModal}
-              /*       updateData={refresh} */
+              updateData={props.updateData}
             />
           )}
           <div className="comments">
@@ -86,13 +86,13 @@ function ResourceComments(props) {
                       </p>
                       <img
                         className="comments__delete"
-                        onClick={() => handleDelete(id, item._id)}
+                        onClick={() => handleDelete(id, item._id, item.userId)}
                         src={deleteIcon}
                         alt="delete"
                       />
                       <img
                         className="comments__edit"
-                        onClick={() => handleToggleModal(item._id)}
+                        onClick={() => handleToggleModal(item._id, item.userId)}
                         src={edit}
                         alt="edit"
                       />

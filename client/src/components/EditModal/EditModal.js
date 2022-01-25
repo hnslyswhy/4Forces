@@ -13,8 +13,7 @@ const EditModal = (props) => {
     );
     e.target.reset();
     props.toggleModal(false);
-    // props.updateData();
-    window.location.reload(true);
+    props.updateData();
   };
 
   const handleCloseModal = () => {

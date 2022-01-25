@@ -45,7 +45,9 @@ const Climb = (props) => {
         }}
       />
       <div style={{ backgroundColor: "#F4F4F4" }}>
-        {/*[if mso | IE]></td></tr>/table><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]*/}
+        <div style={{ width: "100%", height: "300px" }}>
+          <img src={headerPic} alt="hero-image" width="100%" height="100%" />
+        </div>
         <div style={{ margin: "0px auto", maxWidth: "1100px" }}>
           <table
             align="center"
@@ -100,42 +102,7 @@ const Climb = (props) => {
                               paddingLeft: "0px",
                               wordBreak: "break-word",
                             }}
-                          >
-                            <table
-                              border={0}
-                              cellPadding={0}
-                              cellSpacing={0}
-                              role="presentation"
-                              style={{
-                                borderCollapse: "collapse",
-                                borderSpacing: "0px",
-                              }}
-                            >
-                              <tbody>
-                                <tr>
-                                  <td
-                                    style={{
-                                      width: "100%",
-                                      height: "300px",
-                                      /*  backgroundImage:
-                                        "url(" +
-                                        "../../assets/images/headerPic.jpg" +
-                                        ")", */
-                                    }}
-                                  >
-                                    <img
-                                      alt=""
-                                      src={headerPic}
-                                      style={{
-                                        height: "100%",
-                                        width: "100%",
-                                      }}
-                                    />
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </td>
+                          ></td>
                         </tr>
                       </tbody>
                     </table>
@@ -447,6 +414,7 @@ const Climb = (props) => {
                       display: "inline-block",
                       verticalAlign: "top",
                       width: "100%",
+                      backgroundColor: "white",
                     }}
                   >
                     <table

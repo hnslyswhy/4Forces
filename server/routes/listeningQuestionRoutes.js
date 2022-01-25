@@ -87,11 +87,11 @@ listeningQuestionRouter.get("/:id", async (req, res) => {
     let previousId;
     let nextId;
     if (targetIndex === 0) {
-      previousId = "";
+      previousId = "/testprep";
       nextId = typeData[targetIndex + 1].id;
     } else if (targetIndex === typeData.length - 1) {
       previousId = typeData[targetIndex - 1].id;
-      nextId = "";
+      nextId = "/testprep";
     } else {
       previousId = typeData[targetIndex - 1].id;
       nextId = typeData[targetIndex + 1].id;

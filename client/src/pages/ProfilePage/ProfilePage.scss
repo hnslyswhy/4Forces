@@ -124,7 +124,7 @@
     width: 80%;
 
     @include tablet {
-      width: 45%;
+      width: 47%;
     }
   }
 
@@ -132,6 +132,7 @@
     @include mobil-body-small;
     height: 2.25rem;
     line-height: 2.25rem;
+    width: 50%;
     overflow: hidden;
     @include tablet {
       @include body-small;
@@ -142,6 +143,7 @@
   }
 
   &__comment-time {
+    width: 30%;
     @include mobil-body-medium;
     margin-right: 1rem;
     color: $primary-blue;

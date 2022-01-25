@@ -156,7 +156,6 @@ export async function getResourceList(endpoint) {
 
 /********* get a resource  by id ************/
 export async function getAResource(id, isFirstTimeVisit) {
-  console.log(isFirstTimeVisit);
   let response;
   let data;
   try {
@@ -179,7 +178,6 @@ export async function patchResourceLike(id, likes) {
   let data;
 
   try {
-    //  response = await axios.get(`${baseUrl}/resource/${id}`);
     response = await axios.patch(
       `http://localhost:8080/resource/${id}/likes`,
       {
@@ -192,7 +190,6 @@ export async function patchResourceLike(id, likes) {
       }
     );
     data = response.data;
-    console.log(data);
   } catch (e) {
     console.error(e.message);
   }
@@ -211,7 +208,6 @@ export async function addAComment(
   let response;
   let data;
   try {
-    //  response = await axios.get(`${baseUrl}/resource/${id}`);
     response = await axios.post(
       `http://localhost:8080/resource/${resourceId}/comments`,
       {
@@ -224,7 +220,6 @@ export async function addAComment(
       }
     );
     data = response.data;
-    console.log(data);
   } catch (e) {
     console.error(e.message);
   }
@@ -233,7 +228,6 @@ export async function addAComment(
 
 /****************** edit a comment by id *******************/
 export async function editAComment(resourceId, commentId, content) {
-  console.log(commentId);
   let data;
   try {
     let response = await axios.patch(
@@ -289,27 +283,10 @@ export async function deleteComment(resourceId, commentId) {
       `http://localhost:8080/resource/${resourceId}/comments/${commentId}`
     );
     data = response.data;
-    console.log(data);
   } catch (e) {
     console.error(e.message);
   }
   return data;
 }
-
-/********* get all sentences ************/
-/* export async function getAllSentences() {
-  let response;
-  let data;
-  try {
-    //  response = await axios.get(`${baseUrl}/sentences`);
-    //  console.log(`http://localhost:8080/sentences/${endpoint}`);
-    response = await axios.get(`http://localhost:8080/sentences`);
-    data = response.data;
-  } catch (e) {
-    console.error(e.message);
-  }
-  return data;
-}
- */
 
 //

@@ -47,15 +47,12 @@ resourceRouter.get("/doc", async (req, res) => {
 
 // get one by id
 resourceRouter.get("/:id", async (req, res) => {
-  console.log(req.headers);
   try {
-    if (req.headers.isFirstTimeVisit) {
-      //  update the views
-      const updateResult = await req.dbClient
-        .db("resource")
-        .collection("resource")
-        .updateOne({ _id: ObjectId(req.params.id) }, { $inc: { views: 1 } });
-    }
+    //  update the views
+    const updateResult = await req.dbClient
+      .db("resource")
+      .collection("resource")
+      .updateOne({ _id: ObjectId(req.params.id) }, { $inc: { views: 1 } });
 
     // find the target
     const result = await req.dbClient
