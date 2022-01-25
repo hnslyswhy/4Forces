@@ -9,6 +9,7 @@
 ## Demo
 
 [Video Demo](https://happyaviationenglish.sfo3.digitaloceanspaces.com/videos/React%20App.mp4)
+
 [link coming soon]
 
 ## Installation
@@ -30,6 +31,7 @@
   npm start
 ```
 
+
 4. Set environment variables:
 
 ```bash
@@ -39,7 +41,7 @@ GOOGLE_CLIENT_ID = <YOUR_ID>
 GOOGLE_CLIENT_SECRET = <YOUR_KEY>
 GOOGLE_CALLBACK_URL = http://localhost:8080/auth/redirect/google
 CLIENT_URL = http://localhost:3000
-MONGODB_URL =
+MONGODB_URL =<MONGO_URL>
 ```
 
 ## Tech Stack
@@ -50,6 +52,7 @@ MONGODB_URL =
 
 **Storage:** Mongodb, Object store(Digital Ocean)
 
+
 ## Acknowledgement
 
-- It has been an amazing 12 weeks in BrainStation. I want to give my sincere thanks to the awesome educators and teaching assitants as well as the career sucess team. I wouldn't be able to pull this out without your help.
+- It has been an amazing 12 weeks in BrainStation. I want to give my sincere thanks to the awesome educators and teaching assitants as well as the career sucess team.
