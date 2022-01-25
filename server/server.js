@@ -19,7 +19,10 @@ const { MongoClient } = require("mongodb");
 let client;
 async function main() {
   const uri = process.env.MONGODB_URL;
-  client = new MongoClient(uri);
+  const options = {
+    sslValidate: false,
+  };
+  client = new MongoClient(uri, options);
   try {
     await client.connect();
   } catch (e) {

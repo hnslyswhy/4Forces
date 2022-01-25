@@ -38,8 +38,11 @@ const { MongoClient } = require("mongodb");
 
 /************************/
 const findOrCreateUser = async (issuer, profile) => {
-  const uri = process.env.MONGODB_URL; 
-  client = new MongoClient(uri);
+  const uri = process.env.MONGODB_URL;
+  const options = {
+    sslValidate: false,
+  };
+  client = new MongoClient(uri, options);
   try {
     await client.connect();
     const result = await client
