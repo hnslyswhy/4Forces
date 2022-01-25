@@ -8,7 +8,7 @@ export async function auth() {
   let response;
   let data;
   try {
-    response = await axios.get(`http://localhost:8080/auth/login/success`, {
+    response = await axios.get(`${baseUrl}/auth/login/success`, {
       withCredentials: true,
     });
     data = response.data;
@@ -24,7 +24,7 @@ export async function updateProgress(questionId, userId, lastPage) {
   let data;
   try {
     response = await axios.patch(
-      `http://localhost:8080/auth/user/${userId}/progress/${questionId}`,
+      `${baseUrl}/auth/user/${userId}/progress/${questionId}`,
       {
         page: lastPage,
         questionId: questionId,
@@ -42,7 +42,7 @@ export async function getProgress(userId) {
   let response;
   let data;
   try {
-    response = await axios.get(`http://localhost:8080/auth/user/${userId}`);
+    response = await axios.get(`${baseUrl}/auth/user/${userId}`);
     data = response.data;
   } catch (e) {
     console.error(e.message);
@@ -56,7 +56,7 @@ export async function getSentencesList(endpoint) {
   let data;
   try {
     //  response = await axios.get(`${baseUrl}/sentences/${endpoint}`);
-    response = await axios.get(`http://localhost:8080/sentences/${endpoint}`);
+    response = await axios.get(`${baseUrl}/sentences/${endpoint}`);
     data = response.data;
   } catch (e) {
     console.error(e.message);
@@ -70,8 +70,8 @@ export async function getASentence(id) {
   let data;
   try {
     //  response = await axios.get(`${baseUrl}/sentences`);
-    //  console.log(`http://localhost:8080/sentences/${endpoint}`);
-    response = await axios.get(`http://localhost:8080/sentences/${id}`);
+    //  console.log(`${baseUrl}/sentences/${endpoint}`);
+    response = await axios.get(`${baseUrl}/sentences/${id}`);
     data = response.data;
   } catch (e) {
     console.error(e.message);
@@ -86,7 +86,7 @@ export async function getQuestionsList(endpoint) {
   try {
     //  response = await axios.get(`${baseUrl}/listeningquestions/${endpoint}`);
     response = await axios.get(
-      `http://localhost:8080/listeningquestions/${endpoint}`
+      `${baseUrl}/listeningquestions/${endpoint}`
     );
     data = response.data;
   } catch (e) {
@@ -101,9 +101,9 @@ export async function getAQuestion(id) {
   let data;
   try {
     //  response = await axios.get(`${baseUrl}/listeningquestions/${endpoint}`);
-    //  console.log(`http://localhost:8080/listeningquestions/${endpoint}`);
+    //  console.log(`${baseUrl}/listeningquestions/${endpoint}`);
     response = await axios.get(
-      `http://localhost:8080/listeningquestions/${id}`
+      `${baseUrl}/listeningquestions/${id}`
     );
     data = response.data;
   } catch (e) {
@@ -118,8 +118,8 @@ export async function getASpeakingQuestion(id) {
   let data;
   try {
     //  response = await axios.get(`${baseUrl}/speakingquestions/${id}`);
-    //  console.log(`http://localhost:8080/speakingquestions/${id}`);
-    response = await axios.get(`http://localhost:8080/speakingquestions/${id}`);
+    //  console.log(`${baseUrl}/speakingquestions/${id}`);
+    response = await axios.get(`${baseUrl}/speakingquestions/${id}`);
     data = response.data;
   } catch (e) {
     console.error(e.message);
@@ -133,7 +133,7 @@ export async function getSpeakingQuestionsList() {
   let data;
   try {
     //  response = await axios.get(`${baseUrl}/speakingquestions`);
-    response = await axios.get("http://localhost:8080/speakingquestions");
+    response = await axios.get("${baseUrl}/speakingquestions");
     data = response.data;
   } catch (e) {
     console.error(e.message);
@@ -147,7 +147,7 @@ export async function getResourceList(endpoint) {
   let data;
   try {
     //  response = await axios.get(`${baseUrl}/resource/${endpoint}`);
-    response = await axios.get(`http://localhost:8080/resource/${endpoint}`);
+    response = await axios.get(`${baseUrl}/resource/${endpoint}`);
     data = response.data;
   } catch (e) {
     console.error(e.message);
@@ -161,7 +161,7 @@ export async function getAResource(id) {
   let data;
   try {
     //  response = await axios.get(`${baseUrl}/resource/${id}`);
-    response = await axios.get(`http://localhost:8080/resource/${id}`);
+    response = await axios.get(`${baseUrl}/resource/${id}`);
     data = response.data;
   } catch (e) {
     console.error(e.message);
@@ -178,7 +178,7 @@ export async function patchResourceLike(id, likes) {
   try {
     //  response = await axios.get(`${baseUrl}/resource/${id}`);
     response = await axios.patch(
-      `http://localhost:8080/resource/${id}/likes`,
+      `${baseUrl}/resource/${id}/likes`,
       {
         increment: likes,
       },
@@ -210,7 +210,7 @@ export async function addAComment(
   try {
     //  response = await axios.get(`${baseUrl}/resource/${id}`);
     response = await axios.post(
-      `http://localhost:8080/resource/${resourceId}/comments`,
+      `${baseUrl}/resource/${resourceId}/comments`,
       {
         resourceId: resourceId,
         userId: userId,
@@ -235,7 +235,7 @@ export async function getAResourceComments(resourceId) {
   try {
     //  response = await axios.get(`${baseUrl}/resource/${id}`);
     response = await axios.get(
-      `http://localhost:8080/resource/${resourceId}/comments`
+      `${baseUrl}/resource/${resourceId}/comments`
     );
     data = response.data;
   } catch (e) {
@@ -251,7 +251,7 @@ export async function getAUserComments(userId) {
   try {
     //  response = await axios.get(`${baseUrl}/resource/${id}`);
     response = await axios.get(
-      `http://localhost:8080/auth/user/${userId}/comments`
+      `${baseUrl}/auth/user/${userId}/comments`
     );
     data = response.data;
   } catch (e) {
@@ -267,7 +267,7 @@ export async function deleteComment(resourceId, commentId) {
   try {
     //  response = await axios.get(`${baseUrl}/resource/${id}`);
     response = await axios.delete(
-      `http://localhost:8080/resource/${resourceId}/comments/${commentId}`
+      `${baseUrl}/resource/${resourceId}/comments/${commentId}`
     );
     data = response.data;
     console.log(data);
@@ -283,8 +283,8 @@ export async function deleteComment(resourceId, commentId) {
   let data;
   try {
     //  response = await axios.get(`${baseUrl}/sentences`);
-    //  console.log(`http://localhost:8080/sentences/${endpoint}`);
-    response = await axios.get(`http://localhost:8080/sentences`);
+    //  console.log(`${baseUrl}/sentences/${endpoint}`);
+    response = await axios.get(`${baseUrl}/sentences`);
     data = response.data;
   } catch (e) {
     console.error(e.message);
