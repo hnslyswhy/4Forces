@@ -50,7 +50,6 @@ const ListeningDetailsPage = (props) => {
 
   const handleChooseAnswer = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
     if (e.target.value.toLowerCase() === question.answer) {
       setIsRightAnswer({ isClicked: true, message: "Well Done!" });
     } else {

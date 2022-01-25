@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = process.env.REACT_APP_API_URL; // ?????
+const baseUrl = process.env.REACT_APP_API_URL;
 
 /********* auth ************/
 export async function auth() {
@@ -54,7 +54,6 @@ export async function getSentencesList(endpoint) {
   let response;
   let data;
   try {
-    //  response = await axios.get(`${baseUrl}/sentences/${endpoint}`);
     response = await axios.get(`http://localhost:8080/sentences/${endpoint}`);
     data = response.data;
   } catch (e) {
@@ -68,8 +67,6 @@ export async function getASentence(id) {
   let response;
   let data;
   try {
-    //  response = await axios.get(`${baseUrl}/sentences`);
-    //  console.log(`http://localhost:8080/sentences/${endpoint}`);
     response = await axios.get(`http://localhost:8080/sentences/${id}`);
     data = response.data;
   } catch (e) {
@@ -83,7 +80,6 @@ export async function getQuestionsList(endpoint) {
   let response;
   let data;
   try {
-    //  response = await axios.get(`${baseUrl}/listeningquestions/${endpoint}`);
     response = await axios.get(
       `http://localhost:8080/listeningquestions/${endpoint}`
     );
@@ -99,8 +95,6 @@ export async function getAQuestion(id) {
   let response;
   let data;
   try {
-    //  response = await axios.get(`${baseUrl}/listeningquestions/${endpoint}`);
-    //  console.log(`http://localhost:8080/listeningquestions/${endpoint}`);
     response = await axios.get(
       `http://localhost:8080/listeningquestions/${id}`
     );
@@ -116,8 +110,6 @@ export async function getASpeakingQuestion(id) {
   let response;
   let data;
   try {
-    //  response = await axios.get(`${baseUrl}/speakingquestions/${id}`);
-    //  console.log(`http://localhost:8080/speakingquestions/${id}`);
     response = await axios.get(`http://localhost:8080/speakingquestions/${id}`);
     data = response.data;
   } catch (e) {
@@ -131,7 +123,6 @@ export async function getSpeakingQuestionsList() {
   let response;
   let data;
   try {
-    //  response = await axios.get(`${baseUrl}/speakingquestions`);
     response = await axios.get("http://localhost:8080/speakingquestions");
     data = response.data;
   } catch (e) {
@@ -145,7 +136,6 @@ export async function getResourceList(endpoint) {
   let response;
   let data;
   try {
-    //  response = await axios.get(`${baseUrl}/resource/${endpoint}`);
     response = await axios.get(`http://localhost:8080/resource/${endpoint}`);
     data = response.data;
   } catch (e) {
@@ -159,7 +149,6 @@ export async function getAResource(id, isFirstTimeVisit) {
   let response;
   let data;
   try {
-    //  response = await axios.get(`${baseUrl}/resource/${id}`);
     response = await axios.get(`http://localhost:8080/resource/${id}`, {
       headers: {
         isFirstTimeVisit: isFirstTimeVisit,
@@ -246,7 +235,6 @@ export async function getAResourceComments(resourceId) {
   let response;
   let data;
   try {
-    //  response = await axios.get(`${baseUrl}/resource/${id}`);
     response = await axios.get(
       `http://localhost:8080/resource/${resourceId}/comments`
     );
@@ -262,7 +250,6 @@ export async function getAUserComments(userId) {
   let response;
   let data;
   try {
-    //  response = await axios.get(`${baseUrl}/resource/${id}`);
     response = await axios.get(
       `http://localhost:8080/auth/user/${userId}/comments`
     );
@@ -278,7 +265,6 @@ export async function deleteComment(resourceId, commentId) {
   let response;
   let data;
   try {
-    //  response = await axios.get(`${baseUrl}/resource/${id}`);
     response = await axios.delete(
       `http://localhost:8080/resource/${resourceId}/comments/${commentId}`
     );

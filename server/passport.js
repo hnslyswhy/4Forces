@@ -12,7 +12,6 @@ passport.use(
       callbackURL: process.env.GOOGLE_CALLBACK_URL,
     },
     function (accessToken, refreshToken, profile, done) {
-      console.log("i logged in");
       let user = findOrCreateUser("google", profile);
       return done(null, user);
     }
@@ -38,7 +37,7 @@ const { MongoClient } = require("mongodb");
 
 /************************/
 const findOrCreateUser = async (issuer, profile) => {
-  const uri = process.env.MONGODB_URL; 
+  const uri = process.env.MONGODB_URL;
   client = new MongoClient(uri);
   try {
     await client.connect();

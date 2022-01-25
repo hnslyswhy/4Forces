@@ -21,7 +21,6 @@ const ResourceList = (props) => {
           setDocs(results[1].filter((resource) => resource._id !== id));
         } else {
           setVideos(results[0]);
-          console.log(videos);
           setDocs(results[1]);
         }
         setIsLoading(false);
