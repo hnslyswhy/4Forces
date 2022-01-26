@@ -7,8 +7,7 @@ dotenv.config();
 
 authRouter.get("/login/success", (req, res) => {
   if (!req.isAuthenticated()) {
-    res.status(401);
-    res.json("Not authenticated");
+    res.status(401).json("Not authenticated");
   } else {
     req.user.then((userData) => {
       if (userData) {
