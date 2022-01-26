@@ -208,7 +208,7 @@ export async function editAComment(resourceId, commentId, content) {
   let data;
   try {
     let response = await axios.patch(
-      `http://localhost:8080/resource/${resourceId}/comments/${commentId}`,
+      `${baseUrl}/resource/${resourceId}/comments/${commentId}`,
       { content: content }
     );
     data = response.data;
