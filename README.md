@@ -8,7 +8,7 @@
 
 ## Demo
 
-[Video Demo](https://happyaviationenglish.sfo3.digitaloceanspaces.com/videos/React%20App.mp4)
+[Video Demo](https://www.loom.com/share/1ff3fde0e3af4f75bdc52b3cf149cfa1)
 
 [link coming soon]
 
