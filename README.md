@@ -10,7 +10,7 @@
 
 [Video Demo](https://www.loom.com/share/1ff3fde0e3af4f75bdc52b3cf149cfa1)
 
-[Link](https://fourforcesclient-9rqpz.ondigitalocean.app/)
+[Link, currently only support google account login](https://fourforcesclient-9rqpz.ondigitalocean.app/)
 
 ## Installation
 
